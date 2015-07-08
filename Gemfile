@@ -8,8 +8,13 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
+gem 'whenever'
 
-gem 'capistrano-rails', group: :development
+group :development do
+  gem 'capistrano',  '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-passenger'
+end
 
 group :development, :test do
   gem 'byebug'
