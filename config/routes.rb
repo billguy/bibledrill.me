@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'site#index'
+  get 'kj/index'
+
+  get 'kj/index'
+
+  root to: 'kj#index'
 end

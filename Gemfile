@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'whenever'
+gem 'kj', require: false
 
 group :development do
   gem 'capistrano',  '~> 3.1'
@@ -17,6 +18,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
