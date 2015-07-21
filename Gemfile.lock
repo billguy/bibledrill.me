@@ -186,6 +186,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  arel
   byebug
   capistrano (~> 3.1)
   capistrano-passenger
