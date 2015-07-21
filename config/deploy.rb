@@ -13,6 +13,12 @@ set :tmp_dir, "#{APP_CONFIG['deploy_to']}/tmp"
 set :whenever_command,      ->{ [:bundle, :exec, :whenever] }
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
+set :default_env, {
+  'GEM_HOME' => "#{APP_CONFIG['deploy_to']}/gems",
+  'RUBYLIB' => "#{APP_CONFIG['deploy_to']}/lib",
+  'PATH' => "#{APP_CONFIG['deploy_to']}/bin:$PATH"
+}
+
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/config.yml')
 
 # Default value for linked_dirs is []

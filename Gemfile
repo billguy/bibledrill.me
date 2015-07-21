@@ -9,7 +9,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'whenever'
-gem 'arel'
 gem 'kj', require: false
 
 group :development do
