@@ -1,14 +1,19 @@
 class KjController < ApplicationController
 
-  require 'kj'
+  before_action :set_bible
 
   def index
-    bible = Kj::Bible.new
-    @verse = bible.random_verse
+    @verse = @bible.random_verse
     respond_to do |format|
       format.html
       format.js
     end
   end
+
+  private
+
+    def set_bible
+      @bible = Kj::Bible.new
+    end
 
 end
