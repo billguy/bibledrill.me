@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap/tab
+//= require hammer
 
 if (history && history.pushState){
   $(function(){
@@ -25,3 +26,24 @@ if (history && history.pushState){
     });
   });
 }
+
+$('body').on('click', 'ol.chapter li', function(){
+    var path = $(this).data('path');
+    $.getScript(path);
+});
+
+var content = document.getElementById('content');
+var hammertime = new Hammer(content);
+hammertime.on('swipeleft', function(ev) {
+    var next_path = content.getAttribute('next-path');
+    console.log(next_path);
+    if (next_path)
+        $.getScript(next_path);
+});
+
+hammertime.on('swiperight', function(ev) {
+    var prev_path = content.getAttribute('prev-path');
+    console.log(prev_path);
+    if (prev_path)
+        $.getScript(prev_path);
+});

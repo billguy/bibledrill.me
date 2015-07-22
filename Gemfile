@@ -14,6 +14,7 @@ gem 'kj'
 gem 'dalli'
 gem "breadcrumbs_on_rails"
 gem 'meta-tags'
+gem 'hammerjs-rails'
 
 group :development do
   gem 'capistrano',  '~> 3.1'

@@ -1,2 +1,2 @@
-li value="#{verse.number}"
+li value="#{verse.number}" data-path="#{book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number, format: :js)}"
   = verse.text
