@@ -1,0 +1,7 @@
+h1=@chapter.title
+
+ol.breadcrumb
+  = render_breadcrumbs tag: :li, separator: ''
+
+ol
+  = render partial: "verses/verse", collection: @verses

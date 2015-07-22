@@ -1,1 +1,2 @@
-$('#content').html('<%= j(render('index')) %>')
+$('#content').html('<%= j(render('index')) %>');
+document.title = "<%= display_title(default_meta_tags) %>";

@@ -13,3 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap/tab
+
+if (history && history.pushState){
+  $(function(){
+   $('body').on('click', 'a[data-remote="true"]', function(e){
+      $.getScript(this.href);
+      history.pushState(null, '', this.href);
+    });
+    $(window).bind("popstate", function(){
+      $.getScript(location.href);
+    });
+  });
+}

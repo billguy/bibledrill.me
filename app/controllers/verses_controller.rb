@@ -2,8 +2,8 @@ class VersesController < ChaptersController
 
   def index
     @page_title = @chapter.title
-    add_breadcrumb "#{@book.name} chapters", book_chapters_path(book_id: @book.permalink), title: "#{@book.name} chapters"
-    add_breadcrumb "Chapter #{@chapter.number} verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Chapter #{@chapter.number} verses"
+    add_breadcrumb @book.name, book_chapters_path(book_id: @book.permalink), title: "#{@book.name} chapters", remote: true
+    add_breadcrumb "Chapter #{@chapter.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Chapter #{@chapter.number} verses", remote: true
     @verses = Rails.cache.fetch("book/#{@book.name}/chapter/#{@chapter.number}/verses/#{params[:id]}"){ @chapter.verses }
     respond_to do |format|
       format.html
@@ -14,9 +14,9 @@ class VersesController < ChaptersController
   def show
     @verse = Rails.cache.fetch("book/#{@book.name}/chapter/#{@chapter.number}/verses/#{params[:id]}"){ @chapter.verse(params[:id]) }
     @page_title = @verse.title
-    add_breadcrumb "#{@book.name} chapters", book_chapters_path(book_id: @book.permalink), title: "#{@book.name} chapters"
-    add_breadcrumb "Chapter #{@chapter.number} verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Chapter #{@chapter.number} verses"
-    add_breadcrumb "Verse #{@verse.number}", nil, title: "Verse #{@verse.number}"
+    add_breadcrumb @book.name, book_chapters_path(book_id: @book.permalink), title: "#{@book.name} chapters", remote: true
+    add_breadcrumb "Chapter #{@chapter.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Chapter #{@chapter.number} verses", remote: true
+    add_breadcrumb "Verse #{@verse.number}", nil, title: "Verse #{@verse.number}", remote: true
     respond_to do |format|
       format.html
       format.js

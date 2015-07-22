@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    = display_meta_tags site: 'BibleDrill.me', reverse: true
+    = display_meta_tags(default_meta_tags)
     = stylesheet_link_tag 'application', media: 'all'
     /= stylesheet_link_tag controller.controller_name, :media => "all" if Rails.application.assets.find_asset("#{controller.controller_name}.css")
     = csrf_meta_tags
@@ -15,4 +15,4 @@ html
     footer
       small
         span> Powered by
-        a href="https://github.com/billguy/kj" kj
+        a href="https://github.com/billguy/kj" target="_blank" kj

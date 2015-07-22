@@ -1,2 +1,2 @@
 li
-  =link_to chapter.number, book_chapter_verses_path(book_id: @book.permalink, chapter_id: chapter.number), class: 'chapter'
+  =link_to chapter.number, book_chapter_verses_path(book_id: @book.permalink, chapter_id: chapter.number), class: 'chapter', remote: true

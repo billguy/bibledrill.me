@@ -4,4 +4,7 @@ ol.breadcrumb
   = render_breadcrumbs tag: :li, separator: ''
 
 ul.list-inline
+  li
+    =link_to book_chapter_path(book_id: @book.permalink, id: @book.chapters.first.number), remote: true, class: 'chapter' do
+      span.read Read
   = render partial: "chapter", collection: @chapters

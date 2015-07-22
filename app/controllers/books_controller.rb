@@ -1,7 +1,7 @@
 class BooksController < KjController
 
   before_action :set_book, if: ->{ params[:book_id] }
-  add_breadcrumb "Books", :books_path, options: { title: "Books" }
+  before_action :set_breadcrumb
 
   def index
     @page_title = "Books"
@@ -18,6 +18,10 @@ class BooksController < KjController
   end
 
   private
+
+    def set_breadcrumb
+      add_breadcrumb "Books", :books_path, title: "Books", remote: true
+    end
 
     def set_book
       @book = Rails.cache.fetch("book/#{params[:book_id]}"){ @bible.book(params[:book_id]) }

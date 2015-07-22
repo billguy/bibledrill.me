@@ -3,4 +3,5 @@ h1=@verse.title
 ol.breadcrumb
   = render_breadcrumbs tag: :li, separator: ''
 
-p=@verse.text
+ol
+  = render partial: 'verse', locals: { verse: @verse }
