@@ -1,0 +1,18 @@
+h1 Books
+
+ol.breadcrumb
+  = render_breadcrumbs tag: :li
+
+ul.nav.nav-tabs role="tablist"
+  li.active role="presentation"
+    a aria-controls="old" data-toggle="tab" href="#old" role="tab" Old
+  li role="presentation"
+    a aria-controls="new" data-toggle="tab" href="#new" role="tab" New
+
+.tab-content
+  #old.tab-pane.fade.in.active role="tabpanel"
+    .row
+      = render partial: "book", collection: @old
+  #new.tab-pane.fade role="tabpanel"
+    .row
+      = render partial: "book", collection: @new

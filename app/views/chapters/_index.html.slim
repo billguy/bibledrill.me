@@ -1,0 +1,7 @@
+h1 #{@book.title} chapters
+
+ol.breadcrumb
+  = render_breadcrumbs tag: :li, separator: ''
+
+ul.list-inline
+  = render partial: "chapter", collection: @chapters

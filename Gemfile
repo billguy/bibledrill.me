@@ -12,6 +12,8 @@ gem 'slim-rails'
 gem 'whenever'
 gem 'kj'
 gem 'dalli'
+gem "breadcrumbs_on_rails"
+gem 'meta-tags'
 
 group :development do
   gem 'capistrano',  '~> 3.1'

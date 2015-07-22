@@ -1,8 +1,10 @@
 class BooksController < KjController
 
   before_action :set_book, if: ->{ params[:book_id] }
+  add_breadcrumb "Books", :books_path, options: { title: "Books" }
 
   def index
+    @page_title = "Books"
     @old = Rails.cache.fetch('old'){ @bible.books.slice(0..38) }
     @new = Rails.cache.fetch('new'){ @bible.books.slice(39..65) }
     respond_to do |format|

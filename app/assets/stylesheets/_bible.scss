@@ -2,9 +2,36 @@
 @import "bootstrap/mixins";
 @import "bootstrap/grid";
 @import "bootstrap/breadcrumbs";
-
+@import "bootstrap/type";
+@import "bootstrap/navs";
 
 .book{
-    margin-top: 10px;
+  margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 2px;
+  height: 34px;
+  border: 1px solid;
+  text-align: center;
+  &:hover{
+    background: darkgray;
+  }
+  a {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    vertical-align: sub;
+  }
+}
+
+.chapter, .verse{
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  text-align: center;
+  font-size: 35px;
+  display: inline-block;
+  margin-bottom: 10px;
+  &:hover{
+    background: darkgray;
+  }
 }
