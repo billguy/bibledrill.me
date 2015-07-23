@@ -1,4 +1,4 @@
 $('#content').html('<%= j(render('show')) %>');
-$('#content').data('next-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number) %>');
-$('#content').data('prev-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.prev.number) %>');
+$('#content').attr('data-next-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number) %>');
+$('#content').attr('data-prev-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.prev.number) %>');
 document.title = "<%= display_title(default_meta_tags) %>";

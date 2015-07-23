@@ -35,15 +35,17 @@ $('body').on('click', 'ol.chapter li', function(){
 var content = document.getElementById('content');
 var hammertime = new Hammer(content);
 hammertime.on('swipeleft', function(ev) {
-    var next_path = content.getAttribute('next-path');
+    var next_path = content.getAttribute('data-next-path');
     console.log(next_path);
-    if (next_path)
+    if (next_path) {
         $.getScript(next_path);
+    }
 });
 
 hammertime.on('swiperight', function(ev) {
-    var prev_path = content.getAttribute('prev-path');
+    var prev_path = content.getAttribute('data-prev-path');
     console.log(prev_path);
-    if (prev_path)
+    if (prev_path) {
         $.getScript(prev_path);
+    }
 });

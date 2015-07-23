@@ -7,7 +7,7 @@ html
     = csrf_meta_tags
     = yield :header
   body
-    #content
+    #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"
       = yield
     = javascript_include_tag 'application'
     /= javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
