@@ -7,12 +7,13 @@ html
     = csrf_meta_tags
     = yield :header
   body
-    #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"
-      = yield
+    .container-fluid
+      #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"
+        = yield
+      footer
+        small
+          span> Powered by
+          a href="https://github.com/billguy/kj" target="_blank" kj
     = javascript_include_tag 'application'
     /= javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
     = yield :footer
-    footer
-      small
-        span> Powered by
-        a href="https://github.com/billguy/kj" target="_blank" kj

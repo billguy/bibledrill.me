@@ -7,5 +7,4 @@ module ApplicationHelper
     }
   end
 
-
 end

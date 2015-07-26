@@ -1,7 +1,12 @@
-h1=@chapter.title
+.row
+  .col-xs-12.col-sm-10
+    h1=@chapter.title
+  .col-sm-2
+    =link_to "<", book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number), class: 'prev'
+    =link_to ">", book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number), class: 'next'
 
 ol.breadcrumb
   = render_breadcrumbs tag: :li, separator: ''
 
-ol.chapter
+ol.chapter.verses
   = render partial: "verses/verse", collection: @verses

@@ -17,8 +17,7 @@
 
 if (history && history.pushState){
   $(function(){
-   $('body').on('click', 'a[data-remote="true"]', function(e){
-      $.getScript(this.href);
+   $(document).on('click', 'a[data-remote="true"]', function(e){
       history.pushState(null, '', this.href);
     });
     $(window).bind("popstate", function(){
@@ -30,22 +29,25 @@ if (history && history.pushState){
 $('body').on('click', 'ol.chapter li', function(){
     var path = $(this).data('path');
     $.getScript(path);
+    history.pushState(null, '', path);
 });
 
 var content = document.getElementById('content');
 var hammertime = new Hammer(content);
 hammertime.on('swipeleft', function(ev) {
     var next_path = content.getAttribute('data-next-path');
-    console.log(next_path);
     if (next_path) {
-        $.getScript(next_path);
+        $.getScript(next_path).success( function( data, textStatus, jqxhr ) {
+            history.pushState(null, '', next_path);
+        });
     }
 });
 
 hammertime.on('swiperight', function(ev) {
     var prev_path = content.getAttribute('data-prev-path');
-    console.log(prev_path);
     if (prev_path) {
-        $.getScript(prev_path);
+        $.getScript(prev_path).success( function( data, textStatus, jqxhr ) {
+            history.pushState(null, '', prev_path);
+        });
     }
 });

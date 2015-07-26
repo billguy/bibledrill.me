@@ -1,9 +1,12 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+@import "bootstrap/normalize";
+@import "bootstrap/scaffolding";
+@import "bootstrap/type";
 @import "bootstrap/grid";
 @import "bootstrap/breadcrumbs";
-@import "bootstrap/type";
 @import "bootstrap/navs";
+@import "bootstrap/utilities";
 
 .book{
   margin-top: 10px;
@@ -49,5 +52,31 @@ span.read{
 ol.chapter{
   li{
     margin-top: 10px;
+    &:hover{
+      cursor: hand;
+      span.text{
+        border-bottom: 1px dotted blue;
+      }
+    }
+  }
+}
+
+a.prev, a.next {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  a.prev {
+    display: inline;
+    position: fixed;
+    right: 50px;
+    font-size: 45px;
+  }
+
+  a.next {
+    display: inline;
+    position: fixed;
+    right: 15px;
+    font-size: 45px;
   }
 }
