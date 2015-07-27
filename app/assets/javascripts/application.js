@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.cookie
 //= require bootstrap/tab
+//= require bootstrap/affix
 //= require hammer
 //= require noty
 
@@ -54,4 +55,15 @@ hammertime.on('swiperight', function(ev) {
             history.pushState(null, '', prev_path);
         });
     }
+});
+
+$('body').on('ajaxComplete', function(){
+    $('ol.breadcrumb').affix({
+      offset: {
+        top: 0,
+        bottom: function () {
+          return (this.bottom = $('.footer').outerHeight(true))
+        }
+      }
+    });
 });

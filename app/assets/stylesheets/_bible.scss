@@ -58,6 +58,7 @@ ol.chapter{
 
 a.prev, a.next {
   display: none;
+  z-index: 10;
 }
 
 @media (min-width: 768px) {
@@ -65,15 +66,22 @@ a.prev, a.next {
     display: inline;
     position: fixed;
     right: 50px;
-    font-size: 45px;
+    font-size: 40px;
+    text-decoration: none;
   }
 
   a.next {
     display: inline;
     position: fixed;
     right: 15px;
-    font-size: 45px;
+    font-size: 40px;
+    text-decoration: none;
   }
+}
+
+.affix{
+  width: 98%;
+  top: 0px;
 }
 
 @media (max-width: 768px) {
