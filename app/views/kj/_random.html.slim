@@ -1,7 +1,6 @@
 h1=@verse.title
-p=@verse.text
+span=link_to('Refresh', root_path, remote: true)
+span<> |
+span=link_to('Read', book_chapter_verse_path(book_id: @verse.book_permalink, chapter_id: @verse.chapter.number, id: @verse.number), remote: true)
 
-p.menu
-  span=link_to('Refresh', root_path, remote: true)
-  span<> |
-  span=link_to('Read', book_chapter_verse_path(book_id: @verse.book_permalink, chapter_id: @verse.chapter.number, id: @verse.number), remote: true)
+p=@verse.text
