@@ -15,6 +15,7 @@
   height: 34px;
   border: 1px solid;
   text-align: center;
+  font-size: 14px;
   &:hover{
     background: darkgray;
   }
@@ -78,5 +79,14 @@ a.prev, a.next {
     position: fixed;
     right: 15px;
     font-size: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1{
+    font-size: 25px;
+  }
+  ol.breadcrumb {
+    font-size: 14px;
   }
 }
