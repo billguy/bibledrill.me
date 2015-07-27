@@ -6,6 +6,7 @@
 @import "bootstrap/grid";
 @import "bootstrap/breadcrumbs";
 @import "bootstrap/navs";
+@import "bootstrap/list-group";
 @import "bootstrap/utilities";
 
 .book{
@@ -83,10 +84,10 @@ a.prev, a.next {
 
 @media (max-width: 768px) {
   h1{
-    font-size: 23px;
+    font-size: 22px;
   }
   ol.breadcrumb {
-    font-size: 13px;
+    font-size: 12px;
   }
   .book{
     font-size: 13px;

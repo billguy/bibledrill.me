@@ -15,6 +15,9 @@ gem 'dalli'
 gem "breadcrumbs_on_rails"
 gem 'meta-tags'
 gem 'hammerjs-rails'
+gem 'noty-rails'
+gem 'modernizr-rails'
+gem 'jquery-cookie-rails'
 
 group :development do
   gem 'capistrano',  '~> 3.1'

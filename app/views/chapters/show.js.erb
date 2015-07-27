@@ -2,3 +2,18 @@ $('#content').html('<%= j(render('show')) %>');
 $('#content').attr('data-next-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number) %>');
 $('#content').attr('data-prev-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.prev.number) %>');
 document.title = "<%= display_title(default_meta_tags) %>";
+
+if ( Modernizr.touch ) {
+    if ($.cookie('swipe-tip-shown') != 1) {
+        var n = noty({
+            text: 'Tip: swipe left/right to navigate',
+            animation: {
+                open: {height: 'toggle'},
+                close: {height: 'toggle'},
+                easing: 'swing',
+                speed: 500
+            }
+        });
+        $.cookie('swipe-tip-shown', 1)
+    }
+}

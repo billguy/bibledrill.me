@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.cookie
 //= require bootstrap/tab
 //= require hammer
+//= require noty
 
 if (history && history.pushState){
   $(function(){
