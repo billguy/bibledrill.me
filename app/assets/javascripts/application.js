@@ -38,6 +38,7 @@ hammertime.on('swipeleft', function(ev) {
     var next_path = content.getAttribute('data-next-path');
     if (next_path) {
         $.getScript(next_path).success( function( data, textStatus, jqxhr ) {
+            window.scrollTo(0, 0);
             history.pushState(null, '', next_path);
         });
     }
@@ -47,6 +48,7 @@ hammertime.on('swiperight', function(ev) {
     var prev_path = content.getAttribute('data-prev-path');
     if (prev_path) {
         $.getScript(prev_path).success( function( data, textStatus, jqxhr ) {
+            window.scrollTo(0, 0);
             history.pushState(null, '', prev_path);
         });
     }

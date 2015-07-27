@@ -26,6 +26,12 @@
   }
 }
 
+ul.chapters, ul.verses{
+  li:first-child{
+    margin-right: -4px;
+  }
+}
+
 a.chapter, a.verse{
   width: 50px;
   height: 50px;
