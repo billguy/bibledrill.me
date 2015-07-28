@@ -47,8 +47,8 @@ span.read{
 ol.chapter{
   li{
     margin-top: 10px;
+    cursor: pointer;
     &:hover{
-      cursor: hand;
       span.text{
         border-bottom: 1px dotted blue;
       }

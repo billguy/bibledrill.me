@@ -15,7 +15,7 @@
 //= require jquery.cookie
 //= require bootstrap/tab
 //= require bootstrap/affix
-//= require hammer
+//= require jquery.hammer
 //= require noty
 
 if (history && history.pushState){
@@ -35,26 +35,24 @@ $('body').on('click', 'ol.chapter li', function(){
     history.pushState(null, '', path);
 });
 
-var content = document.getElementById('content');
-var hammertime = new Hammer(content);
-hammertime.on('swipeleft', function(ev) {
-    var next_path = content.getAttribute('data-next-path');
-    if (next_path) {
-        $.getScript(next_path).success( function( data, textStatus, jqxhr ) {
-            window.scrollTo(0, 0);
-            history.pushState(null, '', next_path);
-        });
-    }
-});
-
-hammertime.on('swiperight', function(ev) {
-    var prev_path = content.getAttribute('data-prev-path');
-    if (prev_path) {
-        $.getScript(prev_path).success( function( data, textStatus, jqxhr ) {
-            window.scrollTo(0, 0);
-            history.pushState(null, '', prev_path);
-        });
-    }
+$('#content').hammer()
+    .on('swipeleft', function(ev) {
+        var next_path = content.getAttribute('data-next-path');
+        if (next_path) {
+            $.getScript(next_path).success( function( data, textStatus, jqxhr ) {
+                window.scrollTo(0, 0);
+                history.pushState(null, '', next_path);
+            });
+        }
+    })
+    .on('swiperight', function(ev) {
+        var prev_path = content.getAttribute('data-prev-path');
+        if (prev_path) {
+            $.getScript(prev_path).success( function( data, textStatus, jqxhr ) {
+                window.scrollTo(0, 0);
+                history.pushState(null, '', prev_path);
+            });
+        }
 });
 
 $('body').on('ajaxComplete', function(){
