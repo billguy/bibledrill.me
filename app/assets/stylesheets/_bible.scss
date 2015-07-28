@@ -10,6 +10,7 @@
 @import "bootstrap/utilities";
 
 #books-nav{
+  padding-top: 5px;
   li{
     .h1{
       margin-top: 2px;
@@ -107,8 +108,8 @@ a.prev, a.next {
   #books-nav{
     li{
       .h1{
-        font-size: 20px;
-        margin-top: 10px;
+        font-size: 17px;
+        margin-top: 15px;
       }
     }
   }
