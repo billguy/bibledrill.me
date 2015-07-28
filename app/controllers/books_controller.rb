@@ -4,7 +4,7 @@ class BooksController < KjController
   before_action :set_breadcrumb, if: ->{ params[:book_id] }
 
   def index
-    @page_title = "Books"
+    @page_title = "King James Bible Books"
     @old = Rails.cache.fetch('old'){ @bible.books.slice(0..38) }
     @new = Rails.cache.fetch('new'){ @bible.books.slice(39..65) }
   end
