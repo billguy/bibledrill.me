@@ -1,4 +1,11 @@
 $('#content').html('<%= j(render('show')) %>');
-$('#content').attr('data-next-path', '<%= book_chapter_verse_path(book_id: @verse.next.book_permalink, chapter_id: @verse.next.chapter_number, id: @verse.next.number) %>');
-$('#content').attr('data-prev-path', '<%= book_chapter_verse_path(book_id: @verse.prev.book_permalink, chapter_id: @verse.prev.chapter_number, id: @verse.prev.number) %>');
+
+<% if @verses.length == 1 %>
+    $('#content').attr('data-next-path', '<%= book_chapter_verse_path(book_id: @verses.first.next.book_permalink, chapter_id: @verses.first.next.chapter_number, id: @verses.first.next.number) %>');
+    $('#content').attr('data-prev-path', '<%= book_chapter_verse_path(book_id: @verses.first.prev.book_permalink, chapter_id: @verses.first.prev.chapter_number, id: @verses.first.prev.number) %>');
+<% else %>
+    $('#content').attr('data-next-path', '<%= book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number) %>');
+    $('#content').attr('data-prev-path', '<%= book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number) %>');
+<% end %>
+
 document.title = "<%= display_title(default_meta_tags) %>";

@@ -1,12 +1,16 @@
 .row
   .col-xs-12.col-sm-10
-    h1=@verse.title
+    h1=@page_title
   .col-sm-2
-    =link_to "<", book_chapter_verse_path(book_id: @verse.prev.chapter.book_permalink, chapter_id: @verse.prev.chapter.number, id: @verse.prev.number), class: 'prev'
-    =link_to ">", book_chapter_verse_path(book_id: @verse.next.chapter.book_permalink, chapter_id: @verse.next.chapter.number, id: @verse.next.number), class: 'next'
+    - if @verses.length ==  1
+      =link_to "<", book_chapter_verse_path(book_id: @verses.first.prev.chapter.book_permalink, chapter_id: @verses.first.prev.chapter.number, id: @verses.first.prev.number), class: 'prev'
+      =link_to ">", book_chapter_verse_path(book_id: @verses.first.next.chapter.book_permalink, chapter_id: @verses.first.next.chapter.number, id: @verses.first.next.number), class: 'next'
+    - else
+      =link_to "<", book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number), class: 'prev'
+      =link_to ">", book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number), class: 'next'
 
 ol.breadcrumb
   = render_breadcrumbs tag: :li, separator: ''
 
 ol.verse
-  = render partial: 'verse', locals: { verse: @verse }
+  = render partial: 'verse', collection: @verses, as: :verse
