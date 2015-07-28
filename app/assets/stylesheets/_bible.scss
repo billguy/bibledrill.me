@@ -40,6 +40,12 @@ a.chapter, a.verse{
   }
 }
 
+ul.verses, ul.chapters{
+  li:first-child{
+    margin-right: -4px;
+  }
+}
+
 span.read{
   font-size: 19px;
 }
