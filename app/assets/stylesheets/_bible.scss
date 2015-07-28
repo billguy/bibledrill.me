@@ -61,6 +61,15 @@ a.prev, a.next {
   z-index: 10;
 }
 
+.z-index-100{
+  z-index: 100;
+}
+
+.affix{
+  width: 98%;
+  top: 0px;
+}
+
 @media (min-width: 768px) {
   a.prev {
     display: inline;
@@ -77,11 +86,6 @@ a.prev, a.next {
     font-size: 40px;
     text-decoration: none;
   }
-}
-
-.affix{
-  width: 98%;
-  top: 0px;
 }
 
 @media (max-width: 768px) {

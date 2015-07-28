@@ -5,6 +5,6 @@ ol.breadcrumb
 
 ul.list-inline.verses
   li
-    =link_to book_chapter_path(book_id: @book.permalink, id: @chapter.number), remote: true, class: 'verse' do
+    =link_to book_chapter_path(book_id: @book.permalink, id: @chapter.number), remote: true, class: 'verse z-index-100' do
       span.read Read
   = render partial: "verse_link", collection: @verses, as: :verse

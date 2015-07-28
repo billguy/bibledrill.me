@@ -14,7 +14,8 @@ html
         = yield
       footer
         small
-          span> Powered by
+          a href="http://bibledrill.me" bibledrill.me
+          span<> powered by
           a href="https://github.com/billguy/kj" target="_blank" kj
     = javascript_include_tag 'application'
     /= javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
