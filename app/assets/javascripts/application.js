@@ -78,24 +78,20 @@ $('body').on('click', 'ul.verses li:not(.read) a', function(e){
         $(this).removeClass('selected');
         var index = $.inArray(verse_number, verses);
         verses.splice(index, 1);
-        if (verses.length){
+        if (verses.length > 0){
             verse_path = $read_link.data('verse-path');
             $read_link.attr('href', verse_path + '/' + verses.join(','));
         } else {
+            $read_link.removeClass('glow');
             var chapter_path = $read_link.data('chapter-path');
             $read_link.attr('href', chapter_path);
         }
     } else {
         $(this).addClass('selected');
+        $read_link.addClass('glow');
         verses.push(verse_number);
         verse_path = $read_link.data('verse-path');
         $read_link.attr('href', verse_path + '/' + verses.join(','));
-    }
-
-    if ($(this).closest('ul').find('li a.selected').length) {
-        $read_link.addClass('glow');
-    } else {
-        $read_link.removeClass('glow');
     }
 });
 

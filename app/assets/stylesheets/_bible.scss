@@ -29,9 +29,6 @@
   height: 34px;
   border: 1px solid;
   text-align: center;
-  &:hover{
-    background: darkgray;
-  }
   a {
     height: 100%;
     width: 100%;
@@ -48,9 +45,6 @@ a.chapter, a.verse{
   font-size: 35px;
   display: inline-block;
   margin-bottom: 10px;
-  &:hover{
-    background: darkgray;
-  }
 }
 
 //ul.verses, ul.chapters{
@@ -85,6 +79,30 @@ a.prev, a.next {
   top: 0px;
 }
 
+.selected{
+  background: yellow;
+}
+
+.glow {
+  animation: glow .7s infinite alternate;
+  -webkit-animation-name:             glow;
+  -webkit-animation-duration:         .7s;
+  -webkit-animation-iteration-count:  infinite;
+  -webkit-animation-timing-function:  alternate;
+}
+
+@keyframes glow {
+    to {
+        background: yellow;
+    }
+}
+
+@-webkit-keyframes glow {
+    to {
+        background: yellow;
+    }
+}
+
 @media (min-width: 768px) {
   a.prev {
     display: inline;
@@ -101,20 +119,6 @@ a.prev, a.next {
     font-size: 40px;
     text-decoration: none;
   }
-}
-
-.selected{
-  background: yellow;
-}
-
-.glow {
-    animation: glow .3s infinite alternate;
-}
-
-@keyframes glow {
-    to {
-        background: yellow;
-    }
 }
 
 @media (max-width: 768px) {
