@@ -24,7 +24,7 @@ if (history && history.pushState){
       history.pushState(null, '', this.href);
     });
     $(window).bind("popstate", function(){
-      $.getScript(location.href);
+        $.getScript(location.href);
     });
   });
 }
