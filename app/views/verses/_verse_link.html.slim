@@ -1,2 +1,2 @@
 li
-  =link_to verse.number, book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), class: 'verse z-index-100', remote: true
+  =link_to verse.number, book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), class: 'verse', remote: true, data: { number: verse.number }

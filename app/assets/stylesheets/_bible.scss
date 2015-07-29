@@ -80,10 +80,6 @@ a.prev, a.next {
   z-index: 10;
 }
 
-.z-index-100{
-  z-index: 100;
-}
-
 .affix{
   width: 98%;
   top: 0px;
@@ -105,6 +101,20 @@ a.prev, a.next {
     font-size: 40px;
     text-decoration: none;
   }
+}
+
+.selected{
+  background: yellow;
+}
+
+.glow {
+    animation: glow .3s infinite alternate;
+}
+
+@keyframes glow {
+    to {
+        background: yellow;
+    }
 }
 
 @media (max-width: 768px) {

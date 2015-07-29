@@ -65,3 +65,40 @@ $('body').on('ajaxComplete', function(){
       }
     });
 });
+
+var verses = [];
+$('body').on('click', 'ul.verses li:not(.read) a', function(e){
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    var $read_link = $(this).closest('ul').find('li.read a');
+    var verse_number = $(this).data('number');
+
+    if ($(this).hasClass('selected')){
+        $(this).removeClass('selected');
+        var index = $.inArray(verse_number, verses);
+        verses.splice(index, 1);
+        if (verses.length){
+            verse_path = $read_link.data('verse-path');
+            $read_link.attr('href', verse_path + '/' + verses.join(','));
+        } else {
+            var chapter_path = $read_link.data('chapter-path');
+            $read_link.attr('href', chapter_path);
+        }
+    } else {
+        $(this).addClass('selected');
+        verses.push(verse_number);
+        verse_path = $read_link.data('verse-path');
+        $read_link.attr('href', verse_path + '/' + verses.join(','));
+    }
+
+    if ($(this).closest('ul').find('li a.selected').length) {
+        $read_link.addClass('glow');
+    } else {
+        $read_link.removeClass('glow');
+    }
+});
+
+$('body').on('click', 'ul.verses li.read a', function(e){
+    verses = [];
+});
