@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'kj#index'
+  root to: 'books#index'
 end
