@@ -24,4 +24,8 @@ class ChaptersController < BooksController
       redirect_to root_path, flash: { error: "No such chapter '#{chapter_id}' in book '#{params[:book_id]}}'" }
     end
 
+    def set_expires_in
+      expires_in 3.hours, public: false #since we're setting a cookie
+    end
+
 end
