@@ -55,17 +55,6 @@ $('#content').hammer()
         }
 });
 
-$('body').on('ajaxComplete', function(){
-    $('ol.breadcrumb').affix({
-      offset: {
-        top: 0,
-        bottom: function () {
-          return (this.bottom = $('.footer').outerHeight(true))
-        }
-      }
-    });
-});
-
 var verses = [];
 $('body').on('click', 'ul.verses li:not(.read) a', function(e){
     e.stopImmediatePropagation();

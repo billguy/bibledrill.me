@@ -47,11 +47,19 @@ a.chapter, a.verse{
   margin-bottom: 10px;
 }
 
-//ul.verses, ul.chapters{
-//  li:first-child{
-//    margin-right: -4px;
-//  }
-//}
+ul.verses{
+  li{
+    &:first-child{
+      a{
+        background: white;
+      }
+      margin-right: -74px;
+    }
+    &:nth-child(2){
+      margin-left: 70px;
+    }
+  }
+}
 
 span.read{
   font-size: 19px;
@@ -76,7 +84,7 @@ a.prev, a.next {
 
 .affix{
   width: 98%;
-  top: 0px;
+  top: -3px;
 }
 
 .selected{
