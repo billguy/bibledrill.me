@@ -99,6 +99,16 @@ a.prev, a.next {
   -webkit-animation-timing-function:  alternate;
 }
 
+.disabled{
+  @extend .hidden;
+}
+
+.text-to-speech{
+  a {
+    vertical-align: text-top;
+  }
+}
+
 @keyframes glow {
     to {
         background: yellow;

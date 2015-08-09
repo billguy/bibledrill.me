@@ -87,3 +87,30 @@ $('body').on('click', 'ul.verses li:not(.read) a', function(e){
 $('body').on('click', 'ul.verses li.read a', function(e){
     verses = [];
 });
+
+function detectSpeechEnabled() {
+    if ('speechSynthesis' in window) {
+        $('.text-to-speech').removeClass('disabled');
+        window.speechSynthesis.cancel();
+    } else {
+        $('.text-to-speech').addClass('enabled');
+    }
+}
+
+detectSpeechEnabled();
+
+$(document).on('ajaxComplete', function() {
+    detectSpeechEnabled();
+});
+
+$('body').on('click', '.text-to-speech a', function(e){
+    e.preventDefault();
+    if (window.speechSynthesis.speaking){
+        window.speechSynthesis.cancel();
+    } else {
+        $('span.verse').each(function(index, verse) {
+            var utterance = new SpeechSynthesisUtterance( $(verse).html() );
+            window.speechSynthesis.speak(utterance);
+        });
+    }
+});
