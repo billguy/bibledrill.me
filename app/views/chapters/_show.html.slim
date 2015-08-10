@@ -10,7 +10,7 @@
     =link_to "<", book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number), class: 'prev'
     =link_to ">", book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number), class: 'next'
 
-ol.breadcrumb data-spy="affix" data-offset-top="1"
+ol.breadcrumb.sticky
   = render_breadcrumbs tag: :li, separator: ''
 
 ol.chapter.verses

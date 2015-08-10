@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery.cookie
 //= require bootstrap/tab
-//= require bootstrap/affix
+//= require jquery.sticky-kit
 //= require jquery.hammer
 //= require noty
 
@@ -101,6 +101,7 @@ detectSpeechEnabled();
 
 $(document).on('ajaxComplete', function() {
     detectSpeechEnabled();
+    $(".sticky").stick_in_parent();
 });
 
 $('body').on('click', '.text-to-speech a', function(e){
@@ -110,7 +111,10 @@ $('body').on('click', '.text-to-speech a', function(e){
     } else {
         $('span.verse').each(function(index, verse) {
             var utterance = new SpeechSynthesisUtterance( $(verse).html() );
+            utterance.rate = 1;
             window.speechSynthesis.speak(utterance);
         });
     }
 });
+
+$(".sticky").stick_in_parent();
