@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'books#index'
+  root to: 'site#index'
 end

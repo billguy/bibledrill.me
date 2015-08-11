@@ -12,6 +12,11 @@
 @import "bootstrap/list-group";
 @import "bootstrap/utilities";
 
+body{
+  font-family: 'Merriweather', serif;
+  font-size: 17px;
+}
+
 #books-nav{
   padding-top: 5px;
   background: white;
