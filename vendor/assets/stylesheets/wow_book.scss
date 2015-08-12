@@ -19,6 +19,7 @@
 .wowbook-page-content {
 	position : absolute;
 	overflow : hidden;
+	background: white;
 	zoom: 1;
 }
 
@@ -36,6 +37,11 @@ img.wowbook-lazy {
 	width: 100%;
 }
 
+.wowbook-fullscreen-fix {
+	height: 100% !important;
+	width: 100% !important;
+}
+
 /* marker class */
 .wowbook-left{}
 .wowbook-right{}
@@ -47,7 +53,7 @@ img.wowbook-lazy {
 	position : absolute;
 	top      : 0;
 	width    : 50px;
-	z-index  : 10000;
+	z-index  : 100001;
 	/* without this Chrome will mess the zindex of hardcover when it flips, making
 	   the cover to jump when the "curl page corner on hover" is enabled */
 	-webkit-transform: translate3d(0px, 0px, 10000px);
@@ -71,7 +77,7 @@ img.wowbook-lazy {
 .wowbook-shadow-clipper {
 	position : absolute;
 	overflow : hidden;
-	z-index : 999; /* 1 a menos do que o verso da pagina sendo foldada */
+	z-index : 999;
 	zoom: 1;
 	-webkit-backface-visibility: hidden; /* eliminate jagged edges */
 }
@@ -79,7 +85,7 @@ img.wowbook-lazy {
 .wowbook-shadow-container {
 	display  : none;
 	position : absolute;
-	z-index  : 999; /* 1 a menos do que o verso da pagina sendo foldada */
+	z-index  : 999;
 	zoom: 1;
 }
 
@@ -121,7 +127,7 @@ img.wowbook-lazy {
 
 .wowbook-fold-gradient-container {
 	position : absolute;
-	z-index  : 1001; /* 1 a mais que o verso da pagina sendo foldada */
+	z-index  : 1001;
 }
 
 .wowbook-gutter-shadow {
@@ -146,7 +152,7 @@ img.wowbook-lazy {
 	background : #888;
 	position   : absolute;
 	top        : 0;
-	z-index    : 999; /* 1 a menos do que o verso da pagina sendo foldada */
+	z-index    : 999;
 }
 
 .wowbook-page-number {
@@ -272,12 +278,12 @@ img.wowbook-lazy {
 .wowbook-horizontal.wowbook-thumbnails .wowbook-button {
 	width: 30px;
 	height: 100%;
-	background-image: image-url("wow_book/icons/arrow_left.png");
+	background-image: image-url("wow_book/arrow_left.png");
 }
 
 .wowbook-horizontal.wowbook-thumbnails .wowbook-next.wowbook-button {
 	left: auto; right: 0;
-	background-image: image-url("wow_book/icons/arrow_right.png");
+	background-image: image-url("wow_book/arrow_right.png");
 }
 
 .wowbook-horizontal .wowbook-thumbnail {
@@ -320,6 +326,44 @@ img.wowbook-lazy {
 .wowbook-vertical .wowbook-thumbnail.wowbook-right {
 	margin-right: 0;
 }
-.wowbook-vertical .wowbook-thumbnail:first-child {
+.wowbook-vertical.wowbook-closable .wowbook-thumbnail:first-child {
 	margin-left: 50%;
+}
+
+/*
+	Cursor
+*/
+.wowbook-draggable {
+	cursor:hand;
+	cursor:grab;
+	cursor:-moz-grab;
+	cursor:-webkit-grab;
+}
+.wowbook-draggable.wowbook-dragging {
+	cursor:grabbing;
+	cursor:-moz-grabbing;
+	cursor:-webkit-grabbing;
+}
+
+
+/*
+	PDF
+*/
+.wowbook-pdf .wowbook-page-content {
+	padding: 0;
+}
+
+.wowbook-pdf .annotLink > a {
+    font-size: 1em;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.wowbook-pdf .annotLink > a:hover {
+    background: none repeat scroll 0 0 #ff0;
+    box-shadow: 0 2px 10px #ff0;
+    opacity: 0.2;
 }

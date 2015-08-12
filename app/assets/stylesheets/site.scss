@@ -1,2 +1,41 @@
 @import "wow_book";
 
+#bible{
+  font-size: 12px;
+  .credits{
+    text-align: center;
+    font-size: 27px;
+    padding: 11px;
+    margin-top: 60%;
+  }
+  .content{
+    padding: 7px
+  }
+  .book{
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 0px 5px 0px 5px
+  }
+  .chapter{
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0px 5px 0px 5px
+  }
+  .page-title{
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0px 5px 0px 5px
+  }
+  ol{
+    margin-left: -10px;
+  }
+}
+.cover{
+  background: black;
+  background: black;
+  color: goldenrod;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 45%;
+}

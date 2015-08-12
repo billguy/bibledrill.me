@@ -1,0 +1,40 @@
+<% if @verses.present? %>
+
+    var $page = $('div[data-page="<%=params[:id]%>"] div.page div.content');
+    var $content = $('<div>');
+    var $ol = $('<ol>');
+
+    <% previous_verse = @verses.first.prev %>
+    <% previous_book_name = previous_verse.book_name %>
+    <% previous_chapter_id = previous_verse.chapter.id %>
+
+    <% @verses.each_with_index do |verse, index| %>
+
+        <% if index == 0 %>
+            <% if verse.book_name == previous_book_name %>
+                $content.append('<div class="page-title"><%= verse.title %></div>');
+            <% else %>
+                $content.append('<div class="book"><%= verse.book_name %></div>');
+            <% end %>
+        <% end %>
+
+        <% if verse.chapter.id != previous_chapter_id %>
+            $ol.append('</ol>');
+            $content.append($ol);
+            $content.append('<div class="chapter">Chapter <%= verse.chapter_number %></div>');
+            $ol = $('<ol>');
+        <% end %>
+
+        $ol.append('<li value="<%= verse.number %>"><%= verse.text %></li>');
+
+        <% previous_verse = verse %>
+        <% previous_book_name = verse.book_name %>
+        <% previous_chapter_id = verse.chapter.id %>
+
+    <% end %>
+    $ol.append('</ol>');
+    $content.append($ol);
+    $content.append('</div>');
+    $page.html($content);
+
+<% end %>

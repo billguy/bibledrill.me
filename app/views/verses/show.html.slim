@@ -1,12 +1,9 @@
-= render 'show'
-
 - if @verses.length == 1
-  - content_for :data_next_path do
-    = book_chapter_verse_path(book_id: @verses.first.next.book_permalink, chapter_id: @verses.first.next.chapter_number, id: @verses.first.next.number)
-  - content_for :data_prev_path do
-    = book_chapter_verse_path(book_id: @verses.first.prev.book_permalink, chapter_id: @verses.first.prev.chapter_number, id: @verses.first.prev.number)
+  - next_path = book_chapter_verse_path(book_id: @verses.first.next.book_permalink, chapter_id: @verses.first.next.chapter_number, id: @verses.first.next.number)
+  - prev_path = book_chapter_verse_path(book_id: @verses.first.prev.book_permalink, chapter_id: @verses.first.prev.chapter_number, id: @verses.first.prev.number)
 - else
-  - content_for :data_next_path do
-    = book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number)
-  - content_for :data_prev_path do
-    = book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number)
+  - next_path = book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number)
+  - prev_path = book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number)
+
+#content data-next-path="#{next_path}" data-prev-path="#{prev_path}"
+  = render 'show'

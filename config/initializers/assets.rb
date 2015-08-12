@@ -8,4 +8,4 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( wow_book/* jquery.js jquery_ujs.js wow_book.min.js wow_book.css bible.js site.js site.css books.js chapters.js verses.js books.css chapters.css verses.css kj.js kj.css )
+Rails.application.config.assets.precompile += %w( wow_book/* jquery.js jquery_ujs.js wow_book.js wow_book.css bible.js site.js site.css books.js chapters.js verses.js books.css chapters.css verses.css kj.js kj.css )

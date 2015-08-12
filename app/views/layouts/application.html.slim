@@ -10,8 +10,7 @@ html
     = yield :header
   body
     .container-fluid
-      #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"
-        = yield
+      = yield
       footer
         small
           a href="http://bibledrill.me" bibledrill.me
