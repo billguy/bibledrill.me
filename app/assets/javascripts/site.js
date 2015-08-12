@@ -2,17 +2,22 @@
 
 $(document).ready(function() {
     $('#bible').wowBook({
-      height : 765,
-      width  : 910,
+      height : 850,
+      width  : 950,
       turnPageDuration: 10,
       hardcovers: true,
-      //updateBrowserURL: false,
-      numberedPages: [2, -2],
+      flipSound: false,
+      updateBrowserURL: false,
       onShowPage: function(book, page, pageIndex) {
-        if (!page.children().first().hasClass('skip')){
-            page.attr('data-page', (pageIndex - 1));
-            $.getScript('/pages/' + (pageIndex - 1));
-        }
+        var page_number = pageIndex - 1;
+        page.attr('data-page', page_number);
+        $.getScript('/pages/' + page_number)
+            .success(function(){
+                book.insertPage($('<div class="page"><div class="content"></div></div>'));
+        });
       }
     });
+
+    $('#bible').fadeIn();
+
 });
