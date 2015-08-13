@@ -1,0 +1,2066 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+	     Remove this if you use the .htaccess -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>WowBook Documentation</title>
+	<meta name="description" content="">
+	<meta name="author" content="Marcio Aguiar">
+
+	<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+	<!-- CSS : implied media="all" -->
+	<link rel="stylesheet" href="css/style.css?v=2">
+	<link rel="stylesheet" type="text/css" href="css/docs.css">
+
+	<!-- Uncomment if you are specifically targeting less enabled mobile browsers
+	<link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
+
+	<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+	<script src="js/libs/modernizr-1.6.min.js"></script><script src="./js/codemirror/codemirror.min.js"></script>
+	<link rel="stylesheet" href="./js/codemirror/codemirror.css">
+
+	<script src="./js/jquery.1.7.1.min.js"></script>
+</head>
+
+<body>
+	<nav id='nav'>
+		<div id='header'>wowBook</div>
+	</nav>
+	<header>
+		<div>
+			<span class='title'>wowBook Documentation</span>
+		</div>
+	</header>
+	<div id="container">
+		<section id='overview'>
+			<h2>Overview</h2>
+			<p>
+				wowBook is a jQuery plugin that let's you publish a book on your website with awesome page flipping effects.
+			</p>
+		</section>
+		<section id='usage'>
+			<h2>How to use</h2>
+			<p>
+				Create a wowBook in your site requires 4 steps.
+			</p>
+			<p>
+				1 -	Find the directory 'wow_book' that comes in the zip file you downloaded from CodeCanyon. Upload this directory to your webserver document root.
+			</p>
+			<p>
+				2 -	Include JQuery, the wowBook script and the wowBook CSS on your page:
+			</p>
+			<textarea>
+				<script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+				<script type="text/javascript" src="./wow_book/wow_book.min.js"></script>
+				<link rel="stylesheet" href="./wow_book/wow_book.css" type="text/css" />
+			</textarea>
+			<p>3 - Create the book content using html.
+			Create a div to hold the book pages. Inside that div, create one div for each page of the book.
+			</p>
+			<textarea>
+				<div id="mybook">
+				  <div> This is the cover  </div>
+				  <div> This is the page 1 </div>
+				  <div> This is the page 2 </div>
+				  <div> This is the page 3 </div>
+				  <div> the end </div>
+				</div>
+			</textarea>
+			<p>
+			4 -	Call the plugin to turn your html into a awesome wowBook!
+			</p>
+			<textarea>
+				<script type="text/javascript">
+				  $(document).ready(function() {
+				    $('#mybook').wowBook({
+				      height : 500,
+				      width  : 600
+				    });
+				  });
+				</script>
+			</textarea>
+			<p>
+				In this example we created a the book with 500 pixels height and a 600 pixel width.
+				Each page will have a 300 pixels width.
+			</p>
+			<p>
+				You can pass as many different options as you'd like by following each one with a comma (except the last one).
+			</p>
+
+			<p class='info'>
+				<b>Check your book.</b>
+				Go and see each page to check if everything is fine. Since you can put any html inside the page,
+				 it's possible that some combination could 'break' the book. The best way is to check it before put it online.
+				 Look below some points that you have to consider when design a book.
+			</p>
+
+		</section>
+
+		<section id='design_notes' class='section'>
+			<h2>Design notes</h2>
+			<p>Some things to take into consideration when designing / styling your book.</p>
+			<ul>
+				<li>
+				If the element passed to wowBook is not positioned, wowBook will make it position to 'relative'.
+				</li>
+				<li>
+				Every element that contains a page's content will be put inside another element, a page container.
+				</li>
+				<li>
+				An element that contains a page's content cannot have margins.
+				</li>
+				<li>
+				An element that contains a page's content will have the css "box-sizing" set to "border-box". Javascript is used to set the element's dimensions if the browser does not support it.
+				</li>
+				<li>
+				An element that contains a page's content will have a class "wowbook-page-content". His parent will have a class "wowbook-page".
+				</li>
+				<li>
+				If you need to change a style to all pages (like padding or background), change the class "wowbook-page-content".
+				</li>
+				<li>
+				Every element that contains a page's content will have the css "overflow" set to "hidden".
+				</li>
+			</ul>
+			<br/>
+			<h3>Flash and Video</h3>
+			<p>	To create the flip effect the plugin use css transformations. Unfortunately, browsers doesn't like when you mix css transformations with  flash and video. In order to avoid any problems, put a CSS class 'wowbook-basic-page' in every page that have a flash object or a video tag. This will force the plugin to use only the basic(a.k.a boring) page flipping effect.
+			</p>
+
+			<br/>
+			<h3>Gutter shadow</h3>
+			<p>The gutter shadow is a div placed over the book page's content.</p>
+			<p>This can be a problem if the div is over a element that the user may interact using the mouse (like selecting a text of the page, a link or a input field). In those cases, you can:</p>
+
+			<p><b>Remove the gutter shadow</b></p>
+			<p> set gutterShadow configuration option to false</p>
+
+			<p><b>Put the page content above the gutter</b></p>
+			<p>Put the page content inside a positioned div with z-index above the gutter shadow div (a number like 10 will do the trick)</p>
+			<textarea>
+				<div id='book'>
+				  <div id="page1">
+				    <div>
+				      <a onclick="alert('ouch')">Gutter shadow will cover me</a>
+				    </div>
+				    <div style="position:relative; z-index: 1">
+				      <a onclick="alert('ouch')">Gutter shadow will NOT cover me</a>
+				    </div>
+				  </div>
+				</div>
+			</textarea>
+
+			<p></p>
+			<p><b>Make the gutter shadow smaller</b></p>
+			<p>You can use CSS to change the width of the gutter shadow</p>
+			<p>For instance, to change the width to 20 pixels, put the snippet below in you css file or inside a style tag:</p>
+			<pre data-mode='css'>
+				.wowbook-gutter-shadow {
+					width: 20px;
+				}
+			</pre>
+
+		</section>
+
+		<section class='section'>
+			<h2>Responsive</h2>
+			<p>Wowbook gives you a configuration option called "scaleToFit" to help you make your book to adapt to various screen sizes.</p>
+			<p>Pass a jQuery Object, a dom element or a jQuery selector to this option and the plugin will create a book that fits inside this dom element dimensions.</p>
+			<pre data-mode='javascript'>
+				$("#book").wowBook({
+				  width: 1000,
+				  height: 500,
+				  scaleToFit: "#some_element"
+				});
+			</pre>
+			<p>In the example above the book will be created and then scaled to fit inside the dimensions of "#some_element", keeping the original aspect ratio. So if "#some_element" have width of 800px and height of 500px, the book will be scaled to have 800px width and 400px height.</p>
+			<p>Now you can use CSS media queries to define the dimensions of "#some_element" for every screen/device, and the book will follow these dimensions.</p>
+			<p>If the dimensions of "#some_element" changes when the user resize the browser window (either manually or by changing the device orientation), the book scale will be updated accordingly.
+			</p>
+			<div class='note'>
+				<ul>
+					<li>- You still need to define the configuration options 'width' and 'height'.</li>
+					<li>- The DOM element doesn't need to contains the book element.</li>
+					<li>- Only the book dimensions are affected, not the book contents or its position.</li>
+				</ul>
+			</div>
+			<br/>
+			<p>Element's padding is not considered when the plugin calculates the height/width. You can use this to create space for a menu, a toolbar or a footer. For example, in the css below, the body element will have a 50px padding. If we pass the body to the plugin in the "scaleToFit" option, the book will be scaled to fit inside the browser window, but will have a 50px space around it.</p>
+			<pre data-mode='css'>
+				/* make the body fill the whole screen */
+				html, body { height: 100%; margin 0; }
+
+				body {
+					/* with border-box, padding is included in the  body's height/width */
+					-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+					-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+					box-sizing: border-box;
+
+					padding: 50px;
+				}
+			</pre>
+			<div class='note'>
+				If you need to change the book dimensions programmatically, use the method <a href="#setdimensions">setDimensions</a>.
+			</div>
+		</section>
+
+		<section class='section'>
+			<h2>PDF support</h2>
+			<p>Wowbook supports pdf files using the library <a href='https://github.com/mozilla/pdf.js'>PDF.js</a> from Mozilla. PDF.js requires 3 files to be included but for your convenience 1 file containing all these files is provided.
+			</p>
+			<p>The first step to use woobook with a pdf file is to include the PDFjs library. Remember to include the file before include wowbook</p>
+			<textarea>
+				<script type="text/javascript" src="./wow_book/pdf.combined.min.js"></script>
+				<script type="text/javascript" src="./wow_book/wow_book.min.js"></script>
+			</textarea>
+
+			<p> Now set the configuration option "pdf" to the url of the pdf file.</p>
+			<pre data-mode='javascript'>
+				$("#book").wowBook({
+				  // ...
+				  // other configuration options
+				  // ...
+				  pdf: "some_pdf_file.pdf"
+				});
+			</pre>
+			<p>Wowbook will create the book using the page dimensions from the PDF file. If you also set the configuration option <a href="#responsive">scaleToFit</a>, the book will be resized accordingly.</p>
+			<h4>Limitations</h4>
+			<ul>
+				<li>- PDF.js works in the following browsers: Firefox, Chrome, Opera, IE10+. It has limited support for Safari, Android and IE9. Not supported on IE8. For more information <a href="https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#what-browsers-are-supported">click here</a>.</li>
+				<li>- By default, PDF.js cannot load a pdf from another server(ie from another domain) because of the <a href="http://en.wikipedia.org/wiki/Same_origin_policy">Same origin policy</a>. For more information <a href="https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#can-i-load-a-pdf-from-another-server-cross-domain-request">click here</a>.</li>
+				<li>- wowbook supports only html links in the pdf (for now).</li>
+				<li>- It can take several seconds to render a pdf page. It's normal, if you want to avoid this convert your pdf into images.</li>
+				<li>- Each pdf page that is rendered can use a good amount of memory. By default wowbook will only keep 6 pages in memory to avoid consume too much memory. You can change this behavior by setting the configuration option <a href="#pagesinmemory">"pagesInMemory"</a>.</li>
+				<li>- <a href="https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#what-types-of-pdf-files-are-slow-in-pdfjs-can-i-optimize-a-pdf-file-to-make-pdfjs-faster">Click here</a> to see what you can do to optimize your pdf file.</li>
+			</ul>
+
+			<dl class='config'>
+				<dt class='property'>pdf</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>string</dd>
+				<dd>
+					The url of the pdf file to be shown.
+				</dd>
+
+				<dt class='property'>pdfProgressiveRender</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>
+					The browser can take several seconds to render a pdf page. By default, the plugin will only show the page after the rendering is finished. Set this option to true to show the page during the rendering process.
+				</dd>
+			</dl>
+		</section>
+
+		<section class='section'>
+			<h2>Fullscreen</h2>
+			<p>Wowbook can help you to make your site/book full screen if the browser supports the Full Screen API.</p>
+			<p>First, you need to choose what element on the page will be used to occupy the whole screen. By default wowbook will use document element, which means your whole website will take the screen. If you want to change this behavior, set the configuration option "fullscreenElement"</p>
+			<pre data-mode='javascript'>
+				$('#mybook').wowBook({
+				  height : 500, width  : 600,
+				  // the element "#book_container" will be show in fullscreen mode
+				  fullscreenElement: "#book_container"
+				});
+			</pre>
+			<h3>Fullscreen control option</h3>
+			<p>The configuration option "<a href="#controls">controls</a>" let's you turn a html element into a button that will enable/disable full screen mode, like this:</p>
+			<pre data-mode='javascript'>
+				$('#mybook').wowBook({
+				  height : 500,
+				  width  : 600,
+				  controls : {
+				    // the element "fullscreen_button" now will
+				    // enable/disable full screen mode when clicked
+				    fullscreen : "#fullscreen_button"
+				  }
+				});
+			</pre>
+			<h3>Fullscreen using the plugin API</h3>
+			<p>The second way is to use the plugin api, calling the methods enterFullscreen, exitFullscreen and toggleFullscreen, like the example below:
+			</p>
+			<pre data-mode='javascript'>
+				$('#mybook').wowBook({
+				  height : 500,
+				  width  : 600
+				});
+				// get the book object
+				var book = $.wowBook("#mybook");
+				book.enterFullscreen(); // request the user permission to enter in fullscreen mode
+				book.exitFullscreen(); // leave fullscreen mode
+				book.toggleFullscreen(); // alternate between enter/exit fullscreen mode
+			</pre>
+			<h3>Styling for fullscreen</h3>
+			<p>When the browser is in fullscreen mode, wowbook will add the CSS class "fullscreen" to the following elements:
+				<ul>
+					<li>- Book root element, ie, the element you passed to the plugin to create the book
+					<li>- The element passed in the configuration option "fullscreenElement"
+				</ul>
+			</p>
+			<p>Additionally, the CSS class "wowbook-disabled" will be added to the element used in the configuration option "controls.fullscreen" when in fullscreen mode.</p>
+			<p>These changes can be used to change the style of your site. For instance, in the live preview this is used to change the image on the button "fullscreen" in the toolbar.</p>
+
+		</section>
+
+		<section class='section'>
+			<h2>Right to left</h2>
+			<p>To enable right to left support, just set the configuration option "rtl" to true.</p>
+			<pre data-mode='javascript'>
+				$('#mybook').wowBook({
+				  height : 500, width  : 600,
+				  // ... other options ...
+				  rtl: true
+				});
+			</pre>
+		</section>
+
+		<section id='using_api' class='section'>
+			<h2>Using the wowbook API</h2>
+			<p>You can use the api to have greater control over the book capabilites at runtime.</p>
+			<p>To use the api, you need to use the "$.wowBook" function to get the wowBook object related to the book you created.</p>
+			<pre data-mode='javascript'>
+				// create the book
+				$("#some_element").wowBook({
+					width: 500, height: 500
+				});
+
+				// get the book object reference
+				var book = $.wowBook("#some_element");
+
+				// now you can call methods and properties
+				book.startSlideShow();
+				book.stopSlideShow();
+				alert("This book has "+book.pages.length+" pages.");
+			</pre>
+			<p>Alternatively, you can use a jqueryUI style. To call methods:</p>
+			<pre data-mode='javascript'>
+				// create the book
+				$("#some_element").wowBook({
+					width: 500, height: 500
+				});
+				// get the book object reference
+				$("#some_element").wowBook("zoom", 1);
+			</pre>
+			<p>To set and get book properties:</p>
+			<pre data-mode='javascript'>
+				// get the book object reference
+				$("#some_element").wowBook("prop", "pageHeight"); // return 500
+				$("#some_element").wowBook("prop", "shadows", false); // disable shadows
+				$("#some_element").wowBook("options", "shadows", false); // 'options' works too
+			</pre>
+		</section>
+
+		<section id='glossary' class='section'>
+			<h2>Glossary</h2>
+			<dl class='glossary'>
+				<dt id=''>page index</dt>
+				<dd>All the pages in the book have a associate page index. The cover has index 0, the second page has index 1, and so on.
+				</dd>
+				<dt id='spread'>spread</dt>
+				<dd>two adjacent, facing pages in a newspaper, magazine, or book.
+					In wowBook, pages on the same spread are pages that are exhibited together.
+					The book's  covers are exhibited alone, but the other pages are always viewed in pairs.
+				    Pages in the same spread are pages 1 and 2, 3 and 4, 5 and 6, and so on.
+				    The front cover (page 0) and back cover (if exist) has no other page in the spread.
+				</dd>
+			</dl>
+		</section>
+
+		<section id='pages' class='section'>
+			<h2>Pages</h2>
+			Pages:
+			<p id='pageindex'>
+				All the pages in the book have a associate page index. The cover has index 0, the second page has index 1, and so on.
+				Some configuration options and methods accepts a negative page index.
+				A negative page index is assumed to be relative to the end of the book — that is, an index of -1 indicates the last page, -2 is the second to last page, and so on.
+			</p>
+			<h3>Double pages</h3>
+			<p>
+				You may need a page that expands across two pages, what we call it a "double page". Since you can't have a page that spans the whole book, you have to split the page in two pages. The good news is that wowbook can split the page for you.
+			</p>
+			<p>
+				You have two ways to tell wowbook when a page is a double page and should be splitted. You can add a attribute "data-double" or you can add a CSS class "double".
+			</p>
+			<textarea>
+				<div id='book'>
+				  <div id="page1">I'm a regular page</div>
+				  <div id="page2" data-double="true">I'm a double page</div>
+				  <div id="page3" class='double'>I'm a double page</div>
+				  <div id="page4" class='foobar'>I'm NOT a double page</div>
+				  <div id="page5">I'm a regular page</div>
+				</div>
+			</textarea>
+			<p>
+				In the example above, the pages "page2" and "page3" will be splitted in two, leaving the book with a total of 7 pages. This is what happens when the wowbook "splits" the page "page2":
+			</p>
+			<ul>
+				<li>- First the div "page2" is cloned.</li>
+				<li>- Then both divs are set with a width equivalent to the book's width. But only half of each element will be visible.</li>
+				<li>- Each div is wrapped in a container div and both containers are added to the book, side by side.</li>
+			</ul>
+			<br/>
+			<div class='note'>
+				<p>It's important to keep in mind that a clone of the element will be created, and only half of each is visible.</p>
+				<p>For instance, suppose you have a double page with a input element in the middle of the page, ie, half of the input element is on the book's left side the half is on the right side. After the cloning, the page will have 2 input elements, one for left side and other for the right side. Visually, both elements together will look like one element.</p>
+				<p>The user starts to type inside the input element. Once the text he is typing pass the input element's half, he will no longer be able to see what he is typing. The input element will look "broken" to him. The solution is to not put a input element in the middle of the book.</p>
+			</div>
+			<p>
+				You can change the CSS class used to define a double page. Set the configuration option "doublePages" to a jquery selector. The plugin will consider a double page every page that matches the selector. For instance, consider the javascript below applied to the html in the previous example:
+			</p>
+			<pre data-mode='javascript'>
+				// create the book
+				$("#book").wowBook({
+					width: 500, height: 500,
+					doublePages : "#page5, .foobar"
+				});
+			</pre>
+			<p>
+				With the configuration above the double pages will be "page2", "page4" and "page5". The "page2" div because it has the attribute "data-double". Divs "page4" and "page5" will be considered a double page because both match the selector "#page5, .foobar".
+			</p>
+
+			<h3>Lazy loading</h3>
+			<p>
+				Lazy loading allows you to defer the loading of a page contents until the page is shown. This is especially useful in books that contains a lot of images.
+			</p>
+			<p>
+				You define a lazy loaded page you use attributes "data-src" and "data-image". Look the example below.
+			</p>
+			<textarea>
+				<div id='book'>
+				  <div id="page0">I'm a regular page</div>
+				  <div id="page1" data-src="./foo.html" />
+				  <div id="page2" data-image="./foo.jpg" />
+				  <div id="page3" data-src="./foo_{{x}}.html" />
+				  <div id="page4" data-image="./foo?image_id={{xxx}}" />
+				  <div id="page5" data-image="./foo?image_id={{xxx}}" />
+				  <div id="page6">I'm a regular page</div>
+				  <div id="page7">I'm a regular page</div>
+				</div>
+			</textarea>
+			<p>
+				In the example above, when the page "page1" is shown the file "fool.html" will be loaded from th server and it's contents inserted in the page.
+			</p>
+			<p>
+				The page "page2" has the "data-image" attribute. That means that when the page "page2" is shown the image "foo.jpg" will be loaded and the proper img tag will be inserted in the page.
+			</p>
+			<p>
+				Pages "page3", "page4" and "page5" have a place holder "{{x}}" that will be replaced for the page index(index, not the page id). That means that "page3" will load the url "./foo_3.html". Because the place holder for "page4" and "page5" have 3 "x"s instead of one, the replacement will be padded with 3 zeroes. The page "page4" will load the the image in the url "./foo?image_id=004" and "page5" will load the image "./foo?image_id=005", despite having the same "data-image" attribute.
+			</p>
+			<h4>Easily creating a book based on image files</h4>
+			<p>
+				If you want to create a book in which all pages are lazy loaded, you can use the configuration options "srcs" and "images". These options works like the attributes "data-src" and "data-image", but are defined once and applied to all book pages. For example, the snippet below
+			</p>
+			<textarea>
+				<div id='book'>
+				  <div></div>
+				  <div></div>
+				  <div></div>
+				</div>
+				<script>
+				  $("#book").wowBook({
+				    width: 500, height: 500,
+				    images : "page_{{xxxx}}.png" // works the same way for the 'srcs' option
+				  });
+				</script>
+			</textarea>
+			<p>Is equivalent to</p>
+			<textarea>
+				<div id='book'>
+				  <div data-image="page_0000.png"></div>
+				  <div data-image="page_0001.png"></div>
+				  <div data-image="page_0002.png"></div>
+				</div>
+				<script>
+				  $("#book").wowBook({
+				    width: 500, height: 500
+				  });
+				</script>
+			</textarea>
+			<p>
+				To make your code even shorter, you can use the configuration option "pageCount". This option will add empty pages to the book until the book's page count reach the "pageCount" value. The code below is equivalent to the code above:
+			</p>
+			<textarea>
+				<div id='book'>
+				</div>
+				<script>
+				  $("#book").wowBook({
+				    width: 500, height: 500,
+				    pageCount: 3
+				    images: "page_{{xxxx}}.png" // works the same way for the 'srcs' option
+				  });
+				</script>
+			</textarea>
+			<p>
+			</p>
+			<br />
+
+
+			<h3>Memory usage</h3>
+			<p>
+				Lazy loading allows you to defer the loading of a page contents, but once the page is loaded, it stays in the memory until the book is destroyed (or the user leave your website). To minimize memory usage, you can ask wowbook to keep only a maximum number of pages in memory.
+			</p>
+			<p>
+				You should use this feature if your book has a lot of pages, mostly images. To enable this, use the configuration option "pagesInMemory".
+			</p>
+			<textarea>
+				<script>
+				  $("#book").wowBook({
+				    width: 500, height: 500,
+				    pagesInMemory : 10
+				  });
+				</script>
+			</textarea>
+			<p>
+				In the example above, wowbook will keep 10 pages in memory.
+			</p>
+			<p>
+				If you want to prevent a page from being unloaded (for instance, your page may have a form) you can add a attribute "data-keep='true'" to the page's div or set the configuration option "pagesToKeep".
+			</p>
+			<textarea>
+				<div id='book'>
+				  <div id='page1' data-keep="true"> page 1</div>
+				  <div id='page2' class="please_dont_unload_me"> page 2</div>
+				  <div> page 3</div>
+				  ...
+				  </div> page 100 </div>
+				</div>
+				<script>
+				  $("#book").wowBook({
+				    width: 500, height: 500,
+				    pagesInMemory: 12
+				    pagesToKeep: ".please_dont_unload_me"
+				  });
+				</script>
+			</textarea>
+			<p>
+				In the example above the first 2 pages will not be unloaded, because one have the data-keep attribute set to true and the other matches the selector in the option "pagesToKeep".
+			</p>
+
+
+			<dl class='config'>
+				<dt class='property'>pagesInMemory</dt>
+				<dd class='default'>0</dd>
+				<dd class='type'>integer</dd>
+				<dd>
+					How many pages are kept in memory at the same time. When the number of loaded pages passes this threshold, pages that aren't being displayed can be unloaded by the plugin. A value of 0 means "keep all pages". For more information see <a href="#memory-usage">click here</a>
+				</dd>
+
+				<dt class='property'>pagesToKeep</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>string, a jQuery selector</dd>
+				<dd>
+					Pages that match this selector will not be unloaded when the option <a href="#pagesinmemory">pagesInMemory</a> is enabled.
+				</dd>
+
+				<dt class='property callback'>onLoadPage</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>function</dd>
+				<dd>
+					A callback function that will be called after a page is loaded. The
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					<li>
+						<span>page : </span><span>page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					<li>
+						<span>pageIndex : </span><span>the index of the page being showed.</span>
+					</li>
+					</ul>
+				</dd>
+
+				<dt class='property callback'>onUnloadPage</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>function</dd>
+				<dd>
+					A callback function that will be called every time a page is unloaded from the DOM.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					<li>
+						<span>page : </span><span>page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					<li>
+						<span>pageIndex : </span><span>the index of the page being showed.</span>
+					</li>
+					</ul>
+				</dd>
+
+				<dt class='property'>doublePages</dt>
+				<dd class='default'>".double"</dd>
+				<dd class='type'>string, a jQuery selector</dd>
+				<dd>
+					The plugin will consider a double page every page that matches the selector. For more information on double pages <a href="#double-pages">click here</a>
+				</dd>
+
+				<dt class='property callback'>onShowPage</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>function</dd>
+				<dd>
+					A callback function that will be called every time a page is showed.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					<li>
+						<span>page : </span><span>page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					<li>
+						<span>pageIndex : </span><span>the index of the page being showed.</span>
+					</li>
+					</ul>
+					<div class='note'>
+					Important : when 2 pages are showed (the normal case), the onShowPage function will be called twice.
+					</div>
+				</dd>
+			</dl>
+
+			<dl class='api'>
+				<dt class='property'>currentPage</dt>
+				<dd class='type'>integer</dd>
+				<dd>read only property. This property gives the page index of the current page (the visible page).Use the showPage method to change it.</dd>
+
+				<dt class='property'>pages</dt>
+				<dd class='type'>array</dd>
+				<dd>read only property. Array of page containers of the book. Each page container is a jquery Object.</dd>
+
+				<dt class='method'>insertPages</dt>
+				<dd class='param'>pages : a array or a JQuery object of  "page content". Each "page content" can be a jquery object or a string of HTML.</dd>
+				<dd class='param'>dontShowPage : boolean, default to false. If false, book.showPage(currentPage) is called after inserting the pages.</dd>
+				<dd>inserts new pages at the end of the book.</dd>
+
+				<dt class='method'>insertPage</dt>
+				<dd class='param'>content : the page content, can be a jquery object or a string of HTML.</dd>
+				<dd class='param'>dontUpdateBook : boolean, set it to true to avoid calling updateBook after the page insert.</dd>
+				<dd>inserts one new page at the end of the book. When inserting multiple pages, (for example, calling insertPage several times in sequence), pass dontUpdateBook as true and call updateBook after you're done inserting.</dd>
+
+				<dt class='method'>removePages</dt>
+				<dd class='param'>from : the index of the first page to be removed.</dd>
+				<dd class='param'>to : the index of the last page to be removed.</dd>
+				<dd>Removes pages from the book.
+				    The parameters 'from' or 'to' can be a negative value, e.g. use book.remove(-1) to remove the last page.
+				    Some examples:
+					<pre data-mode='javascript'>
+						book.removePages();      // remove all pages from the book
+						book.removePages(1);     // remove the second page from the book
+						book.removePages(-2);    // remove the second-to-last page from the book
+						book.removePages(1,3);   // remove the second, third and fourth pages from the book
+						book.removePages(-3,-1); // remove the last, penultimate and antepenultimate pages of the book
+					</pre>
+				</dd>
+
+				<dt class='method'>updateBook</dt>
+				<dd class='param'>dontShowPage : boolean, default to false. If false, book.showPage(currentPage) is called after updating the book.</dd>
+				<dd>updates the book after insert or remove pages.
+				    Updates stuff like page numbering, sections, etc.</dd>
+
+				<dt class='method'>findPagesType</dt>
+				<dd>determine which pages are "softpages" and "hardpages" according to the configuration options "hardPages", "hardcovers" and pages marked with CSS class "wowbook-hardpage".</dd>
+
+				<dt class='method'>showPage</dt>
+				<dd class='param'>pageIndex : the index of the page to be showed.</dd>
+				<dd class='param'>updateLocationHash : boolean. If not false, updates the URL hash to reflect the page being shown.</dd>
+				<dd>
+					<p>Shows the page <i>pageIndex</i>. </p>
+					<p>By default, this method updates the URL hash to reflect the page being shown. See <a href='#page_urls'>page_urls</a> for more information.</p>
+					Pass the parameter updateLocationHash as false(it has to be false, not a falsy value) to prevent this.
+					</p>
+					<p>
+					This method is not responsible for any flipping animation.
+					</p>
+				</dd>
+
+				<dt class='property'>onShowPage</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>function</dd>
+				<dd>
+					A callback function that will be called every time a page is showed.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					<li>
+						<span>page : </span><span>page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					<li>
+						<span>pageIndex : </span><span>the index of the page being showed.</span>
+					</li>
+					</ul>
+					Important : when 2 pages are showed (the normal case), the onShowPage function will be called twice.
+				</dd>
+
+				<dt class='method'>advance</dt>
+				<dd>advances a page in the book and returns the new current page.
+				    Keep in mind that it advances 2 pages each time, ie, if currentPage is 2, after calling the 'advance' method  the property currentPage will be 4.
+				 </dd>
+
+				<dt class='method'>back</dt>
+				<dd>back a page in the book and returns the new current page.
+				    Keep in mind that it goes back 2 pages each time, ie, if currentPage is 2, after calling the 'back' method  the property currentPage will be 0.
+				</dd>
+
+				<dt class='method'>leftPage</dt>
+				<dd class='param'>pageIndex : a page index, default is currentPage.</dd>
+				<dd>given a page index, returns the page that is on the left side of the <a href='#spread'>spread</a> at which that page index belongs.
+				    Some examples:
+					<pre data-mode="javascript">
+						book.showPage(2);
+						book.leftPage(0); // returns null
+						book.leftPage(); // returns 1 because currentPage==1
+						book.leftPage(1); // returns 1
+						book.leftPage(2); // also returns 1
+						book.leftPage(3); // returns 3
+						book.leftPage(4); // returns 3
+					</pre>
+				</dd>
+
+				<dt class='method'>rightPage</dt>
+				<dd class='param'>pageIndex : a page index, default is currentPage.</dd>
+				<dd>given a page index, returns the page that is on the right side of the <a href='#spread'>spread</a> at which that page index belongs.
+				    Some examples:
+					<pre data-mode="javascript">
+						book.showPage(2);
+						book.rightPage(0); // returns 0
+						book.rightPage(); // returns 2 because currentPage==1
+						book.rightPage(1); // returns 2
+						book.rightPage(2); // also returns 2
+						book.rightPage(3); // returns 4
+						book.rightPage(4); // returns 4
+					</pre>
+					<p>
+						If there's no page on the right side of the page pageIndex, returns null.
+					</p>
+				</dd>
+
+				<dt class='method'>pageIsOnTheLeft</dt>
+				<dd class='param'>pageIndex : a page index, default is currentPage.</dd>
+				<dd>returns true if the page <i>pageIndex</i> is on the left side of the book, false otherwise.</dd>
+
+				<dt class='method'>pageIsOnTheRight</dt>
+				<dd class='param'>pageIndex : a page index, default to currentPage.</dd>
+				<dd>returns true if the page <i>pageIndex</i> is on the right side of the book, false otherwise.</dd>
+
+				<dt class='method'>otherPage</dt>
+				<dd class='param'>pageIndex : a page index.</dd>
+				<dd>given a page index, returns the page index of the other page in same <a href='#spread'>spread</a>.</dd>
+
+				<dt class='method'>isOnPage</dt>
+				<dd class='param'>pageIndex : a page index</dd>
+				<dd>returns true if the book is at page "pageIndex" (if the page "pageIndex" is visible right now).
+                    For instance, when the user is viewing pages 1 and 2 of the book, isOnPage(1) and isOnPage(2)
+                    returns true, but will return false for any other page index.
+                </dd>
+
+				<dt class='method'>backPage</dt>
+				<dd class='param'>pageIndex : a page index.</dd>
+				<dd>returns the page object(NOT the page index) that is on the back of the page <i>pageIndex</i>.</dd>
+
+			</dl>
+		</section>
+
+		<section id='page_flipping'>
+			<h2>Page flipping effects</h2>
+			<p>
+				wowBook gives you 3 types of page flipping effects:
+				<ul>
+					<li>hardPage</li>
+					<li>softPage</li>
+					<li>basic - is used as fallback when the browser does not support the other 2 types. </li>
+				</ul>
+			</p>
+			<p>
+				By default, all pages are 'softpages'. There are several ways to make a page a 'hardPage':
+				<ul>
+					<li>set the configuration option hardPages to 'true'. This will make all pages to be 'hardPages'.</li>
+					<li>set the configuration option hardPages to an array with the index of the pages that will be 'hardPages'.</li>
+					<li>give a page element the class 'wowbook-hardpage'</li>
+				</ul>
+
+				For convenience, you can set the option 'hardcovers' to 'true' to make the book covers 'hardPages'.
+			</p>
+
+			<dl class='config'>
+				<dt>hardPages</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean or array</dd>
+				<dd>if true, all the book pages will be 'hard pages'.
+					Also, can be an array containing the indexes of the 'hard pages'.
+				</dd>
+
+				<dt>hardcovers</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, the book will have hardcovers.</dd>
+
+				<dt>forceBasicPage</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, only the basic 'page flipping' effect will be used.
+				    This option overrides any other configuration option related to "page flipping" (like hardPage option, for instance).
+				</dd>
+
+				<dt>use3d</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true and the browser supports it, use CSS 3D transformation when turning "hard pages".
+				</dd>
+
+				<dt>perspective</dt>
+				<dd class='default'>2000</dd>
+				<dd class='type'>integer</dd>
+				<dd>perspective's value of the CSS 3D transformation used when turning "hard pages".
+				</dd>
+
+				<dt>turnPageDuration</dt>
+				<dd class='default'>1000</dd>
+				<dd class='type'>integer</dd>
+				<dd>How long it takes to flip a page, in milliseconds.
+					Keep in mind that when centeredWhenClosed is true, the page turn will be a little faster when opening or closing the book
+				</dd>
+
+			</dl>
+
+			<dl class='api'>
+				<dt class='property'>turnPageDuration</dt>
+				<dd class='default'>1000</dd>
+				<dd class='type'>integer</dd>
+				<dd>How long it takes to flip a page, in milliseconds.
+					Keep in mind that when centeredWhenClosed is true, the page turn will be a little faster when opening or closing the book
+				</dd>
+
+				<dt id='holdPage' class='method'>holdPage</dt>
+				<dd class='param'>page : page index or a page container (obtained from book.pages[index])</dd>
+				<dd class='param'>x : number, x coordinate.</dd>
+				<dd class='param'>y : number, y coordinate.</dd>
+				<dd class='param'>corner : string, can be the values "tl", "tr", "bl", "br", "l" or "r".
+					"tl" stands for "top left", "tr" for "top right", "bl" for "bottom left", and so on.
+					default is "tl".
+				</dd>
+				<dd class='param'>back : back of the page that is being held.
+					for instance, if you're going from page 2 to page 6, set the parameter 'back' to page 5.
+					Default : back of the page
+				</dd>
+				<dd>This method executes the page flip. Depending on the page type, it will fold or lift it like a hard cover.
+					The idea is that you're holding the page edge and bringing it till the coordinates x,y.
+					Make a basic processing and then calls foldPage, holdHardPage or foldPageBasic according to the type of page.
+					<img src='./images/docs_holdpage.png' />
+				</dd>
+				<dt class='callback'>onHoldPage</dt>
+				<dd>
+					A callback function that is called when a page is held.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					<li>
+						<span>pageIndex : </span><span>is the index of the page.</span>
+					</li>
+					<li>
+						<span>page : </span><span>page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					<li>
+						<span>back : </span><span>back of the page that is being held. This is a page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					</ul>
+				</dd>
+
+				<dt class='method'>foldPage</dt>
+				<dd class='param'>page : page index or a page container (obtained from book.pages[index])</dd>
+				<dd class='param'>x : number</dd>
+				<dd class='param'>y : number</dd>
+				<dd class='param'>corner : string</dd>
+				<dd class='param'>back : back of the page that is being held. </dd>
+				<dd>this method folds a page. For a explanation of the parameters, see <a href='#holdPage'>holdPage</a>.</dd>
+
+				<dt class='method'>holdHardpage</dt>
+				<dd class='param'>page : page index or a page container (obtained from book.pages[index])</dd>
+				<dd class='param'>x : number</dd>
+				<dd class='param'>y : number</dd>
+				<dd class='param'>corner : string</dd>
+				<dd class='param'>back : back of the page that is being held. </dd>
+				<dd>this method flips a 'hard' page. For a explanation of the parameters, see <a href='#holdPage'>holdPage</a>.</dd>
+
+				<dt class='method'>foldPageBasic</dt>
+				<dd class='param'>page : page index or a page container (obtained from book.pages[index])</dd>
+				<dd class='param'>x : number</dd>
+				<dd class='param'>y : number</dd>
+				<dd class='param'>corner : string</dd>
+				<dd class='param'>back : back of the page that is being held. </dd>
+				<dd>this method folds a page, without using any browser advanced feature (like CSS rotation). For a explanation of the parameters, see <a href='#holdPage'>holdPage</a>.</dd>
+
+				<dt class='method'>animateFoldPage</dt>
+				<dd class='param'>page : a page container (obtained from book.pages[index]).</dd>
+				<dd class='param'>corner : string, can be the values "tl", "tr", "bl", "br", "l" or "r".
+					"tl" stands for "top left", "tr" for "top right", "bl" for "bottom left", and so on.
+					default is "tl".
+				</dd>
+				<dd class='param'>from : object containing coordinates(x,y), for instance {x:10, y:20}</dd>
+				<dd class='param'>to : object containing coordinates(x,y), for instance {x:10, y:20}</dd>
+				<dd class='param'>callback : function. Callback called after the animation is completed.</dd>
+				<dd class='param'>arc : boolean, if set to true the page will follow a path slightly arched instead of going in straight line.</dd>
+				<dd class='param'>back : back of the page that is being held.</dd>
+				<dd>this method animates the page flip from the coordinates in the parameter "from" to the coordinates in the parameter "to"</dd>
+
+				<dt class='method'>stopAnimation</dt>
+				<dd>stops current 'flipping page' animation.</dd>
+
+				<dt class='method'>releasePages</dt>
+				<dd>releases all pages in the book, ie, it calls releasePage for all pages.</dd>
+
+				<dt class='method'>releasePage</dt>
+				<dd class='param'>page : page index or a page container (obtained from book.pages[index])</dd>
+				<dd class='param'>animated : boolean, if true, the page will be released back to her place with a animation.</dd>
+				<dd class='param'>back : back of the page that is being released. This has to  be the same page passed initially to the method holdPage. </dd>
+				<dd>releases a page that is being held. It removes any changes made by the holdPage method, ie, brings back the page to same state it was before calling  holdPage. </dd>
+
+				<dt class='callback'>onReleasePage</dt>
+				<dd>
+					A callback function that is called when a page is released.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					<li>
+						<span>pageIndex : </span><span>is the index of the page.</span>
+					</li>
+					<li>
+						<span>page : </span><span>page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					<li>
+						<span>back : </span><span>back of the page that is being held. This is a page container (obtained from book.pages[index]), is the jquery object created around each page of the book.</span>
+					</li>
+					</ul>
+				</dd>
+
+				<dt class='method'>gotoPage</dt>
+				<dd class='param'>pageIndex :  a page index or a string containing a id, like "#foo"</dd>
+				<dd><p>Go to page <i>pageIndex</i>, executing a page flipping animation.</p>
+				    <p>If you pass a id selector like "#foo", it will go to the page that contains the element "#foo".</p>
+				    <p>If you call gotoPage during a animation or try to go to a page already visible the method does nothing.</p>
+				    <p>Returns pageIndex</p>
+				</dd>
+			</dl>
+
+		</section>
+
+		<section id='pagenumbering' class='section'>
+			<h2>Automatic page numbering</h3>
+			<p>
+			Although you can put the page numbers on each book's page manually, it is easier to use the automatic page numbering feature.
+			</p>
+			<div class='info'>
+				Keep in mind that the number that wowBook will put on a page <em>can be different</em> from the page index.
+			</div>
+
+			<dl class='config'>
+				<dt>pageNumbers</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>If set to true, the automatic page numbering is enabled.</dd>
+
+				<dt>firstPageNumber</dt>
+				<dd class='default'>1</dd>
+				<dd class='type'>integer</dd>
+				<dd>the number of the first <b>numbered</b> page.</dd>
+
+				<dt>numberedPages</dt>
+				<dd class='default'>[2,-3] or [2, -2]</dd>
+				<dd class='type'>string or array</dd>
+				<dd>Can be a string "all", in which case all the book pages will be numbered, or can be an array containing 2 elements.
+				   The first element is the page index of the first numbered page and the second element is the page index of the last numbered page.
+				   You can pass <a href='#pageindex'>negative page indices</a>.
+				   <p>By default, wowbook will number all pages except the covers (both internal and external).</p>
+				</dd>
+			</dl>
+
+			<dl class='api'>
+				<dt class='method'>doPageNumbering</dt>
+				<dd>Numbers the pages of the book, according to the config options pageNumbers, firstPageNumber and numberedPages.</dd>
+			</dl>
+		</section>
+
+		<section id='thumbnails' class='section'>
+			<h2>Thumbnails</h2>
+			<p>
+			Wowbook can display thumbnails of your book pages. When the user click on a page thumbnail, the book will show that page.
+			To tell the plugin to create thumbnails set the configuration option <a href="#co-thumbnails">thumbnails</a> to true. This will create the thumbnails but will not display them. To display the thumbnails you have two options. The first one is to use the configuration options <a href="#controls">controls</a> to turn a regular html element into a control that will show/hide the thumbnails, like this :
+			</p>
+			<pre data-mode='javascript'>
+				$('#mybook').wowBook({
+				  height : 500,
+				  width  : 600,
+				  thumbnails : true, // we can omit that because 'true' is the default value to this option
+				  controls : {
+				    // the element "thumb_button" now show/hide the thumbnails when is clicked
+				    thumbs : "#thumb_button"
+				  }
+				});
+			</pre>
+			<p>
+			The second way is to use the plugin api, calling the methods showThumbnails, hideThumbnails and toggleThumbnails, like the example below:
+			</p>
+			<pre data-mode='javascript'>
+				$('#mybook').wowBook({
+				  height : 500,
+				  width  : 600,
+				  thumbnails : true, // we can omit that because 'true' is the default value to this option
+				});
+				// get the book object
+				var book = $.wowBook("#mybook");
+				book.showThumbnails();
+				book.hideThumbnails();
+				book.toggleThumbnails(); // alternate between show / hide the thumbnails
+			</pre>
+			<br/>
+			<h3 id='thumbnails-types'>Automatically generated thumbnails or Image thumbnails?</h3>
+			<p>You can create the images used as thumbnails or let the plugin generate the thumbnails automatically for you.</p>
+			<p>Compared to image thumbnails, thumbnails generated by the plugin has 3 possible drawbacks:
+				<ul style='list-style-type: disc;'>
+					<li>they use more browser resources (each thumbnail is a copy of the respective page)</li>
+					<li>are slower to render (the browser has to render the page and scale down, as opposed to just draw a image)</li>
+				<li> because browsers are not always good in the "scale down" part, the end result can be very ugly</li>
+			</ul>
+			</p>
+			<p>Which method you should use? During development, let the plugin handle the thumbnails. After you site is finished, If you're not satisfied with the plugin generated thumbnails you can give your own thumbnails as images.
+			</p>
+			<div class='note'>
+				Automatic thumbnails are default. If you want to create the thumbnails manually, create a CSS sprite with your thumbnails and use the configuration option <a href="#thumbnailssprite">thumbnailsSprite</a> to use it.
+			</div>
+			<br />
+			<h3>Thumbnails size</h3>
+			<p>You have 3 ways to set the thumbnails size.</p>
+			<p>You can set using the configuration option <a href="#thumbnailscale">thumbnailScale</a>. This option is a number between 0 and 1 that specifies the proportion between the page size and the thumbnail size. For instance, if your book has a page with 400px width and 500px height, the default value of 0.2 will generate a thumbnail with 80px width and 100px height.</p>
+			<p>You can set the thumbnail size using CSS. Just set the width or height of the CSS class ".wowbook-thumbnail" and you're done. If you add this snippet to your CSS
+			<pre data-mode='css'>
+			.wowbook-thumbnail {
+			  width : 100px; /* you can also use "ems" */
+			}
+			</pre>
+			You will have thumbnails with 100px width. The height will be automatically set to keep the aspect ratio, so you only have to define the width or the height.
+			</p>
+			<div class="note">
+				This is useful if you're using media queries to create a responsive site and want different thumbnails sizes for different resolutions.
+			</div>
+			<p>The third way to set the thumbnail size is using the configuration options <a href="#thumbnailwidth">thumbnailWidth</a> to set the thumbnail width or "thumbnailHeight" to set the thumbnail height. Like when you use CSS, you only need to set the width OR the heigth, and the plugin will figure out the other value  to keep the aspect ratio. For instance, this javascript code</p>
+			<pre data-mode='javascript'>
+				$(document).ready(function(){
+				  $('#mybook').wowBook({
+				    height : 500,
+				    width  : 600,
+				    thumbnailHeight : 100
+				  });
+				});
+			</pre>
+			<p>
+			will create thumbnails with 100px height and 60px width. The width will be automatically set to keep the aspect ratio.
+			</p>
+			<div class="info">
+				If you set the size using "thumbnailWidth" and "thumbnailHeight", the plugin will ignore if you set through CSS or "thumbnailScale". If you set the size using CSS the plugin will ignore "thumbnailScale".
+			</div>
+			<p></p>
+			<h3 id="thumbnails-position">Positioning your thumbnails</h3>
+			<p>The thumbnails are created inside a container element, by default this container is appended to the "body" element. You can change that by setting the configuration option "thumbnailsParent".</p>
+			<p>You can choose where the thumbnails will be placed inside the "thumbnailsParent" element using the option "thumbnailsPosition". This option can have the values "left", "right", "top" and "bottom".</p>
+			<p>You can set the dimensions of the thumbnails container using the configuration options <a href="#thumbnailscontainerwidth">thumbnailsContainerWidth</a> and <a href="#thumbnailscontainerheight">thumbnailsContainerHeight</a>. Changing the dimensions of the container element and the parent's element should give you the freedom to make the thumbnails adapt to your design without problems.
+			</p>
+
+			<h3>Customizing with CSS</h3>
+			<p>Below is listed how to use CSS to customize your thumbnails.</p>
+			<pre data-mode='css'>
+				/* Change thumbnails container styles */
+				.wowbook-thumbnails {
+					background: none repeat scroll 0 0 #FFFFFF;
+					box-shadow: 0 0 15px black;
+				}
+
+				/* Change button size to 50px */
+				/* When thumbnailsPosition is "left" or "right" */
+				.wowbook-thumbnails .wowbook-button {
+					width: 100%; /* default */
+					height: 50px;
+				}
+				.wowbook-vertical.wowbook-thumbnails .wowbook-clipper {
+					top: 50px; bottom: 50px; /* same as the buttons height */
+				}
+				/* When thumbnailsPosition is "top" or "bottom" */
+				.wowbook-horizontal.wowbook-thumbnails .wowbook-button {
+					width: 50px;
+					height: 100%; /* default */
+				}
+				.wowbook-horizontal.wowbook-thumbnails .wowbook-clipper {
+					margin: 0 50px; /* same as the buttons width */
+				}
+
+
+				/* Change a style common to both buttons */
+				.wowbook-thumbnails .wowbook-button {
+				  background-color: green;
+				}
+				/* Change the image (or anything else) of the back button */
+				.wowbook-thumbnails .wowbook-button.wowbook-back {
+				  background-image: url(back_button_image.png);
+				}
+				/* Change the image (or anything else) of the next button */
+				.wowbook-thumbnails .wowbook-button.wowbook-next {
+				  background-image: url(back_button_image.png);
+				}
+			</pre>
+
+
+			<h3 id='thumbnails_troubleshooting'>Something is wrong with my thumbnails!</h3>
+			<p>Here are some problems you might find while working with thumbnails</p>
+
+			<p><b>They are ugly:</b>Browsers can generate very ugly thubmnails when scaling down the elements. Try change the thumbnails dimensions.If nothing solves, your last resort it's creating sprites.</p>
+			<p><b>Background images being displaced on IE8:</b>  If you try to customize the thumbnails CSS, make sure to check on IE8. One bug i found is that it misplace the background image when the element has styles zoom different from 1 and is absolute positioned.</p>
+			<p><b>Thumbnails are different from the book!</b>If you are using plugin generated thumbnails and they're are different from the book, check your CSS. A thumbnail is a copy of the page, but is inside another element. Some CSS rules applied to elements inside the book may not being applied on the thumbnail. For instance, suppose you have a CSS rule like this:
+			<pre data-mode='css'>
+				#mybook h1 {
+				  color: red; font-size: 100px;
+				}
+			</pre>
+			A book page with a h1 element will have a big red font. When this page is copied to the thumbnail, the h1 element will no longer be inside the "mybook" element, and it "loses" the big red font. You have to write your CSS taking this into consideration. One (not necessarily good) solution would be
+			</p>
+			<pre data-mode='css'>
+				#mybook h1, .wowbook-thumbnail h1 {
+				  color: red; font-size: 100px;
+				}
+			</pre>
+
+			<dl class='config'>
+				<dt id="co-thumbnails">thumbnails</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>When set to true, the plugin will create the thumbnails when the book is created. If you set it to false you can still create the thumbnails later, calling the method <a href="#showthumbnails">showThumbnails</a> </dd>
+
+				<dt>thumbnailsParent</dt>
+				<dd class='default'>"body"</dd>
+				<dd clas0s='type'>jQuery selector or jQuery object</dd>
+				<dd>the DOM element where the thumbnails will be appended.</dd>
+
+				<dt>thumbnailScale</dt>
+				<dd class='default'>0.2</dd>
+				<dd class='type'>number 0 and 1</dd>
+				<dd>The scale factor used to generate the thumbnails.For instance, a "thumbnailScale" of 0.5 will generate thumbnails that are half of the size of the original page. For more details look at the section <a href="#thumbnails-size">thumbnails size</a></dd>
+
+				<dt>thumbnailWidth</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>number in pixels or in "ems"</dd>
+				<dd>Specifies the thumbnail width. scale factor used to generate the thumbnails.
+					You only need to set the width, the plugin will calculate the height to keep the aspect ratio.
+					For more details look at the section <a href="#thumbnails-size">thumbnails size</a></dd>
+
+				<dt>thumbnailsPosition</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>string "left", "right", "top" or "bottom"</dd>
+				<dd>Defines where the thumbnails will be placed inside the "thumbnailsParent". For more details look at the section <a href="#thumbnails-position">Positioning your thumbnails</a></dd>
+
+				<dt>thumbnailsContainerWidth</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>integer</dd>
+				<dd>Defines the width of the thumbnails container. By default the width will be 100% of the thumbnailsParent element (if thumbnailPosition is "top" or "bottom") or will be the double of the  thumbnail's width.</dd>
+
+				<dt>thumbnailsContainerHeight</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>integer</dd>
+				<dd>Defines the height of the thumbnails container. By default the height will be 100% of the thumbnailsParent element (if thumbnailPosition is "left" or "right") or will be the same height as the thumbnail height.</dd>
+
+				<dt>thumbnailsVertical</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>Kind of a internal option, defines if the thumbnails are 'vertical' or 'horizontal'. When the thumbnails are vertical, the thumbnails container has the CSS class "wowbook-vertical", the buttons used to scroll the thumbnails are placed at the top and the bottom of the container and they scroll the thumbnails up and down.  When the thumbnails are horizontal, ("thumbnailsVertical" is false), the thumbnails container has the CSS class "wowbook-horizontal", the buttons used to scroll the thumbnails are placed at the left and at the right side of the container and they scroll the thumbnails left and right.
+				</dd>
+
+				<dt>thumbnailsSprite</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>string (url to a image)</dd>
+				<dd>This option is url to the image containing the sprites that will used as thumbnails.</dd>
+					<div class='note'>
+						CSS sprites is a technique where you joins several images into one big image, and then you use CSS to show only a specific image that you want. This technique reduces the amount of http request the browser has to do, drastically improving the page loading time. Learn more about css sprites <a href="http://alistapart.com/article/sprites">here</a>
+					</div>
+				<dd>
+					If you're creating a book where each page is one image, a tool to create the sprite for you is provided. Look in the directory "tools/thumbnails_sprite".
+				</dd>
+				<dd>
+					Create a image with the same width as the width of your thumbnail. The image's height will be the height of the thumbnail multiplied by the number of the pages. Place your thumbnails into this new image, left aligned, one on top of the other. The cover thumbnail will be the first, the thumbnails for the next page should be placed below the cover thumbnail, and so on.
+				</dd>
+				<dd>
+					For instance, suppose you have a book with 15 pages and you want to have thumbnails that are 100px width and 150px height. Wowbook expects that the image is 100px width and 2250px height (150pixels x 15 pages).
+					You must set the height (or width) of the thumbnails correctly. Since the plugin will "split" the image by the height, its better to define the thumbnail height, or make sure that when you define the thumbnail width the final thumbnail height (calculated by the plugin to keep the aspect ratio) is a integer number. <a href="#thumbnails-size">This section shows how to set the thumbnails size.</a>
+					For little more info about thumbnail sprites look at <a href="#thumbnails-types">here</a>.
+				</dd>
+
+			</dl>
+
+			<dl class='api'>
+				<dt class='method'>showThumbnails</dt>
+				<dd>This method show the thumbnails.</dd>
+
+				<dt class='method'>hideThumbnails</dt>
+				<dd>This method hide the thumbnails.</dd>
+
+				<dt class='method'>toggleThumbnails</dt>
+				<dd>This method toggles between show and hide thumbnails.</dd>
+
+				<dt class='method'>updateThumbnail</dt>
+				<dd class='param'>pageIndex</dd>
+				<dd>This method update the thumbnail of the page <i>pageIndex</i>. Use this method when you change the contents of a page and want the thumbnail to reflect that change.</dd>
+			</dl>
+		</section>
+
+		<section id='zoom' class='section'>
+			<h2>Zoom</h2>
+			<p>
+				wowBook has a built-in zoom feature. To let your user use it, you can use the <a href='#mouseWheel'>mouseWheel</a> option, use the "pinch gesture" on touch devices or use the api to create buttons for zooming in and out.
+			</p>
+			<p>
+				When the book is zoomed, the user can drag it using the mouse, 1 or 2 fingers. When the user zooms out the book, it returns to its original position.
+			</p>
+			<pre data-mode='javascript'>
+				// create the book
+				$("#mybook").wowBook({ width: 600, height: 500 });
+				// get the book object
+				var book=$.wowBook("#mybook");
+				// make the element "zoomin" into a zoom button
+				$("#zoomin").click(function(){ book.zoomIn() });
+				// make the element "zoomout"into a zoom out button
+				$("#zoomout").click(function(){ book.zoomOut() });
+				// make the element "nozoom"  a remove zoom button
+				$("#nozoom").click(function(){ book.zoom(1) });
+			</pre>
+			<dl class='config'>
+				<dt>zoomLevel</dt>
+				<dd class='default'>1</dd>
+				<dd class='type'>number</dd>
+				<dd>the initial zoom level. The default value 1 means no zoom.</dd>
+
+				<dt id='zoomMax'>zoomMax</dt>
+				<dd class='default'>2</dd>
+				<dd class='type'>number</dd>
+				<dd>the maximum value that the zoom level can be set. The minimum value of zoomMax is 1.</dd>
+
+				<dt id='zoomMin'>zoomMin</dt>
+				<dd class='default'>1</dd>
+				<dd class='type'>number</dd>
+				<dd>the minimum value that the zoom level can be set.</dd>
+
+				<dt>zoomStep</dt>
+				<dd class='default'>0.05</dd>
+				<dd class='type'>number</dd>
+				<dd>the amount that the zoom level will change when the user zoom in or zoom out the book.</dd>
+
+				<dt>zoomBoundingBox</dt>
+				<dd class='default'>window</dd>
+				<dd class='type'>DOM, jquery selector or a jquery object</dd>
+				<dd>
+					When the User's zoom in book, the book will be expanded until it occupies the entire browser window.
+					To better adapt to your design, you can specify a bounding box to limit the area of the browser that the book occupies during zooming.
+					The book will continue to be zoomed, but the visible part of it is limited by the boundingBox.
+					The boundingBox element don't need be an element containing the book. During zooming, the book will be displaced and will occupy the same area of the element.
+				</dd>
+
+				<dt>onZoom</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>function</dd>
+				<dd>Callback that is called after the zoom level changes.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					</ul>
+				</dd>
+
+				<dt>pinchToZoom</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>When true, enable pinch to zoom on touch devices. If the configuration option "touchEnabled" is false, "pinchToZoom" is considered false too.</dd>
+
+				<dt>zoomDuration</dt>
+				<dd class='default'>200</dd>
+				<dd class='type'>integer</dd>
+				<dd>How long it takes to zoom in/out a page, in milliseconds.</dd>
+
+			</dl>
+			<dl class='api'>
+				<dt class='property'>zoomLevel</dt>
+				<dd class='type'>number</dd>
+				<dd><p>The current zoom level, or 'how many times the book is zoomed'.</p>
+				    <p>1 means no zoom, 2 means the book is magnified 2 times its normal size.</p>
+				    <p>This is a read-only property, to change the zoomLevel you must use the methods zoom, zoomIn and zoomOut.</p>
+				    <p>minimum value is <a href='#zoomMin'>zoomMin</a>, maximum value is <a href='#zoomMax'>zoomMax</a>.</p>
+				</dd>
+
+			    <dt class='property'>zoomWindow</dt>
+				<dd class='type'>jquery Object</dd>
+				<dd>ZoomWindow is the element that contains the book when it's zoomed. His position and dimensions are the same of the zoomBoundingBox. When the zoomed book gets bigger than the zoomWindow, only the part of the book that is inside the zoomWindow's area is visible to the user.</dd>
+
+				<dt class='callback'>onZoom</dt>
+				<dd>Callback that is called after the zoom level changes.
+					the function will be called with parameters :
+					<ul class='clearfix'>
+					<li>
+						<span>book : </span><span>is a book object, not the jquery element. To access the jquery element use 'book.elem'.</span>
+					</li>
+					</ul>
+				</dd>
+
+				<dt class='property'>zoomMax</dt>
+				<dd class='default'>2</dd>
+				<dd class='type'>number</dd>
+				<dd>the maximum value that the zoom level can be set.</dd>
+
+				<dt class='property'>zoomMin</dt>
+				<dd class='default'>1</dd>
+				<dd class='type'>number</dd>
+				<dd>the minimum value that the zoom level can be set.</dd>
+
+				<dt id='zoomStep' class='property'>zoomStep</dt>
+				<dd class='default'>0.05</dd>
+				<dd class='type'>number</dd>
+				<dd>the amount that the zoom level will change when the user zoom in or zoom out the book.</dd>
+
+				<dt class='method'>zoom</dt>
+				<dd class='param'>level</dd>
+				<dd>sets the zoom level to param <i>level</i>.</dd>
+
+				<dt class='method'>zoomIn</dt>
+				<dd class='param'>step</dd>
+				<dd>increase the zoom level in <i>step</i> units. if <i>step</i> is not provided, the zoomStep config option is used instead.</dd>
+
+				<dt class='method'>zoomOut</dt>
+				<dd class='param'>step</dd>
+				<dd>decrease the zoom level in <i>step</i> units. if <i>step</i> is not provided, the zoomStep config option is used instead.</dd>
+			</dl>
+		</section>
+
+		<section id='slideshow' class='section'>
+			<h2>Slide show</h2>
+			<p></p>
+			<dl class='config'>
+				<dt>slideShow</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, starts the slide show automatically after the book is created.</dd>
+
+				<dt>slideShowDelay</dt>
+				<dd class='default'>1000</dd>
+				<dd class='type'>integer</dd>
+				<dd>time between page changes, in milliseconds.</dd>
+
+				<dt>slideShowLoop</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, the slide show will go back to the first page after show the last one.</dd>
+
+				<dt>pauseOnHover</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, pauses the slide show when hover over the book.</dd>
+			</dl>
+			<dl class='api'>
+				<dt class='property'>slideShowDelay</dt>
+				<dd class='default'>1000</dd>
+				<dd class='type'>integer</dd>
+				<dd>time between page changes, in milliseconds.</dd>
+
+				<dt class='property'>pauseOnHover</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, pauses the slide show when hover over the book.</dd>
+
+				<dt class='property'>slideShowRunning</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>when true, indicates that the slideshow is running.</dd>
+
+				<dt>startSlideShow</dt>
+				<dd class='param'></dd>
+				<dd>starts the slide show. The property <i>slideShowDelay</i> is the time between page changes.</dd>
+
+				<dt>stopSlideShow</dt>
+				<dd class='param'></dd>
+				<dd>stops the slide show.</dd>
+
+				<dt>toggleSlideShow</dt>
+				<dd class='param'></dd>
+				<dd>If the slideshow is running, then it is stopped. If the slideshow is not running, then it is started.</dd>
+			</dl>
+		</section>
+
+		<section id='sounds' class='section'>
+			<h2>Page flip sound</h2>
+			<p>wowBook uses the HTML5 audio element to play a "flipping page" sound when the user flips a page. If the user browser does not support it, nothing happens.</p>
+			<h3>Changing the sound file</h3>
+			<p>If you want to change the sound file it's recommended that you provide 2 versions of the file, one in mp3 format and the other in Ogg Vorbis format.
+Then pass those files names in the config option "flipSoundFile".</p>
+			<p>Put those files on you server and use the flipSoundFile configuration option, like this:</p>
+			<pre data-mode="javascript">
+				$('#mybook').wowBook({
+				  // ... other configuration options
+				  ,flipSound     : true
+				   // array with the files
+				  ,flipSoundFile : ["my_sound_file.mp3", "my_sound_file.ogg" ]
+				  // where are these files. This value will be prepended in each file name.
+				  // Don't forget the ending "/"
+				  ,flipSoundPath : "www.mysite.com/sounds/"
+
+				  // ... other configuration options
+				});
+			</pre>
+			<p>the browser will search for the appropriate audio file format that he supports.</p>
+			<h3>Using another audio player</h3>
+			<p>
+				To use another audio player, you can use the onPlayFlipSound callback to tell the player when to play the sound, like this:
+			</p>
+			<pre data-mode="javascript">
+				$('#mybook').wowBook({
+				  // ... other configuration options
+				  , onPlayFlipSound: function(book){
+				    // ...
+				    // code that makes your player play the flip sound
+				    // ...
+				    return false; // if this callback returns false, wowBook will not play the flip sound
+				  }
+				});
+			</pre>
+			<dl class='config'>
+				<dt>flipSound</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, plays a 'page flipping' sound when user flip the page.</dd>
+
+				<dt>flipSoundFile</dt>
+				<dd class='default'>['page-flip.mp3', 'page-flip.ogg']</dd>
+				<dd class='type'>array of strings</dd>
+				<dd>Array containing the sound files.</dd>
+
+				<dt>flipSoundPath</dt>
+				<dd class='default'>"./wow_book/sound/"</dd>
+				<dd class='type'>string</dd>
+				<dd>The path to the folder that contains the sound files.</dd>
+
+				<dt class='callback'>onPlayFlipSound</dt>
+				<dd class='default'>null</dd>
+				<dd class='type'>function</dd>
+				<dd>Callback called BEFORE play the flip sound.
+					Receives the a wowBook object as parameter.
+				    If returns false the flip sound will not be played.
+				</dd>
+			</dl>
+			<dl class='api'>
+				<dt class='property'>flipSound</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, plays a 'page flipping' sound when user flip the page.</dd>
+
+				<dt class='property'>audio</dt>
+				<dd>the audio DOM element created to play the flipping sound.</dd>
+
+				<dt class='method'>toggleFlipSound</dt>
+				<dd class='param'>enabled : a boolean</dd>
+				<dd>If no argument is given, toggles the "flipSound" property. Otherwise set the "flipSound" property to the "enabled" argument.
+					If "flipSound" is false, adds the class "wowbook-disabled" to the control "flipSound" if it exists.
+				</dd>
+
+				<dt class='method'>playFlipSound</dt>
+				<dd>method that plays the 'page flipping' sound.</dd>
+			</dl>
+		</section>
+
+		<section id='miscellaneous' class='section'>
+			<h2>Miscellaneous</h2>
+			<p></p>
+			<dl class='config'>
+				<dt>controls</dt>
+				<dd class='default'>a empty object</dd>
+				<dd class='type'>a Object</dd>
+				<dd>
+					<p>This options allows you easily to turn any element in a book's control. Configure your book like this</p>
+					<pre data-mode='javascript'>
+						$("#mybook").wowBook({
+						  controls : {
+						    next : '#next',
+						  }
+						});
+					</pre>
+					<p>And when the element "#next" is clicked will advance a page in the book.</p>
+					<p>All the controls available are listed in the example below.</p>
+					<pre data-mode='javascript'>
+						$("#mybook").wowBook({
+						  controls : {
+						    next      : '#next',     // goto next page
+						    back      : '#back',     // back page
+						    first     : '#first',    // goto first page
+						    last      : '#last',     // goto last page
+						    zoomIn    : '#zoomIn',   // zoom in
+						    zoomOut   : '#zoomOut',  // zoom out
+						    zoomReset : '#zoomReset',// zoom reset
+						    slideShow : '#slideShow' // starts/stop slideshow
+						    flipSound : '#flipsound' // enable/disable page flip sound
+						    thumbnails: '#thumbs'    // show/hide thumbnails
+						    fullscreen: '#fullscreen' // enable/disable fullscreen mode
+						  }
+						});
+					</pre>
+					<p class='note'>
+						The control "back" will have the CSS class "wowbook-disabled" when the book is on the first page.<br/>
+						The same applies to the control "next" when the book is on the last page and to the control "slideshow" when slideshow is running.
+					</p>
+				</dd>
+
+				<dt>closable</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>If set to false, the user cannot close the book, and the book will always show a 2 page spread. If the book does not have a even number of pages, the last spread will have only 1 page.
+				</dd>
+
+
+				<dt>keyboardNavigation</dt>
+				<dd class='default'>{ back: 37, advance: 39 }</dd>
+				<dd class='type'>object or false</dd>
+				<dd>use the keyboard to turn pages, set this false to disable it.
+				    Default is to use left and right arrow keys.
+				    You can customize the keys used by passing a object with the key codes that you want to use, for instance
+					<pre data-mode="javascript">
+						// set keys 'a' and 'b' to turn the pages of the book
+						$("#mybook").wowBook({
+						  keyboardNavigation : { back : 65, advance : 66 }
+						});
+					</pre>
+				</dd>
+
+				<dt>height</dt>
+				<dd class='default'>300</dd>
+				<dd class='type'>integer</dd>
+				<dd>height of the book, in pixels.</dd>
+
+				<dt>width</dt>
+				<dd class='default'>500</dd>
+				<dd class='type'>integer</dd>
+				<dd>width of the book, in pixels. The page width will be half of this value.</dd>
+
+				<dt>startPage</dt>
+				<dd class='default'>0</dd>
+				<dd class='type'>integer</dd>
+				<dd>page index of the page that will be opened after start.</dd>
+
+				<dt>centeredWhenClosed</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, the book will be centered when closed (showing the first or the last cover).</dd>
+
+			    <dt>gutterShadow</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>When set to true, a shadow will be placed in the middle of the book (the gutter).</dd>
+
+			    <dt>bookShadow</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>When set to true, a shadow will be positioned behind the book.</dd>
+
+				<dt>handleWidth</dt>
+				<dd class='default'>50</dd>
+				<dd class='type'>integer</dd>
+				<dd>Width of the handle where the user can grab the page edge and start dragging the page.
+					The default value is set on the CSS file, but you can use this option to  override it.
+				</dd>
+
+				<dt>handleClickDuration</dt>
+				<dd class='default'>100</dd>
+				<dd class='type'>number (in milliseconds)</dd>
+				<dd>If user click on a handle and the click has the duration shorter that the value of handleClickDuration, turns a page.
+				    Set to 0 to disable this behavior.
+				</dd>
+
+				<dt>curl</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>Curl the page corner when the user hover the page borders. Set to false disable this behavior.
+				</dd>
+
+				<dt>curlSize</dt>
+				<dd class='default'>40</dd>
+				<dd class='type'>integer</dd>
+				<dd>How 'much' the page corner will be curled when the option curl is true.
+				</dd>
+
+				<dt>shadows</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if set to true, shadows caused by the page fold are visible when the page is folded. You may want disable this for performance reasons.
+					<img src='images/docs_shadows.png' />
+				</dd>
+
+				<dt>shadowThreshold</dt>
+				<dd class='default'>20</dd>
+				<dd class='type'>number in the rage of 0 and 50</dd>
+				<dd>the shadow appears gradually during the page flip. This options sets the threshold where the shadow starts to appear.
+					Normally you don't need to change this, but you can play with this value to see what best fits your taste.
+				</dd>
+
+				<dt>foldGradient</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>a gradient is put over the page when the page is folded, to give it realistic highlights and shadows. You may want disable this for performance reasons.
+					<img src='images/docs_fold_gradient.png' />
+				</dd>
+
+				<dt>foldGradientThreshold</dt>
+				<dd class='default'>20</dd>
+				<dd class='type'>number in the range of 0 to 50</dd>
+				<dd>the page fold gradient appears gradually during the page flip. This options sets the threshold where the gradient starts to appear.
+					Normally you don't need to change this, but you can play with this value to see what best fits your taste.
+				</dd>
+
+				<dt id='mouseWheel'>mouseWheel</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean or string</dd>
+				<dd>can have the following values:
+					<ul>
+						<li>false : mouse wheel does nothing</li>
+						<li>"zoom" : enable zooming using the mouse wheel.</li>
+						<li>any other truthy value : enable changing pages using the mouse wheel.</li>
+					</ul>
+				</dd>
+
+				<dt id='touchEnabled'>touchEnabled</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>When touchEnabled is true the user can perform the following actions in touch enabled devices:
+					<ul>
+						<li>change pages using the "swipe" gesture.</li>
+						<li>drag the page edge using touch.</li>
+					</ul>
+				</dd>
+
+			</dl>
+			<dl class='api'>
+				<dt class='property'>mouseWheel</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean or string</dd>
+				<dd>can have the following values:
+					<ul>
+						<li>false : mouse wheel does nothing</li>
+						<li>"zoom" : enable zooming using the mouse wheel.</li>
+						<li>any other truthy value : enable changing pages using the mouse wheel.</li>
+					</ul>
+				</dd>
+
+				<dt class='property'>centeredWhenClosed</dt>
+				<dd class='default'>false</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if true, the book will be centered when closed (showing the first or the last cover).</dd>
+
+				<dt class='property'>corners</dt>
+				<dd class='type'>object</dd>
+				<dd>read-only property, used to translate strings like "tl" into coordinates(x,y) of a page.</dd>
+
+				<dt class='property'>startPage</dt>
+				<dd class='default'>0</dd>
+				<dd class='type'>integer</dd>
+				<dd>page index of the page that will be opened after start.</dd>
+
+				<dt class='property'>opts</dt>
+				<dd class='default'></dd>
+				<dd class='type'>object</dd>
+				<dd>the object with the configuration options passed to the book.</dd>
+
+				<dt id='elem'class='property'>elem</dt>
+				<dd class='type'>JQuery object</dd>
+				<dd>the JQuery object containing the DOM element passed to the plugin</dd>
+
+				<dt class='property'>id</dt>
+				<dd class='type'>string</dd>
+				<dd>the id attribute of the <a href='#elem'>elem</a>.</dd>
+
+				<dt class='property'>pageHeight</dt>
+				<dd class='type'>integer</dd>
+				<dd>height of the book, in pixels.</dd>
+
+				<dt class='property'>pageWidth</dt>
+				<dd class='type'>integer</dd>
+				<dd>width of the page of the book, in pixels</dd>
+
+				<dt class='property'>shadows</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>if set to true, shadows caused by the page fold are visible when the page is folded. You may want disable this for performance reasons.
+				</dd>
+
+				<dt class='property'>shadowThreshold</dt>
+				<dd class='default'>20</dd>
+				<dd class='type'>number</dd>
+				<dd>the shadow appears gradually during the page flip. This options sets the threshold where the shadow starts to appear.
+					Normally you don't need to change this, but you can play with this value to see what best fits your taste.
+				</dd>
+
+				<dt class='property'>foldGradient</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd>a gradient is put over the page when the page is folded, to give it realistic highlights and shadows. You may want disable this for performance reasons.
+					<img src='images/docs_fold_gradient.png' />
+				</dd>
+
+				<dt class='property'>foldGradientThreshold</dt>
+				<dd class='default'>20</dd>
+				<dd class='type'>number</dd>
+				<dd>the page fold gradient appears gradually during the page flip. This options sets the threshold where the gradient starts to appear.
+					Normally you don't need to change this, but you can play with this value to see what best fits your taste.
+				</dd>
+
+			    <dt class='property'>bookShadow</dt>
+				<dd class='type'>jquery Object</dd>
+				<dd>the JQuery object that contains the book shadow.</dd>
+
+			    <dt class='property'>hardPageShadow</dt>
+				<dd class='type'>jquery Object</dd>
+				<dd>the JQuery object that contains the page's shadow.</dd>
+
+			    <dt class='property'>leftHandle</dt>
+				<dd class='type'>jquery Object</dd>
+				<dd>the JQuery object that contains the handle that allows drag the page's edge on the left side of the book.</dd>
+
+			    <dt class='property'>rightHandle</dt>
+				<dd class='type'>jquery Object</dd>
+				<dd>the JQuery object that contains the handle that allows drag the page's edge on the right side of the book.</dd>
+
+				<dt class='method'>setDimensions</dt>
+				<dd class='param'>width : width of the book in pixels. The width of each page will be width/2.</dd>
+				<dd class='param'>height : height of the book in pixels.</dd>
+				<dd>Change the width and the height of book.</dd>
+
+				<dt class='method'>selectorToPage</dt>
+				<dd class='param'>selector : a jQuery selector</dd>
+				<dd>utility function, returns the index of the page that contains the jquery selector.</dd>
+
+				<dt class='method'>positionBookShadow</dt>
+				<dd class='param'></dd>
+				<dd>This method puts the book shadow on the right position.</dd>
+
+				<dt class='method'>calculateOpacity</dt>
+				<dd class='param'></dd>
+				<dd>calculateOpacity : function(value, max, ThresholdMin, ThresholdMax) {</dd>
+
+				<dt class='method'>pageEdgeDragStart</dt>
+				<dd class='param'>e : jquery mouse event</dd>
+				<dd>method called when the user starts to drag a page edge.</dd>
+
+				<dt class='method'>pageEdgeDrag</dt>
+				<dd class='param'>e : jquery mouse event</dd>
+				<dd>method called while the user is dragging an edge of the page.</dd>
+
+				<dt class='method'>pageEdgeDragStop</dt>
+				<dd class='param'>e : jquery mouse event</dd>
+				<dd>method called when the user stops to drag a page edge.</dd>
+
+			</dl>
+		</section>
+
+		<section>
+			<h2 id='page_urls'>Pages URLs</h2>
+			<p>
+				Suppose you have created a wowbook in a html page whose url is 'http://example.com/example.html',
+				and the html used to generate the book is like this:
+			</p>
+			<textarea>
+				<div id="mybook">
+					<div>This is a nice cover</div>
+					<div>This is page one</div>
+					<div><h4 id='foo'>Section 1</h4>page 2</div>
+					<div>This is page 3</div>
+					<div><span id='bar'>Section 2</span>This is page 4</div>
+					<div>This is page 5</div>
+				</div>
+			</textarea>
+			<p>
+				As you know, you can create a link to the 'http://example.com/example.html' url.
+				You can also link to a specific element in the page by appending a fragment identifier in the url (also known as "url hash"), like
+				"http://example.com/example.html#mybook".
+				 But in both cases the user will see the book cover.
+			</p>
+			<p>
+				To link to a specific page inside the book, you have to follow the format
+			</p>
+			<textarea>
+				http://your_domain.com/your_page.html#book_element_id/page_index
+			</textarea>
+			<p>
+				In our example, this would become
+			</p>
+			<!-- FIXME transformar o codigo abaixo numa tabela -->
+			<textarea>
+				http://example.com/example.html#mybook/		// cover
+				http://example.com/example.html#mybook/2	// page 1
+				http://example.com/example.html#mybook/3	// page 2
+				http://example.com/example.html#mybook/4	// page 3
+				http://example.com/example.html#mybook/5	// page 4
+				... and so on
+			</textarea>
+			<p>
+				To link to a page that contains a certain element, put the element id, like this:
+			</p>
+			<!-- FIXME transformar o codigo abaixo numa tabela -->
+			<textarea>
+				http://example.com/example.html#mybook/foo  	// link to page 2, this page contains a element with id='foo'
+				http://example.com/example.html#mybook/bar		// link to page 4, this page contains a element with id='bar'
+				http://example.com/example.html#mybook/bar/2	// link to page 5
+			</textarea>
+			<p>
+				The advantage in linking to a element instead of page index is that you can include or remove pages from your book, but  the link still points to the correct page.
+			</p>
+			<p>
+				And naturally, you can create internal links on the html page that contains the book. For instance, to create a table of contents of this book you can use regular anchor tags.
+			</p>
+			<textarea>
+				<a href="#mybook/">Cover</a>
+				<a href="#mybook/foo">Foo</a>
+				<a href="#mybook/bar">Bar</a>
+			</textarea>
+
+			<dl class='config'>
+				<dt>deepLinking</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd><p>if true, deep linking is enabled. When deep linking is enabled, if the URL points to a specific page of the book, this page will be shown after the site is loaded.
+					For more details see <a href='#page_urls'>page urls</a>.
+					</p>
+					<p>Also works if the URL refers to a element inside the book (as you would expect).
+					</p>
+				</dd>
+				<dt>updateBrowserURL</dt>
+				<dd class='default'>true</dd>
+				<dd class='type'>boolean</dd>
+				<dd><p>if true, the browser url will be set to the <a href='#page_urls'>page url</a> when showing a page.
+					</p>
+				</dd>
+			</dl>
+			<h2>Navigation Browser History</h2>
+			<p>
+				Every time a user turn a page in the book, the browser url will change to the <a href='#page_urls'>page url</a>.
+				That way, the navigation buttons  back and forward work as expected. Also, this feature allows the user to bookmark the page he is seeing and comeback later (if the configuration option deepLinking is set to true).
+			</p>
+		</section>
+
+		<section>
+			<h2>Sections</h2>
+			<p>
+				You can divide a wowBook into sections by defining elements inside the book that mark a section's start.
+				When the wowBook is showing a page that contains a 'start section element',
+				the browser url hash will be changed to "#book_element_id/section_element_id"
+				instead of  "#book_element_id/page_index".
+			</p>
+			<p>
+				A practical example: suppose you created a magazine, and this magazine has
+				an article that begins on page 3 and another one that begins on page 7.
+				In addition, you created links to each article using the id of the h1 elements, something like this:
+			</p>
+			<textarea>
+				// ... html
+				<div id="myzine">
+				  <div>This is a the magazine cover</div>
+				  // ...  pages of the magazine ...
+				  <div><h1 id='article1' class='section'>Article 1 Headline</h1></div>
+				  // ...  article1 pages
+				  <div><h1 id='article_y' class='section'>Article Y</h1></div>
+				  // ...  article_y pages
+				</div>
+				// ... some more html, then the magazine table of contents
+				<a href="#myzine">Magazine Cover</a>
+				<a href="#myzine/article1">Article 1</a>
+				<a href="#myzine/article_y">Article_Y</a>
+				// ... rest of your site
+			</textarea>
+			<p>
+				Normally, when the user moves from page 2 to page 3 (the first page of "article 1"), the url hash  in the browser address bar is set to "#myzine/5."
+
+				But if you define the element "#article1" as a section start mark, the url hash will be set to "#myzine/article1."
+			</p>
+			<div class='note'>
+				The advantage in using sections is that now the user can bookmark a link to article instead of bookmark a link to the page 3 of the magazine.
+				If you want to reorder the magazine's content and move the article to the page 10, the bookmark to the article keeps valid in this case.
+			</div>
+			<p>
+				Advancing the pages of the book sets the the url hash to "# magazine/awesome_article/2", "# magazine/awesome_article/3," and it goes this way until the next session start.
+				The table below shows the page index and the relative url hash.
+			</p>
+			<table class='table-display clearfix'>
+				<tr><th>Page index</th><th align="left">URL Hash</th></tr>
+				<tr><td>0</td><td>#myzine/</td></tr>
+				<tr><td>1</td><td>#myzine/2</td></tr>
+				<tr><td>2</td><td>#myzine/3</td></tr>
+				<tr><td>3</td><td>#myzine/article1</td></tr>
+				<tr><td>4</td><td>#myzine/article1/2</td></tr>
+				<tr><td>5</td><td>#myzine/article1/3</td></tr>
+				<tr><td>6</td><td>#myzine/article1/4</td></tr>
+				<tr><td>7</td><td>#myzine/article_y</td></tr>
+				<tr><td>8</td><td>#myzine/article_y/2</td></tr>
+				<tr><td>9</td><td>#myzine/article_y/3</td></tr>
+				<tr><td colspan='3'>... and so on ...</td></tr>
+			</table>
+			<p>
+				To define sections look at the configuration option "sections".
+			</p>
+
+			<dl class='config'>
+				<dt>sections</dt>
+				<dd class='default'>".wowbook-section"</dd>
+				<dd class='type'>string or array of strings</dd>
+				<dd>
+					<p>
+						For each section that you want to define in the book,
+						you must put a element with an id at page that the section starts.
+						Then you pass those elements to wowBook using the configuration option "section".
+					</p>
+					<p>
+						Pass a array containing the ids of each element.
+					</p>
+					<pre data-mode='javascript'>
+						$('#mybook').wowBook({
+						  sections : ['#section1', '#section2']
+						});
+					</pre>
+					<p>
+						Pass a string containing a jquery selector.
+						Each element that matches the selector will be considered a start's section. Remember that all elements MUST have a id.
+					</p>
+					<pre data-mode='javascript'>
+						$('#mybook').wowBook({
+						  sections : '.section'
+						});
+					</pre>
+					<p>
+						The default value for the option "sections" is ".wowbook-section",
+						 meaning that any element with this class inside the book will be considered a section beginning.
+					</p>
+				</dd>
+			</dl>
+			<dl class='api'>
+				<dt class='property'>sectionDefinition</dt>
+				<dd class='default'>".wowbook-section"</dd>
+				<dd class='type'>string or array of strings</dd>
+				<dd>the section's definition, as in the configuration option "sections". If you want to change this, call the method findSections</dd>
+
+				<dt class='method'>findSections</dt>
+				<dd class='param'>s : a section's definition like the configuration option "sections".</dd>
+				<dd>
+					<p>
+						Search in the book for the sections info accordingly with the definitions passed in parameter S and stores this info at the "sections" property.
+					</p>
+					<p>
+					   If the parameter <i>S</i> is provided, wowBook will set the property sectionDefinition to this value and
+					   use it trough the method. Otherwise the property sectionDefinition is used as default.
+					</p>
+					<p>
+						Call this method when you made something that changed the sections in the book.
+						This method already is called when a book's page is inserted or removed, use it only if you know what you are doing.
+					</p>
+				</dd>
+				<dt class='method'>currentSection</dt>
+				<dd>returns the section that is being showed in the book.</dd>
+
+				<dt class='method'>pageToSection</dt>
+				<dd class='param'>pageIndex : index of the page</dd>
+				<dd>returns a object containing the section that the given page belongs.</dd>
+
+				<dt class='method'>locationHashToPage</dt>
+				<dd class='param'>hash : a string containing a fragment identifier. Default is window.location.hash</dd>
+				<dd>Converts a fragment identifier into the matching page index. For more details see <a href='#page_urls'>page urls</a>.
+				</dd>
+
+				<dt class='method'>pageToLocationHash</dt>
+				<dd class='param'>pageIndex</dd>
+				<dd>Converts a page index into a fragment identifier. For more details see <a href='#page_urls'>page urls</a>.
+					<pre data-mode='javascript'>
+						$("#awesome_book").wowBook();
+						var book=$.wowBook("#awesome_book"); // get the wowBook object
+						book.id; // book.id == 'awesome_book'
+						// without sections
+						book.pageToLocationHash(0); // returns "#awesome_book/"
+						book.pageToLocationHash(1); // returns "#awesome_book/2"
+						book.pageToLocationHash(2); // returns "#awesome_book/3"
+						book.pageToLocationHash(3); // returns "#awesome_book/4"
+						// with section 'foo' starting at page 2
+						book.pageToLocationHash(0); // returns "#awesome_book/"
+						book.pageToLocationHash(1); // returns "#awesome_book/2"
+						book.pageToLocationHash(2); // returns "#awesome_book/foo"
+						book.pageToLocationHash(3); // returns "#awesome_book/foo/2"
+					</pre>
+					</p>
+				</dd>
+			</dl>
+		</section>
+
+		<section>
+			<h2 id='reference_container'>Reference</h2>
+		</section>
+
+		<section>
+			<h2 id='support'>Need support ?</h2>
+			<p>
+				If you have any questions about the this plugin usage or installation,
+				please feel free to email via my user page contact form <a href="http://codecanyon.net/user/maguiar01">here</a>.
+			</p>
+		</section>
+
+		<section>
+			<h2>Credits</h2>
+			<p>
+				Part of the css and images used here are from <a href='http://documentup.com/'>DocumentUp</a> and <a href='http://guides.rubyonrails.org/'> Rails guides</a>.
+			</p>
+		</section>
+		<div id='thankyou_notice'>
+			<h2>Thank you...</h2>
+			<span class='dummy'></span>
+			<p>
+				...for buying this plugin. It took a huge amount of time, effort and research on it,
+				and your purchase gives the motivation and financial support to continue this work.
+			</p>
+			<p>
+				Hoping that WowBook meets your expectations and helps you to create some amazing stuff.
+			</p>
+			<p>Once again, thank you for your purchase!</p>
+		</div>
+		<footer>
+
+		</footer>
+	</div> <!--! end of #container -->
+
+
+  <!-- Javascript at the bottom for fast page loading -->
+  <script src="./js/jquery.1.7.1.min.js"></script>
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+  <!-- end concatenated and minified scripts-->
+
+
+  <!--[if lt IE 7 ]>
+    <script src="js/libs/dd_belatedpng.js"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
+</body>
+</html>

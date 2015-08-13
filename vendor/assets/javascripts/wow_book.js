@@ -882,7 +882,7 @@ window.Modernizr = function (d, l, u) {
                 d.pageLeft = parseFloat(a.css("left"));
                 f.css({
                     left: d.pageLeft + "px",
-                    zIndex: 1E3,
+                    zIndex: 1E4,
                     clip: "rect(-1000px 2000px 2000px 0px)"
                 });
                 d.shadowHeight = 2 * Math.ceil(d.pageDiagonal);
@@ -1047,8 +1047,8 @@ window.Modernizr = function (d, l, u) {
                     y: b
                 });
                 a.data("holdedCorner", e);
-                a.css("zIndex", 1E3);
-                d.css("zIndex", 1E3);
+                a.css("zIndex", 1E4);
+                d.css("zIndex", 1E4);
                 this.opts.use3d && Modernizr.csstransforms3d && (a.css(Modernizr.prefixed("perspectiveOrigin"), "0 50%"), d.css(Modernizr.prefixed("perspectiveOrigin"), "0 50%"));
                 c = this.pageIsOnTheLeft(k.pageIndex) ? h: 0;
                 a.css("transformOrigin", c + "px 50%");
@@ -1145,7 +1145,7 @@ window.Modernizr = function (d, l, u) {
                     y: b
                 });
                 a.data("holdedCorner", e);
-                d.css("zIndex", 1E3);
+                d.css("zIndex", 1E4);
                 a.data("foldPageBasic", !0);
                 k.foldGradientWidth = this.foldGradientElem.width();
                 k.foldShadowWidth = this.foldShadow.width();
@@ -2057,13 +2057,13 @@ window.Modernizr = function (d, l, u) {
         curl: !0,
         curlSize: 40,
         slideShow: !1,
-        slideShowDelay: 1E3,
+        slideShowDelay: 1E4,
         pauseOnHover: !0,
         touchEnabled: !0,
         mouseWheel: !1,
         handleWidth: !1,
         handleClickDuration: 300,
-        turnPageDuration: 1E3,
+        turnPageDuration: 1E4,
         turnPageDurationMin: 300,
         forceBasicPage: !1,
         sections: ".wowbook-section",
@@ -2101,7 +2101,7 @@ window.Modernizr = function (d, l, u) {
     window.raf = function () {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
         function (a) {
-            window.setTimeout(a, 1E3 / 60)
+            window.setTimeout(a, 1E4 / 60)
         }
     } ();
     d.browser.ie8mode = d.browser.msie && 8 == document.documentMode;

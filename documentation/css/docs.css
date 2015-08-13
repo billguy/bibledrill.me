@@ -1,0 +1,577 @@
+@font-face {
+  font-family: 'LeagueGothicRegular';
+  src: url('../fonts/League_Gothic-webfont.eot');
+  src: local('☺'), url('../fonts/League_Gothic-webfont.woff') format('woff'), url('../fonts/League_Gothic-webfont.ttf') format('truetype'), url('../fonts/League_Gothic-webfont.svg#webfontFHzvtkso') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background: url(../images/bg.png) repeat #f9f9f9;
+  background: #f9f9f9;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Lucida, Helvetica, Arial, sans-serif;
+  line-height: 150%;
+}
+section {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 150%;
+  color: #373535;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: smaller;
+}
+#header {
+  font-family: "LeagueGothicRegular", Arial !important;
+  padding: 15px 15px;
+  font-size: 42px;
+}
+header {
+  background: -moz-radial-gradient(500px bottom, circle farthest-corner, #f54c3d 0%, #cc1f1f 100%) repeat scroll 0 0 #cc1f1f;
+  color: white;
+  font-family: "LeagueGothicRegular", Arial;
+  padding: 20px 0 15px 0;
+  -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  text-shadow: 1px 1px #333;
+  z-index: 1;
+  width: 100%;
+  top: 0px;
+  display: none;
+}
+h1,
+h2,
+h3 {
+  font-family: "LeagueGothicRegular", Arial !important;
+  font-size: 32px !important;
+  font-weight: normal !important;
+  text-shadow: 1px 1px 1px #DDDDDD !important;
+  margin-bottom: 0.5em !important;
+  position: relative;
+}
+h3 {
+  font-size: 24px !important;
+}
+header div {
+  margin: 0 auto;
+  max-width: 900px;
+  min-width: 640px;
+  position: relative;
+  width: 55%;
+}
+header .title {
+  font-size: 48px;
+}
+#container {
+  padding: 0px 300px;
+}
+section,
+#thankyou_notice {
+  clear: both;
+  padding: 1em 0;
+  border: 1px solid #E0E0DC;
+  background: white;
+  margin: 2em auto;
+  max-width: 900px;
+  min-width: 640px;
+  padding: 20px 1em;
+  position: relative;
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+section h2 {
+  text-shadow: 1px 1px 1px #DDDDDD;
+  border-bottom: 1px solid #E0E0DC;
+  padding-bottom: 0.5em;
+}
+p {
+  margin-bottom: 1.2em;
+}
+nav a,
+nav a:active,
+nav a:visited,
+nav a:hover {
+  ccolor: #F4F4F4;
+  text-decoration: none;
+  margin-left: 0.5em;
+}
+pre {
+  background: #eee;
+  ccolor: white;
+  font: 100% "Courier New", monospace;
+  line-height: 100%;
+  margin: 0 0 1.5em;
+  padding: 15px;
+  white-space: pre-wrap;
+  /* CSS 2.1 */
+}
+#thankyou_notice {
+  background: #F6F6F2;
+  border: 1px solid #CBC8B9;
+  -moz-border-radius: 5px 5px 5px 5px;
+  color: #2D3536;
+  font-family: Georgia,Palatino,Palatino Linotype,Times,Times New Roman,serif;
+  margin-bottom: 1em;
+  padding: 15px;
+  text-shadow: 0 1px 0 #FFFFFF;
+  color: white;
+  background: #222222;
+  font-style: italic;
+  text-shadow: 0 1px 0 #333;
+  -moz-box-shadow: 0px 0px 8px #666;
+}
+#thankyou_notice h2 {
+  font-family: Georgia,Palatino,Palatino Linotype,Times,Times New Roman,serif;
+  text-align: center;
+  text-shadow: 0 1px 0 #333;
+}
+#thankyou_notice p {
+  font-style: italic;
+}
+table {
+  border: 1px solid #ddd;
+  margin: 1em 0;
+  padding: 0;
+  position: relative;
+  wwidth: 100%;
+}
+th {
+  background: #F5F5F5;
+  padding: 0.5em;
+  text-align: left;
+}
+td {
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  margin: 0;
+  padding: 0.2em;
+  wwidth: auto;
+  mmax-width: 70%;
+}
+#options dt,
+#options dd {
+  min-width: 60px;
+  float: left;
+  margin-left: 1em;
+}
+/*
+ * Navigation menu
+ */
+html {
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+#header,
+#nav,
+#loader {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #336699;
+}
+#header {
+  border-bottom: 1px solid #ccc;
+}
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100%;
+  background: #f9f9f9;
+  background: rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) -1px 0 3px 0 inset;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) -1px 0 3px 0 inset;
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 0 3px 0 inset;
+  text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#nav a {
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+}
+#nav #sections {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  background: #f1f1f1;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 5px;
+}
+#nav #sections > li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+#nav #sections > li > a {
+  padding: 5px 15px;
+  color: #555;
+  font-size: 14px;
+}
+#nav #sections > li > a:hover {
+  background: #ddd;
+  background: rgba(0, 0, 0, 0.05);
+}
+#nav #sections > li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+#nav #sections ul {
+  margin-bottom: 6px;
+}
+#nav #sections ul li a {
+  padding: 1px 10px;
+  font-size: 13px;
+}
+#nav #sections ul li a:hover {
+  background: #ddd;
+  background: rgba(0, 0, 0, 0.05);
+}
+#nav .extra {
+  padding: 5px 15px;
+  min-height: 1.4em;
+}
+#nav .extra a {
+  color: #555;
+  font-size: 14px;
+}
+.toggler {
+  background: url(../images/arrow.gif) no-repeat -51px 0;
+  top: 3px;
+  left: -2px;
+  position: absolute;
+  font-size: 14px;
+  padding: 2px 5px;
+  width: 17px;
+  height: 17px;
+}
+.toggler.collapsed {
+  background-position: 0px 0;
+}
+ul#sections > li > .toggler {
+  left: 3px;
+  top: 7px;
+}
+ul {
+  position: relative;
+}
+li {
+  position: relative;
+}
+/*
+ * info, code, note & warning boxes
+ */
+.info {
+  background: #d5e9f6;
+  padding: 1em 1em 1em 28px;
+  margin-bottom: 0.7em;
+  margin-left: 1.2em;
+  min-height: 32px;
+  position: relative;
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+.info:before {
+  position: absolute;
+  content: "";
+  width: 36px;
+  height: 56px;
+  left: -21px;
+  top: 4px;
+  background: no-repeat scroll left top;
+  background-image: url("../images/info.png");
+}
+.code {
+  background: #eeeeee;
+  padding: 1em 1em 1em 28px;
+  margin-bottom: 0.7em;
+  margin-left: 1.2em;
+  min-height: 32px;
+  position: relative;
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+.code:before {
+  position: absolute;
+  content: "";
+  width: 36px;
+  height: 56px;
+  left: -21px;
+  top: 4px;
+  background: no-repeat scroll left top;
+  background-image: url("../images/code.png");
+}
+.warning {
+  background: #f54c3d;
+  padding: 1em 1em 1em 28px;
+  margin-bottom: 0.7em;
+  margin-left: 1.2em;
+  min-height: 32px;
+  position: relative;
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-shadow: 1px 1px 1px #333;
+}
+.warning:before {
+  position: absolute;
+  content: "";
+  width: 36px;
+  height: 56px;
+  left: -21px;
+  top: 4px;
+  background: no-repeat scroll left top;
+  background-image: url("../images/warning.png");
+}
+.note {
+  background: #fff9d8;
+  padding: 1em 1em 1em 28px;
+  margin-bottom: 0.7em;
+  margin-left: 1.2em;
+  min-height: 32px;
+  position: relative;
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+.note:before {
+  position: absolute;
+  content: "";
+  width: 36px;
+  height: 56px;
+  left: -21px;
+  top: 4px;
+  background: no-repeat scroll left top;
+  background-image: url("../images/note.png");
+}
+/*
+ * Config options, API
+ */
+li ul,
+li ol {
+  margin: 0 1.5em;
+}
+ul,
+ol {
+  mmargin: 0 1.5em 1.5em;
+}
+ul {
+  list-style-type: none;
+}
+ol {
+  list-style-type: decimal;
+}
+dl {
+  margin: 0 0 1.5em;
+}
+dl dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 1.5em;
+}
+ul.api {
+  list-style-type: none !important;
+}
+ul.api li > div:first-child {
+  font-weight: bold;
+}
+dt {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 0.5em;
+  mmargin-top: 0.5em;
+}
+dt:before {
+  clear: both;
+}
+dd {
+  margin-bottom: 0.5em;
+  clear: both;
+}
+.config {
+  font-family: inherit;
+}
+.config:before {
+  background: #f8f8f8;
+  content: "Configuration options";
+  font-family: "LeagueGothicRegular", Arial !important;
+  font-size: 24px !important;
+  font-weight: normal !important;
+  text-shadow: 1px 1px 1px #DDDDDD !important;
+  mmargin-bottom: 1em !important;
+  border-bottom: 1p solid #eee;
+  position: relative;
+  width: 100%;
+  display: block;
+  line-height: 150%;
+}
+.config .default:before {
+  content: "default: ";
+  display: inline-block;
+  width: 70px;
+}
+.config .type:before {
+  content: "type: ";
+  display: inline-block;
+  width: 70px;
+}
+.api {
+  mmargin-top: 2em;
+  font-family: inherit;
+}
+.api:before {
+  background: #f8f8f8;
+  content: "Properties and methods";
+  font-family: "LeagueGothicRegular", Arial !important;
+  font-size: 24px !important;
+  font-weight: normal !important;
+  text-shadow: 1px 1px 1px #DDDDDD !important;
+  mmargin-bottom: 1em !important;
+  border-bottom: 1p solid #eee;
+  position: relative;
+  width: 100%;
+  display: block;
+  line-height: 150%;
+}
+.api .default:before {
+  content: "default: ";
+  display: inline-block;
+  width: 70px;
+}
+.api .type:before {
+  content: "type: ";
+  display: inline-block;
+  width: 70px;
+}
+.api .param:before {
+  content: "parameter: ";
+  display: inline-block;
+  width: 90px;
+  float: left;
+}
+ul.tabs {
+  border-bottom: 1px solid #DDDDDD;
+  height: 39px;
+  list-style: none outside none;
+  margin-bottom: 0;
+  padding: 4px 0 0 1px;
+  z-index: 2;
+}
+ul.tabs > li {
+  float: left;
+  height: 30px;
+  border: none !important;
+}
+ul.tabs li a {
+  background: none repeat scroll 0 0 #F5F5F5;
+  border-color: #DDDDDD;
+  border-style: solid;
+  border-width: 1px 1px 0;
+  color: #333333;
+  display: block;
+  height: 39px;
+  line-height: 40px;
+  margin: 0 0 0 -1px;
+  padding: 0 20px;
+  text-decoration: none;
+}
+ul.tabs li.active a {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  color: #111111;
+  height: 39px;
+  padding-top: 4px;
+  position: relative;
+  top: -4px;
+}
+.tabs .active {
+  background: red;
+}
+.reference {
+  position: relative;
+}
+.reference div {
+  padding-bottom: 0.7em;
+  padding-top: 0.7em;
+}
+.reference > ul {
+  margin-left: 0;
+  display: table;
+  border-collapse: collapse;
+  position: relative;
+}
+.reference > ul > li {
+  border-top: 1px solid #eee;
+  display: table-row;
+  position: relative;
+}
+.reference > ul > li:firsrt-child {
+  border-top: none;
+}
+.reference .description > img {
+  width: 100%;
+}
+.reference .name {
+  font-weight: bold;
+  display: table-cell;
+}
+.reference .what {
+  display: table-cell;
+  padding-bottom: 0;
+  padding-left: 1em;
+}
+.reference .section {
+  display: none;
+}
+.reference .default {
+  display: inline;
+}
+.reference .default:before {
+  content: "default: ";
+  font-style: italic;
+  padding-left: 1em;
+  display: inline;
+  width: 70px;
+}
+.reference .type {
+  display: inline;
+}
+.reference .type:before {
+  font-style: italic;
+  content: "type: ";
+  display: inline;
+  width: 70px;
+}
+.reference .params {
+  margin-left: 0;
+  margin-right: 0;
+}
+.reference .params li {
+  padding-left: 1em;
+}
+.reference .params:before {
+  font-style: italic;
+  content: "parameters: ";
+}
+.reference .description {
+  display: block;
+}

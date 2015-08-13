@@ -57,6 +57,7 @@ img.wowbook-lazy {
 	/* without this Chrome will mess the zindex of hardcover when it flips, making
 	   the cover to jump when the "curl page corner on hover" is enabled */
 	-webkit-transform: translate3d(0px, 0px, 10000px);
+	opacity:1;
 }
 
 .wowbook-handle.wowbook-disabled {

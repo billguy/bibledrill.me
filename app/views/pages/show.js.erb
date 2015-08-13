@@ -2,7 +2,7 @@
 
     var $page = $('div[data-page="<%=params[:id]%>"] div.page div.content');
     var $content = $('<div>');
-    var $ol = $('<ol>');
+    var $ol = $('<ol class="verses">');
 
     <% previous_verse = @verses.first.prev %>
     <% previous_book_name = previous_verse.book_name %>
@@ -22,10 +22,10 @@
             $ol.append('</ol>');
             $content.append($ol);
             $content.append('<div class="chapter">Chapter <%= verse.chapter_number %></div>');
-            $ol = $('<ol>');
+            $ol = $('<ol class="verses">');
         <% end %>
 
-        $ol.append('<li value="<%= verse.number %>"><%= verse.text %></li>');
+        $ol.append('<li value="<%= verse.number %>"><a class="verse" href="#" data-verse-id="<%= verse.id %>"><%= verse.text %></a></li>');
 
         <% previous_verse = verse %>
         <% previous_book_name = verse.book_name %>

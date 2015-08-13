@@ -19,6 +19,7 @@ gem 'noty-rails'
 gem 'modernizr-rails'
 gem 'jquery-cookie-rails'
 gem 'stickykit-rails'
+
 group :development do
   gem 'capistrano',  '~> 3.1'
   gem 'capistrano-rails', '~> 1.1'

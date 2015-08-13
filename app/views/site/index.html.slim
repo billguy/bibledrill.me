@@ -1,10 +1,18 @@
 
-#bible.hidden data-page-count="#{@page_count}"
-  .cover.front
-    h1 King James
-    h2 Bible
-  .page.skip
-    .credits To my wonderful wife, Jackie, who gave me the idea to do this.
-  .page
-    .content
-  /.cover.back
+.row
+  .col-xs-12
+    #jacket
+
+      #slider-container.hidden
+        #slider data-slider-max="#{@page_count}"
+
+      #bible.hidden
+        .cover.front
+          h1 King James
+          h2 Bible
+        .page
+          .credits To my wonderful wife, Jackie, who gave me the idea to do this.
+        - @page_count.times do
+          .page
+            .content
+        .cover.back
