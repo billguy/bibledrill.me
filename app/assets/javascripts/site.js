@@ -22,20 +22,20 @@ $(document).ready(function() {
     });
 
     var bible = $('#bible').wowBook({
-      height : 800,
-      width  : 950,
+      height : 820,
+      width  : 1050,
       turnPageDuration: 10,
       hardcovers: true,
       flipSound: false,
       scaleToFit: "#jacket",
       updateBrowserURL: false,
       onShowPage: function(book, page, pageIndex) {
-        var pageNumber = pageIndex - 1;
-        slider.noUiSlider.set(pageNumber);
+        //var pageNumber = pageIndex - 1;
+        slider.noUiSlider.set(pageIndex);
 
-        loadPagesForPageNumber(pageNumber, book);
+        loadPagesForPageNumber(pageIndex, book);
 
-        if (pageNumber >= 0){
+        if (pageIndex > 0){
             if ($('#slider-container').hasClass('hidden'))
                 $('#slider-container').fadeIn().removeClass('hidden');
         } else {
@@ -44,8 +44,8 @@ $(document).ready(function() {
       }
     });
 
-    function loadPagesForPageNumber(pageNumber, book){
-        pages = [pageNumber-3, pageNumber-2, pageNumber, pageNumber+2, pageNumber+3];
+    function loadPagesForPageNumber(pageIndex, book){
+        pages = [pageIndex-3, pageIndex-2, pageIndex-1, pageIndex, pageIndex+1, pageIndex+2, pageIndex+3];
         for (index = 0; index < pages.length; ++index) {
             number = pages[index];
             p = book.pages[number];
