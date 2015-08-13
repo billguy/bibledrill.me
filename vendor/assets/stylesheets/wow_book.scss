@@ -18,7 +18,8 @@
 
 .wowbook-page-content {
 	position : absolute;
-	overflow : hidden;
+	//overflow : hidden;
+	overflow: scroll;
 	background: white;
 	zoom: 1;
 }

@@ -1,7 +1,23 @@
+.row
+  .col-xs-12
+    ul#timer-container.list-inline.hidden
+      li
+        span#random-verse.h4
+      li
+        span> |
+        a#refresh href="/" data-path="#{random_verse_path}" refresh
+        span< |
+      li
+        span#timer.h4
 
 .row
   .col-xs-12
     #jacket
+
+      .loader.spinner
+        .bounce1
+        .bounce2
+        .bounce3
 
       #slider-container.hidden
         #slider data-slider-max="#{@page_count}"
