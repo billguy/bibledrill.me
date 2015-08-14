@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     var max = $('#slider').data('slider-max');
     var slider = document.getElementById('slider');
-    var randomVersePath = $('#refresh').data('path');
+    var randomVersePath = $('.timer-container').data('path');
     var timer = $.timer(function(){}).stop();
     var incrementTime = 70;
     var currentTime = 0;
@@ -22,7 +22,7 @@ $(document).ready(function() {
     });
 
     var bible = $('#bible').wowBook({
-      height : 820,
+      height : 780,
       width  : 1050,
       turnPageDuration: 10,
       hardcovers: true,
@@ -30,7 +30,6 @@ $(document).ready(function() {
       scaleToFit: "#jacket",
       updateBrowserURL: false,
       onShowPage: function(book, page, pageIndex) {
-        //var pageNumber = pageIndex - 1;
         slider.noUiSlider.set(pageIndex);
 
         loadPagesForPageNumber(pageIndex, book);
@@ -46,12 +45,12 @@ $(document).ready(function() {
 
     function loadPagesForPageNumber(pageIndex, book){
         pages = [pageIndex-3, pageIndex-2, pageIndex-1, pageIndex, pageIndex+1, pageIndex+2, pageIndex+3];
-        for (index = 0; index < pages.length; ++index) {
+        for (index = 0; index < pages.length; index++) {
             number = pages[index];
             p = book.pages[number];
             if (p && !p.attr('data-page')){
-                p.attr('data-page', number);
-                $.getScript('/pages/' + number);
+                p.attr('data-page', number - 1);
+                $.getScript('/pages/' + (number - 1));
             }
         }
     }
@@ -71,7 +70,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#refresh').on('click', function(e){
+    $('.timer-container').on('click', 'a.refresh', function(e){
         e.stopImmediatePropagation();
         e.preventDefault();
         bible.wowBook('gotoPage', 0);
@@ -80,16 +79,12 @@ $(document).ready(function() {
 
     $('#bible').fadeIn(function(){
         $('.loader').addClass('hidden');
-        $.getScript(randomVersePath).success(function(){
-            loadRandomVerse();
-        });
+        loadRandomVerse();
     });
 
     function loadRandomVerse(){
         currentTime = 0;
         timer.stop().once();
-        if ($('#timer-container').hasClass('hidden'))
-            $('#timer-container').fadeIn().removeClass('hidden');
         $.getScript(randomVersePath).success(function(){
             timer = $.timer(updateTimer, incrementTime, true);
         });
@@ -106,7 +101,7 @@ $(document).ready(function() {
         var min = parseInt(time / 6000),
             sec = parseInt(time / 100) - (min * 60),
             hundredths = pad(time - (sec * 100) - (min * 6000), 2);
-        return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2) + ":" + hundredths;
+        return "• " + (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2) + ":" + hundredths;
     }
 
     function updateTimer() {

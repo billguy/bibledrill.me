@@ -55,11 +55,10 @@
 }
 
 #slider-container{
-  //display: inline-block;
   float: right;
   margin-top: 18px;
   #slider{
-    height: 811px;
+    height: 750px;
     background: rgba(218, 165, 32, 0.21);
   }
 }
@@ -72,6 +71,10 @@ ol.verses{
       border-bottom: 1px dotted blue;
     }
   }
+}
+
+#random-verse{
+  padding-right: 5px;
 }
 
 @media only screen and (min-width : 320px) {
@@ -113,6 +116,6 @@ ol.verses{
 
   #jacket{
     width: 1085px;
-    height: 820px;
+    height: 780px;
   }
 }
