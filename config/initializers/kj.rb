@@ -1,0 +1,1 @@
+$bible = Kj::Bible.new

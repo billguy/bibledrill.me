@@ -9,7 +9,7 @@ class VersesController < ChaptersController
 
   def show
     @verses = Rails.cache.fetch("book/#{@book.name}/chapter/#{@chapter.number}/verses/#{parsed_verses.join}"){ @chapter.verses(parsed_verses) }
-    add_breadcrumb "Chapter #{@chapter.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Chapter #{@chapter.number} verses", remote: true
+    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true
     if @verses.length > 1
         @page_title = @chapter.title
     else
