@@ -13,7 +13,11 @@ html
       = yield
       footer
         small
-          a href="http://bibledrill.me" bibledrill.me
+          ul.nav-links
+            li
+              a href="/" bibledrill.me
+            li
+              a href="/books" Bible
     = javascript_include_tag 'application'
     = javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
     = yield :footer
