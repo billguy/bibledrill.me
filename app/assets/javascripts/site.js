@@ -110,6 +110,7 @@ $(document).ready(function() {
 
     function restartTimer(){
         currentTime = 0;
+        timer.stop();
         startTimer();
     }
 
