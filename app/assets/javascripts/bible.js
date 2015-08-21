@@ -54,6 +54,7 @@ $('body').on('click', 'ul.verses li:not(.read) a', function(e){
         var index = $.inArray(verse_number, verses);
         verses.splice(index, 1);
         if (verses.length > 0){
+            $read_link.addClass('glow');
             verse_path = $read_link.data('verse-path');
             $read_link.attr('href', verse_path + '/' + verses.join(','));
         } else {
