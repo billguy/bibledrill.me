@@ -85,10 +85,26 @@ ol.verses{
   padding-right: 5px;
 }
 
+.clearfix{
+  clear: both;
+}
+
 @media only screen and (min-width : 320px) {
   #jacket{
-    width: 320px;
-    height: 450px;
+    width: 300px;
+    height: 316px;
+  }
+  .instructions{
+    display: none;
+  }
+  #slider-container {
+    margin-right: -25px;
+    #slider {
+      height: 200px;
+    }
+  }
+  #bible .content {
+    padding: 38px;
   }
 }
 
@@ -96,17 +112,42 @@ ol.verses{
 @media only screen and (min-width : 480px) {
 
   #jacket{
-    width: 320px;
-    height: 450px;
+    width: 450px;
+    height: 324px;
+  }
+  .instructions{
+    display: none;
+  }
+  #slider-container {
+    margin-right: -10px;
+    #slider {
+      height: 295px;
+    }
+  }
+  #bible .content {
+    padding: 20px;
   }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
 
-  #jacket{
+  #jacket {
+    width: 700px;
+    height: 503px;
+  }
+  .instructions {
+    display: block;
     width: 320px;
-    height: 450px;
+  }
+  #slider-container{
+    margin-right: 0px;
+    #slider {
+      height: 480px;
+    }
+  }
+  #bible .content {
+    padding: 7px;
   }
 }
 
@@ -114,8 +155,14 @@ ol.verses{
 @media only screen and (min-width : 992px) {
 
   #jacket{
-    width: 320px;
-    height: 450px;
+    width: 900px;
+    height: 647px;
+  }
+  .instructions {
+    width: 425px;
+  }
+  #slider-container #slider {
+    height: 620px;
   }
 }
 
@@ -125,5 +172,8 @@ ol.verses{
   #jacket{
     width: 1085px;
     height: 780px;
+  }
+  #slider-container #slider {
+    height: 750px;
   }
 }
