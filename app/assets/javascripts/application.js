@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.cookie
 //= require bootstrap/tab
+//= require bootstrap/affix
 //= require jquery.sticky-kit
 //= require jquery.hammer
-//= require noty
+
+delete Hammer.defaults.cssProps.userSelect;
 
 if (history && history.pushState){
   $(function(){

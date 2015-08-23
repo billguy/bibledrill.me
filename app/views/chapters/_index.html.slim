@@ -1,10 +1,10 @@
-h1 #{@book.title} chapters
+h1 #{@book.name} chapters
 
 ol.breadcrumb.sticky
   = render_breadcrumbs tag: :li, separator: ''
 
 ul.list-inline.chapters
   li
-    =link_to book_chapter_path(book_id: @book.permalink, id: @book.chapters.first.number), remote: true, class: 'chapter z-index-100' do
+    =link_to book_chapter_path(book_id: @book.permalink, id: @chapters.first.number), remote: true, class: 'chapter z-index-100' do
       span.read Read
   = render partial: "chapter", collection: @chapters

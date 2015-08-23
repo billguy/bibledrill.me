@@ -1,14 +1,20 @@
-class VersesController < ChaptersController
+class VersesController < KjController
 
   def index
+    @book = Book.find_by_permalink(params[:book_id])
+    @chapter = @book.chapters.find_by_number(params[:chapter_id])
     @page_title = @chapter.title
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
     add_breadcrumb "Verses"
-    @verses = Rails.cache.fetch("book/#{@book.name}/chapter/#{@chapter.number}/verses/#{params[:id]}"){ @chapter.verses }
+    @verses = @chapter.verses
   end
 
   def show
-    @verses = Rails.cache.fetch("book/#{@book.name}/chapter/#{@chapter.number}/verses/#{parsed_verses.join}"){ @chapter.verses(parsed_verses) }
+    @book = Book.find_by_permalink(params[:book_id])
+    @chapter = @book.chapters.find_by_number(params[:chapter_id])
+    @verses = @chapter.verses.where(number: parsed_verses)
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true
     if @verses.length > 1
         @page_title = @chapter.title
@@ -16,8 +22,6 @@ class VersesController < ChaptersController
         @page_title = @verses.first.title
         add_breadcrumb "Verse #{@verses.first.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verse #{@verses.first.number}", remote: true
     end
-    rescue Kj::Iniquity
-      redirect_to root_path, flash: { error: "No such verses(s) '#{params[:id]}' in '#{params[:book_id]}:#{params[:chapter_id]}'" }
   end
 
   private
