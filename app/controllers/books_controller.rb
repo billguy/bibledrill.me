@@ -11,7 +11,6 @@ class BooksController < KjController
     @book = Rails.cache.fetch("books/#{params[:id]}"){ Book.find_by_permalink(params[:id]) }
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     @chapters = Rails.cache.fetch("books/#{@book.permalink}/chapters"){ @book.chapters.to_a }
-    expires_in 3.hours, public: true
   end
 
 end

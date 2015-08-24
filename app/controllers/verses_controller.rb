@@ -8,7 +8,6 @@ class VersesController < KjController
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
     add_breadcrumb "Verses"
     @verses = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:chapter_id]}/verses"){ @chapter.verses.to_a }
-    expires_in 3.hours, public: true
   end
 
   def show
@@ -28,7 +27,6 @@ class VersesController < KjController
       @page_title = @verses.first.title
       add_breadcrumb "Verse #{@verses.first.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verse #{@verses.first.number}", remote: true
     end
-    expires_in 3.hours, public: true
   end
 
   private
