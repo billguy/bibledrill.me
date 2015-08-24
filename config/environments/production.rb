@@ -77,6 +77,19 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.default_charset = 'utf-8'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.webfaction.com",
+      :domain => "smtp.webfaction.com",
+      :port => 587,
+      :authentication => "login",
+      :user_name => APP_CONFIG['smtp_user'],
+      :password => APP_CONFIG['smtp_password'],
+      :enable_starttls_auto => true
+  }
+
   config.cache_store = :redis_store, { :host => "localhost",
                                      :port => APP_CONFIG['redis_port'],
                                      :db => 0,
