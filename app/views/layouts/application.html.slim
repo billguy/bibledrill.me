@@ -3,6 +3,7 @@ html
   head
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     = display_meta_tags(default_meta_tags)
+    link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'
     = stylesheet_link_tag 'application', media: 'all'
     /= stylesheet_link_tag controller.controller_name, :media => "all" if Rails.application.assets.find_asset("#{controller.controller_name}.css")
     /= javascript_include_tag :modernizr

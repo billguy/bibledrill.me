@@ -237,7 +237,7 @@ DEPENDENCIES
   rails (= 4.2.3)
   redis-rails
   rspec-rails (~> 3.0)
-  sass-rails (= 5.0.2)
+  sass-rails (~> 5.0)
   slim-rails
   sqlite3
   stickykit-rails
