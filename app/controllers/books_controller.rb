@@ -4,7 +4,6 @@ class BooksController < KjController
     @page_title = "King James Bible Books"
     @old = Rails.cache.fetch('books/old'){ Book.old_testament.to_a }
     @new = Rails.cache.fetch('books/new'){ Book.new_testament.to_a }
-    expires_in 3.hours, public: true
   end
 
   def show
