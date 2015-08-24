@@ -84,4 +84,11 @@ Rails.application.configure do
                                      :namespace => "cache",
                                      }
 
+
+  config.middleware.use ExceptionNotification::Rack,
+                        :email => {
+                            :email_prefix => "[%s Exception]" % [Rails.application.class.parent_name],
+                            :sender_address => %{"Exception Notifier" <dj@dbjohn.com>},
+                            :exception_recipients => %w{dj@dbjohn.com}
+                        }
 end

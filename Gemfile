@@ -15,6 +15,7 @@ gem 'meta-tags'
 gem 'hammerjs-rails'
 gem 'modernizr-rails'
 gem 'stickykit-rails'
+gem 'exception_notification'
 
 group :development do
   gem 'capistrano',  '~> 3.1'
