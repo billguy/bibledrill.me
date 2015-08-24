@@ -1,5 +1,5 @@
 class Chapter < ActiveRecord::Base
-  include Readable
+
   belongs_to :book
   has_many :verses
   serialize :abbreviations
@@ -20,4 +20,13 @@ class Chapter < ActiveRecord::Base
   def self.count
     1189
   end
+
+  def prev
+    id == 1 ? Chapter.includes(:book).last : Chapter.includes(:book).find_by_id(id-1)
+  end
+
+  def next
+    id == self.class.count ? Chapter.includes(:book).first : Chapter.includes(:book).find_by_id(id+1)
+  end
+
 end

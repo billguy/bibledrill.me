@@ -1,5 +1,4 @@
 class Book < ActiveRecord::Base
-  include Readable
 
   has_many :chapters
   scope :old_testament, ->{where("id < 40") }
@@ -9,7 +8,4 @@ class Book < ActiveRecord::Base
     permalink
   end
 
-  def self.count
-    66
-  end
 end

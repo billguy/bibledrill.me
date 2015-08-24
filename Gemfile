@@ -15,6 +15,7 @@ gem 'meta-tags'
 gem 'hammerjs-rails'
 gem 'modernizr-rails'
 gem 'stickykit-rails'
+gem 'yaml_db'
 
 group :development do
   gem 'capistrano',  '~> 3.1'
@@ -22,6 +23,9 @@ group :development do
   gem 'capistrano-passenger'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'kj'
+  gem 'rack-mini-profiler'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
@@ -29,4 +33,3 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
 end
-gem 'rack-mini-profiler'

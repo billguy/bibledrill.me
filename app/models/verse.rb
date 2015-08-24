@@ -1,5 +1,4 @@
 class Verse < ActiveRecord::Base
-  include Readable
 
   belongs_to :chapter
 
@@ -18,4 +17,13 @@ class Verse < ActiveRecord::Base
   def self.count
     31102
   end
+
+  def prev
+    id == 1 ? Verse.includes(chapter: :book).last : Verse.includes(chapter: :book).find_by_id(id-1)
+  end
+
+  def next
+    id == self.class.count ? Verse.includes(chapter: :book).first : Verse.includes(chapter: :book).find_by_id(id+1)
+  end
+
 end
