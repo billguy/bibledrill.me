@@ -8,4 +8,4 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( books.js chapters.js verses.js books.css chapters.css verses.css kj.js kj.css )
+Rails.application.config.assets.precompile += %w( sessions.css books.js chapters.js verses.js books.css chapters.css verses.css kj.js kj.css )

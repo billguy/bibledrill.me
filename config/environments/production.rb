@@ -101,4 +101,6 @@ Rails.application.configure do
     :exception_recipients => %w{dj@dbjohn.com}
   }
 
+  config.action_mailer.default_url_options = { host: 'bibledrill.me' }
+
 end

@@ -12,12 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/transition
+//= require bootstrap/alert
 //= require bootstrap/tab
 //= require bootstrap/affix
 //= require jquery.sticky-kit
 //= require jquery.hammer
 
 delete Hammer.defaults.cssProps.userSelect;
+
+$(function() {
+    window.setTimeout(function () {
+        $(".alert").addClass("in");
+    }, 1);
+});
 
 if (history && history.pushState){
   $(function(){

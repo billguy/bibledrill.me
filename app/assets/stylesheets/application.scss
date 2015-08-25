@@ -1,6 +1,47 @@
 @import "bible";
+@import "bootstrap/type";
+@import "bootstrap/component-animations";
+@import "bootstrap/alerts";
+@import "bootstrap/close";
 
 body{
   font-family: 'Merriweather', serif;
   font-size: 17px;
+}
+
+.account{
+  float: right;
+}
+
+div.alert{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-weight: bold;
+  text-align: center;
+}
+
+ul.nav-links{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  li{
+    display: inline;
+    &:not(:first-child){
+      &:before{
+        content: ' | '
+      }
+    }
+  }
+}
+
+footer{
+  margin-top: 10px;
+  position: fixed;
+}
+
+.clearfix{
+  clear: both;
 }

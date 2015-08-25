@@ -5,17 +5,30 @@ html
     = display_meta_tags(default_meta_tags)
     link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'
     = stylesheet_link_tag 'application', media: 'all'
-    /= stylesheet_link_tag controller.controller_name, :media => "all" if Rails.application.assets.find_asset("#{controller.controller_name}.css")
+    = stylesheet_link_tag controller.controller_name, :media => "all" if Rails.application.assets.find_asset("#{controller.controller_name}.css")
     /= javascript_include_tag :modernizr
     = csrf_meta_tags
     = yield :header
   body
+    /= controller.controller_name
+    = flash_messages(:close, :html, :fade_in)
+
     .container-fluid
+      .account
+        - if current_user
+          = link_to 'Logout', destroy_user_session_path
+        - else
+          = link_to 'Sign In/Sign Up', new_user_session_path
       #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"
         = yield
+      .clearfix
+
       footer
-        small
-          a href="http://bibledrill.me" bibledrill.me
+        ul.nav-links
+          li
+            a href="/" BibleDrill.me
+          li
+            a href="/books" Bible
     = javascript_include_tag 'application'
-    /= javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
+    = javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
     = yield :footer

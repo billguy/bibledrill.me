@@ -15,6 +15,10 @@ gem 'meta-tags'
 gem 'hammerjs-rails'
 gem 'stickykit-rails'
 gem 'exception_notification'
+gem 'devise'
+gem 'omniauth-facebook'
+gem 'paperclip'
+gem "bootstrap_flash_messages", github: 'RobinBrouwer/bootstrap_flash_messages'
 
 group :development do
   gem 'capistrano',  '~> 3.1'
