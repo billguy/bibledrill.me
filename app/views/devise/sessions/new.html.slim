@@ -11,7 +11,7 @@
           br
         .col-md-7 style=("border-left:1px solid #ccc;")
 
-          = form_for(resource, as: resource_name, url: session_path(resource_name), html_options: {class: 'form-horizontal'}) do |f|
+          = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f|
             fieldset
               = f.email_field :email, autofocus: true, class: 'form-control input-md', placeholder: 'Email'
               - if devise_mapping.rememberable?

@@ -78,9 +78,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.smtp_settings = {
-    :address => "smtp.webfaction.com",
-    :domain => "smtp.webfaction.com",
-    :port => 587,
+    :address => APP_CONFIG['smtp_host'],
+    :domain => APP_CONFIG['smtp_host'],
+    :port => APP_CONFIG['smtp_port'],
     :authentication => "login",
     :user_name => APP_CONFIG['smtp_user'],
     :password => APP_CONFIG['smtp_password'],
@@ -97,8 +97,8 @@ Rails.application.configure do
 
   config.middleware.use ExceptionNotification::Rack, :email => {
     :email_prefix => "[%s Exception]" % [Rails.application.class.parent_name],
-    :sender_address => %{"Exception Notifier" <dj@dbjohn.com>},
-    :exception_recipients => %w{dj@dbjohn.com}
+    :sender_address => %{"Exception Notifier" <#{APP_CONFIG['admin_email']}>},
+    :exception_recipients => [APP_CONFIG['admin_email']]
   }
 
   config.action_mailer.default_url_options = { host: 'bibledrill.me' }

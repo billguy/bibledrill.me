@@ -16,7 +16,9 @@ html
     .container-fluid
       .account
         - if current_user
-          = link_to 'Logout', destroy_user_session_path
+          = link_to current_user.email, edit_user_registration_path
+          | /
+          = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           = link_to 'Sign In/Sign Up', new_user_session_path
       #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"

@@ -15,10 +15,11 @@ gem 'meta-tags'
 gem 'hammerjs-rails'
 gem 'stickykit-rails'
 gem 'exception_notification'
-gem 'devise'
-gem 'omniauth-facebook'
+gem 'devise', github: 'plataformatec/devise'
+gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 gem 'paperclip'
 gem "bootstrap_flash_messages", github: 'RobinBrouwer/bootstrap_flash_messages'
+gem 'simple_form'
 
 group :development do
   gem 'capistrano',  '~> 3.1'
@@ -34,4 +35,10 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem "capybara-webkit"
 end

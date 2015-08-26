@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -42,5 +42,13 @@ Rails.application.configure do
   config.cache_store = :redis_store, 'redis://localhost:6379/0/cache'
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.smtp_settings = {
+    :address => APP_CONFIG['smtp_host'],
+    :domain => APP_CONFIG['smtp_host'],
+    :port => APP_CONFIG['smtp_port'],
+    :enable_starttls_auto => false,
+    :openssl_verify_mode  => 'none',
+  }
 
 end
