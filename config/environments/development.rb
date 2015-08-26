@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -45,10 +45,13 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :address => APP_CONFIG['smtp_host'],
-    :domain => APP_CONFIG['smtp_host'],
+    :domain  => APP_CONFIG['smtp_domain'],
     :port => APP_CONFIG['smtp_port'],
-    :enable_starttls_auto => false,
+    :enable_starttls_auto => true,
     :openssl_verify_mode  => 'none',
+    :authentication => "login",
+    :user_name => APP_CONFIG['smtp_user'],
+    :password => APP_CONFIG['smtp_password'],
   }
 
 end

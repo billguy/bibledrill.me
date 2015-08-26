@@ -79,7 +79,7 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :address => APP_CONFIG['smtp_host'],
-    :domain => APP_CONFIG['smtp_host'],
+    :domain => APP_CONFIG['smtp_domain'],
     :port => APP_CONFIG['smtp_port'],
     :authentication => "login",
     :user_name => APP_CONFIG['smtp_user'],
