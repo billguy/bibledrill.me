@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:name, :website, :bio, :avatar)
+    devise_parameter_sanitizer.for(:account_update).push(:name, :website, :bio, :avatar)
   end
 
   def update_resource(resource, params)

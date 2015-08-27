@@ -15,17 +15,12 @@ class User < ActiveRecord::Base
       if image_url = auth.info.image
         user.avatar = URI.parse(image_url.gsub('http://','https://'))
       end
+      user.skip_confirmation!
     end
   end
 
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["info"]
-        user.email = data["email"] if user.email.blank?
-        user.name = data["name"] if user.name.blank?
-        user.avatar = URI.parse(data["image"]) if data["image"]
-      end
-    end
+  def active?
+    active
   end
 
 end

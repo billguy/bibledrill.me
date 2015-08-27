@@ -23,8 +23,10 @@ delete Hammer.defaults.cssProps.userSelect;
 
 $(function() {
     window.setTimeout(function () {
-        $(".alert").addClass("in");
-    }, 1);
+        var $alert = $(".alert")
+        $alert.addClass("in");
+        window.setTimeout(function() { $alert.alert('close') }, 5000);
+    }, 100);
 });
 
 if (history && history.pushState){

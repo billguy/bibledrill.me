@@ -4,6 +4,8 @@ FactoryGirl.define do
     email "elijah@heaven.net"
     password "12345678"
     password_confirmation "12345678"
+    active true
+    confirmed_at Time.now
   end
 
 end

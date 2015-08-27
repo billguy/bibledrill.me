@@ -5,11 +5,10 @@ describe "omniauth_callbacks", type: :feature do
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
     provider: 'facebook',
-    uid: '123545',
-    origin: "/",
+    uid: '12345',
     "info" => {
       "name" => "Elijah the Tishbite",
-      "image" => "https://unsplash.it/300/300",
+      "image" => "https://dummyimage.com/300",
       "email" => "elijah@heaven.net"
     }
   })
@@ -19,26 +18,37 @@ describe "omniauth_callbacks", type: :feature do
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
   end
 
-  context 'with facebook', focus: true do
-    context 'when valid' do
-      it 'can create a new user' do
-        visit user_omniauth_authorize_path(provider: :facebook, origin: root_path)
-        expect(current_path).to eq(root_path)
-        expect(page).to have_content('You have to confirm your email address')
+  describe 'facebook' do
+
+    context 'with valid credentials' do
+      it 'creates a new user' do
+        visit user_omniauth_authorize_path(provider: :facebook)
+        expect(current_path).to eq(edit_user_registration_path)
+        expect(page).to have_content('Successfully authenticated')
         user = User.last
         expect(user.name).to eq "Elijah the Tishbite"
         expect(user.email).to eq "elijah@heaven.net"
         expect(user.avatar).to be_exists
       end
+
+      context 'when user is deactivated', focus: true do
+        it 'does not allow login' do
+          user = FactoryGirl.create(:user, provider: 'facebook', uid: '12345', active: false)
+          visit user_omniauth_authorize_path(provider: :facebook)
+          expect(current_path).to eq(new_user_session_path)
+          expect(page).to have_content('Account Unavailable')
+        end
+      end
     end
 
-    context 'when invalid' do
+    context 'with invalid credentials' do
       it 'returns an error' do
         OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
         visit user_omniauth_authorize_path(provider: :facebook)
         expect(page).to have_content('Could not authenticate you')
       end
     end
+
   end
 
 end

@@ -8,7 +8,7 @@ describe Users::OmniauthCallbacksController do
     uid: '123545',
     "info" => {
       "name" => "Elijah the Tishbite",
-      "image" => "https://unsplash.it/300/300",
+      "image" => "https://dummyimage.com/300",
       "email" => "elijah@heaven.net"
     }
   })

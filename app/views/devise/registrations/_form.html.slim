@@ -22,13 +22,12 @@
 
     .form-group
       .col-sm-offset-2.col-sm-10
-        button.btn.btn-success
-          - if resource.new_record?
-            | Register
-            br
-            = render "devise/shared/links"
-          - else
-            | Save
+        - if resource.new_record?
+          button.btn.btn-success Register
+          br
+          = render "devise/shared/links"
+        - else
+          button.btn.btn-success Save
 
 /- unless resource.new_record?
   hr
