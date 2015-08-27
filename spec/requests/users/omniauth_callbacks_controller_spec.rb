@@ -8,7 +8,7 @@ describe Users::OmniauthCallbacksController do
     uid: '123545',
     "info" => {
       "name" => "Elijah the Tishbite",
-      "image" => "http://loremflickr.com/320/240",
+      "image" => "https://unsplash.it/300/300",
       "email" => "elijah@heaven.net"
     }
   })
@@ -18,9 +18,9 @@ describe Users::OmniauthCallbacksController do
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
   end
 
-  describe '#authorize' do
+  describe '#authorize', focus: true do
     it "works with facebook" do
-      get user_omniauth_authorize_path(provider: :facebook)
+      get user_omniauth_authorize_path(:facebook)
       expect(response.status).to eq(302)
     end
   end
