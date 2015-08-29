@@ -1,0 +1,37 @@
+- method = resource.new_record? ? :post : :put
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal', method: method }) do |f|
+  = devise_error_messages!
+  fieldset
+    #legend
+    legend
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        #user_avatar_preview
+          - if resource.avatar.exists?
+            = image_tag resource.avatar.url(:thumb)
+
+    = f.input :avatar, wrapper: :horizontal_file_input
+    = f.input :name, autofocus: true
+    = f.input :email, class: 'input-xlarge', hint: 'Enter your email address'
+    = f.input :password, class: 'input-xlarge', hint: "Password should be at least #{@minimum_password_length} characters"
+    = f.input :password_confirmation, class: 'input-xlarge', hint: 'Please confirm password'
+
+    = f.input :website
+    = f.input :bio
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        - if resource.new_record?
+          button.btn.btn-success Register
+          br
+          = render "devise/shared/links"
+        - else
+          button.btn.btn-success Save
+
+/- unless resource.new_record?
+  hr
+  .row
+    .col-sm-offset-2.col-sm-10
+      h3 Delete my account
+      = button_to "Delete my account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete

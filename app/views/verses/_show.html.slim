@@ -8,11 +8,11 @@
 
   .col-sm-2
     - if @verses.length ==  1
-      =link_to "<", book_chapter_verse_path(book_id: @verses.first.prev.chapter.book_permalink, chapter_id: @verses.first.prev.chapter.number, id: @verses.first.prev.number), class: 'prev'
-      =link_to ">", book_chapter_verse_path(book_id: @verses.first.next.chapter.book_permalink, chapter_id: @verses.first.next.chapter.number, id: @verses.first.next.number), class: 'next'
+      =link_to "<", book_chapter_verse_path(book_id: @prev_verse.book_permalink, chapter_id: @prev_verse.chapter_number, id: @prev_verse.number), class: 'prev'
+      =link_to ">", book_chapter_verse_path(book_id: @next_verse.book_permalink, chapter_id: @next_verse.chapter_number, id: @next_verse.number), class: 'next'
     - else
-      =link_to "<", book_chapter_path(book_id: @chapter.prev.book_permalink, id: @chapter.prev.number), class: 'prev'
-      =link_to ">", book_chapter_path(book_id: @chapter.next.book_permalink, id: @chapter.next.number), class: 'next'
+      =link_to "<", book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number), class: 'prev'
+      =link_to ">", book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number), class: 'next'
 
 ol.breadcrumb
   = render_breadcrumbs tag: :li, separator: ''

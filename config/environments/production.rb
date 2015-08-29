@@ -56,7 +56,6 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = Dalli::Client.new(Dir.home + "/memcached.sock")
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -77,4 +76,31 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.smtp_settings = {
+    :address => APP_CONFIG['smtp_host'],
+    :domain => APP_CONFIG['smtp_domain'],
+    :port => APP_CONFIG['smtp_port'],
+    :authentication => "login",
+    :user_name => APP_CONFIG['smtp_user'],
+    :password => APP_CONFIG['smtp_password'],
+    :enable_starttls_auto => true
+  }
+
+  config.cache_store = :redis_store, {
+    :host => "localhost",
+    :port => APP_CONFIG['redis_port'],
+    :db => 0,
+    :password => APP_CONFIG['redis_password'],
+    :namespace => "cache",
+  }
+
+  config.middleware.use ExceptionNotification::Rack, :email => {
+    :email_prefix => "[%s Exception]" % [Rails.application.class.parent_name],
+    :sender_address => %{"Exception Notifier" <#{APP_CONFIG['admin_email']}>},
+    :exception_recipients => [APP_CONFIG['admin_email']]
+  }
+
+  config.action_mailer.default_url_options = { host: 'bibledrill.me' }
+
 end

@@ -2,7 +2,8 @@
 //= require bootstrap/tab
 //= require jquery.sticky-kit
 //= require jquery.hammer
-//= require noty
+
+delete Hammer.defaults.cssProps.userSelect;
 
 if (history && history.pushState){
   $(function(){

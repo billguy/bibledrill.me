@@ -1,29 +1,15 @@
 class BooksController < KjController
 
-  before_action :set_book, if: ->{ params[:book_id] }
-  before_action :set_breadcrumb, if: ->{ params[:book_id] }
-
   def index
     @page_title = "King James Bible Books"
-    @old = Rails.cache.fetch('old'){ $bible.books.slice(0..38) }
-    @new = Rails.cache.fetch('new'){ $bible.books.slice(39..65) }
+    @old = Rails.cache.fetch('books/old'){ Book.old_testament.to_a }
+    @new = Rails.cache.fetch('books/new'){ Book.new_testament.to_a }
   end
 
   def show
-    @book = Rails.cache.fetch("book/#{params[:id]}.json"){ $bible.book(params[:id]) }
-    @chapters = @book.chapters
+    @book = Rails.cache.fetch("books/#{params[:id]}"){ Book.find_by_permalink(params[:id]) }
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
+    @chapters = Rails.cache.fetch("books/#{@book.permalink}/chapters"){ @book.chapters.to_a }
   end
-
-  private
-
-    def set_breadcrumb
-      add_breadcrumb @book.name, :books_path, title: "Books", remote: true
-    end
-
-    def set_book
-      @book = Rails.cache.fetch("book/#{params[:book_id]}"){ $bible.book(params[:book_id]) }
-    rescue Kj::Iniquity
-      redirect_to root_path, flash: { error: "No such book '#{params[:book_id]}'" }
-    end
 
 end

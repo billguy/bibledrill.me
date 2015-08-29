@@ -4,9 +4,9 @@
     var $content = $('<div>');
     var $ol = $('<ol class="verses">');
 
-    <% previous_verse = @verses.first.prev %>
-    <% previous_book_name = previous_verse.book_name %>
-    <% previous_chapter_id = previous_verse.chapter.id %>
+    <% previous_verse = @previous_verse %>
+    <% previous_book_name = @previous_book_name %>
+    <% previous_chapter_id = @previous_chapter_id %>
 
     <% @verses.each_with_index do |verse, index| %>
 

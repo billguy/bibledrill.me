@@ -1,0 +1,13 @@
+h2 Change your password
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'form-horizontal', method: :put }) do |f|
+  = devise_error_messages!
+  = f.hidden_field :reset_password_token
+  legend
+  = f.input :password, autofocus: true, autocomplete: "off", label: "New password"
+  = f.input :password_confirmation, label: "Confirm password", hint: "( #{@minimum_password_length} characters minimum)"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit "Change my password", class: 'btn btn-primary'
+      br
+      = render "devise/shared/links"

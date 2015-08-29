@@ -4,7 +4,6 @@ class SiteController < ApplicationController
   end
 
   def random_verse
-    bible = Kj::Bible.new
-    @verse = bible.random_verse
+    @verse = Verse.random
   end
 end
