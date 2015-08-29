@@ -1,4 +1,3 @@
-//= require jquery.cookie
 //= require bootstrap/tab
 //= require jquery.sticky-kit
 //= require jquery.hammer
