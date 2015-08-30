@@ -1,12 +1,14 @@
 //= require wow_book
 //= require nouislider
 //= require jquery.timer.js
+//= require bootstrap/modal
 
 $(document).ready(function() {
 
     var max = $('#slider').data('slider-max');
     var slider = document.getElementById('slider');
-    var randomVersePath = $('.timer-container').data('path');
+    var randomVersePath = $('.timer-container').data('new-drill-path');
+    var randomVerseResultsPath = $('.timer-container').data('drill-results-path');
     var timer = $.timer(function(){}).stop();
     var incrementTime = 70;
     var currentTime = 0;
@@ -80,8 +82,7 @@ $(document).ready(function() {
         if (verse_id == random_verse_id){
             found = true;
             stopTimer();
-            var timeTaken = $('#timer').html();
-            alert("You found it in " + timeTaken);
+            $.post(randomVerseResultsPath, { time: currentTime, verse_id: random_verse_id });
         }
     });
 
@@ -139,5 +140,6 @@ $(document).ready(function() {
         $('#timer').html(timeString);
         currentTime += incrementTime;
     }
+
 
 });

@@ -19,6 +19,10 @@ class Verse < ActiveRecord::Base
     31102
   end
 
+  def self.pages
+    last.page
+  end
+
   def self.random
     find(rand(1...count))
   end

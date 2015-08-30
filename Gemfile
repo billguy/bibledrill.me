@@ -20,6 +20,7 @@ gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 gem 'paperclip'
 gem "bootstrap_flash_messages", github: 'RobinBrouwer/bootstrap_flash_messages'
 gem 'simple_form'
+gem 'leaderboard'
 
 group :development do
   gem 'capistrano',  '~> 3.1'
@@ -29,6 +30,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'rack-mini-profiler'
   gem 'quiet_assets'
+  gem 'render_anywhere', require: false
 end
 
 group :development, :test do

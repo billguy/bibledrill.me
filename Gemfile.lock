@@ -133,6 +133,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    leaderboard (3.10.0)
+      redis
     libv8 (3.16.14.11)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -222,6 +224,8 @@ GEM
     redis-store (1.1.6)
       redis (>= 2.2)
     ref (2.0.0)
+    render_anywhere (0.0.11)
+      rails (>= 3.0.7)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.3.2)
@@ -310,6 +314,7 @@ DEPENDENCIES
   hammerjs-rails
   jbuilder (~> 2.0)
   jquery-rails
+  leaderboard
   meta-tags
   mysql2
   omniauth-facebook!
@@ -318,6 +323,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 4.2.3)
   redis-rails
+  render_anywhere
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   simple_form

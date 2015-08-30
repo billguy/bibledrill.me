@@ -12,3 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/transition
+//= require bootstrap/alert
+
+$(function() {
+    window.setTimeout(function () {
+        var $alert = $(".alert")
+        $alert.addClass("in");
+        window.setTimeout(function() { $alert.alert('close') }, 5000);
+    }, 100);
+});

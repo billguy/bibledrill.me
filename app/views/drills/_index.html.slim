@@ -1,0 +1,43 @@
+#modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+        h4.modal-title
+      .modal-body
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+.row
+  .col-xs-12
+    .timer-container data-drill-results-path="/drills" data-new-drill-path="/drills/new"
+      span#random-verse.h4
+      span#timer.h4
+.row
+  .col-xs-12
+    #jacket
+      .loader.spinner
+        .bounce1
+        .bounce2
+        .bounce3
+      #slider-container.hidden
+        #slider data-slider-max="#{Verse.pages + 1}"
+      .instructions
+        h1.h3 BibleDrill.me Instructions
+        ol
+          li Click on the right side of the Bible cover to start the drill.
+          li Locate the Bible verse shown as quickly as possible.
+          li Navigate the Bible by dragging the slider up/down and by clicking on the left/right sides of the pages.
+      #bible.hidden
+        .cover.front
+          h1
+            | King James
+          h2
+            | Bible
+        .page
+          .credits
+            | To my wonderful wife, Jackie, who gave me the idea to do this.
+        - Verse.pages.times do
+          .page
+            .content
+        .cover.back

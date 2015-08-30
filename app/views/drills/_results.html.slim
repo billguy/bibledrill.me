@@ -1,0 +1,20 @@
+blockquote=@verse.text
+- unless current_user
+  .row
+    .col-xs-12
+      span>= link_to "Sign in/Sign up", new_user_session_path
+      | to save your score.
+- if @leaders.present?
+  h3 #{@verse.title} best times
+  ol
+    - @leaders.each do |leader|
+      - member_data = JSON.parse(leader[:member_data], symbolize_names: true)
+      li
+        span>= member_data[:username]
+        span
+          |(
+          =Time.at(leader[:score]).utc.strftime("%H:%M:%S")
+          |)
+        span< on #{Time.at(member_data[:datetime]).strftime("%m/%d/%Y %I:%M%p")}
+- else
+  i No scores registered yet.

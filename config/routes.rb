@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'random-verse', to: 'site#random_verse', as: :random_verse
-  root to: 'site#index'
+  resources :drills, only: [:index, :new, :create]
+  root to: 'drills#index'
 end

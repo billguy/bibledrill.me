@@ -1,0 +1,3 @@
+$('.modal-title').html("You found <%= @verse.title%> in <%= Time.at(@time).utc.strftime("%H:%M:%S")%>");
+$('.modal-body').html("<%= j(render('results'))%>");
+$('#modal').modal('show');

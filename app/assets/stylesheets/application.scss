@@ -1,6 +1,8 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+@import "bootstrap/scaffolding";
 @import "bootstrap/type";
+@import "bootstrap/grid";
 @import "bootstrap/component-animations";
 @import "bootstrap/alerts";
 @import "bootstrap/close";
@@ -43,8 +45,9 @@ ul.nav-links{
 }
 
 footer{
-  margin-top: 10px;
-  position: fixed;
+  margin-bottom: 10px;
+  z-index: 1000;
+  position: relative;
 }
 
 .clearfix{
