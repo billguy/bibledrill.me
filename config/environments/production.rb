@@ -77,6 +77,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.to_prepare { Users::SessionsController.force_ssl }
+  config.to_prepare { Users::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
+  config.to_prepare { Users::OmniauthCallbacksController }
+
   config.action_mailer.smtp_settings = {
     :address => APP_CONFIG['smtp_host'],
     :domain => APP_CONFIG['smtp_domain'],
@@ -101,6 +106,6 @@ Rails.application.configure do
     :exception_recipients => [APP_CONFIG['admin_email']]
   }
 
-  config.action_mailer.default_url_options = { host: 'bibledrill.me' }
+  config.action_mailer.default_url_options = { protocol: 'https', host: 'bibledrill.me' }
 
 end
