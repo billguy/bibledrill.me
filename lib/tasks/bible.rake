@@ -1,8 +1,8 @@
-require 'render_anywhere'
+require 'render_anywhere' if Rails.env.development?
 
 namespace :bible do
 
-  include RenderAnywhere
+  include RenderAnywhere if Rails.env.development?
 
   desc "Build book/vhapter/verse models from the kj gem"
   task build: :environment do
