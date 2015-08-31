@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
 
+  after_create :notify_admin
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email
@@ -30,5 +32,11 @@ class User < ActiveRecord::Base
   def userid
     email.split('@').first
   end
+
+  private
+
+    def notify_admin
+      UserMailer.new_user_notification(self).deliver_later
+    end
 
 end

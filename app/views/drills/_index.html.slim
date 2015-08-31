@@ -15,20 +15,22 @@
       span#timer.h4
 .row
   .col-xs-12
+    .visible-xs-block
+      p Sorry.  The Bible drill is not available on smaller screen sizes.
     #jacket
       .loader.spinner
         .bounce1
         .bounce2
         .bounce3
-      #slider-container.hidden
+      #slider-container.hide
         #slider data-slider-max="#{Verse.pages + 1}"
-      .instructions
+      .instructions.hidden-xs
         h1.h3 BibleDrill.me Instructions
         ol
           li Click on the right side of the Bible cover to start the drill.
           li Locate the Bible verse shown as quickly as possible.
           li Navigate the Bible by dragging the slider up/down and by clicking on the left/right sides of the pages.
-      #bible.hidden
+      #bible.hide
         .cover.front
           h1
             | King James

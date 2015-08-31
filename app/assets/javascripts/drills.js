@@ -48,14 +48,15 @@ $(document).ready(function() {
     });
 
     function startDrill(){
-        if ($('#slider-container').hasClass('hidden')){
-            $('#slider-container').fadeIn().removeClass('hidden');
+        $('.wowbook-zoomwindow').css({'height': '0px', 'width': '0px'});
+        if ($('#slider-container').hasClass('hide')){
+            $('#slider-container').fadeIn().removeClass('hide');
             startTimer();
         }
     }
 
     function stopDrill(){
-        $('#slider-container').fadeOut().addClass('hidden');
+        $('#slider-container').fadeOut().addClass('hide');
         stopTimer();
     }
 
@@ -95,7 +96,8 @@ $(document).ready(function() {
     });
 
     $('#bible').fadeIn(function(){
-        $('.loader').addClass('hidden');
+        $('.loader').addClass('hide');
+        $(this).removeClass('hide');
     });
 
     function startTimer(){

@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  recaptcha:
+    errors:
+      verification_failed: 'Incorrect captcha, please try again'
+      incorrect-captcha-sol: 'Incorrect captcha, please try again'
+      recaptcha_unreachable: 'Unable to display captcha'

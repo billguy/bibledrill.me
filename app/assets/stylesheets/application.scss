@@ -1,23 +1,22 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
+@import "bootstrap/normalize";
 @import "bootstrap/scaffolding";
 @import "bootstrap/type";
 @import "bootstrap/grid";
+@import "bootstrap/forms";
 @import "bootstrap/component-animations";
+@import "bootstrap/dropdowns";
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
 @import "bootstrap/alerts";
 @import "bootstrap/close";
+@import "bootstrap/utilities";
+@import "bootstrap/responsive-utilities";
 
 body{
   font-family: 'Merriweather', serif;
   font-size: 17px;
-}
-
-.account{
-  float: right;
-}
-
-.hidden{
-  display: none;
 }
 
 div.alert{
@@ -25,7 +24,7 @@ div.alert{
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1001;
   font-weight: bold;
   text-align: center;
 }
@@ -48,8 +47,4 @@ footer{
   margin-bottom: 10px;
   z-index: 1000;
   position: relative;
-}
-
-.clearfix{
-  clear: both;
 }

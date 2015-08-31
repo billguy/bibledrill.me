@@ -1,0 +1,14 @@
+= simple_form_for(@contact, as: :contacts, html: { class: 'form-horizontal'}) do |f|
+  fieldset
+    legend
+    = f.input :name
+    = f.input :email
+    = f.input :message, as: :text, rows: 10, cols: 10
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = recaptcha_tags(display: { theme: 'clean' }, public_key: APP_CONFIG['recaptcha_public_key'])
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.submit "Send", class: 'btn btn-success', data: { "disable-with" => 'Sending...'}
+        button.btn.btn-link type="button" onclick="location.href = '#{root_url}'" Cancel

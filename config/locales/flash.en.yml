@@ -13,6 +13,10 @@ en:
     defaults:
       account_unavailable: "Account Unavailable"
       inactive: "Your account is not active"
+
+    contacts:
+      create:
+        error: "Please correct the errors below"
     #   success: "This is a notification"
     #   error: "Something went wrong"
     #   create:

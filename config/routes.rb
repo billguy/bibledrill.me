@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :drills, only: [:index, :new, :create]
+  resources :contacts, only: [:index, :new, :create], path: :contact
   root to: 'drills#index'
 end

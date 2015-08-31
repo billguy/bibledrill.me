@@ -5,31 +5,50 @@ html
     = display_meta_tags(default_meta_tags)
     link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'
     = stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_link_tag controller.controller_name, :media => "all" if Rails.application.assets.find_asset("#{controller.controller_name}.css")
+    = stylesheet_link_tag controller.controller_name, media: "all" if Rails.application.assets.find_asset("#{controller.controller_name}.css")
     = csrf_meta_tags
     = yield :header
   body
     = flash_messages(:close, :html, :fade, :fade_in)
+    nav.navbar.navbar-default.navbar-static-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed aria-expanded="false" data-target="#navbar-collapse" data-toggle="collapse" type="button"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand href="/" BibleDrill.me
+        #navbar-collapse.collapse.navbar-collapse
+          ul.nav.navbar-nav.pull-right
+            - if current_user
+              li.dropdown
+                a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                  = current_user.email
+                  span.caret
+                ul.dropdown-menu
+                  li= link_to 'Account', edit_user_registration_path
+                  li= link_to 'Logout', destroy_user_session_path, method: :delete
+            - else
+              li
+                a href="#{new_user_session_path}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                  span Sign In/Sign Up
+        .clearfix
 
     .container-fluid
-      .account
-        - if current_user
-          = link_to current_user.email, edit_user_registration_path
-          | /
-          = link_to 'Logout', destroy_user_session_path, method: :delete
-        - else
-          = link_to 'Sign In/Sign Up', new_user_session_path
-      .clearfix
       #content data-next-path="#{yield :data_next_path}" data-prev-path="#{yield :data_prev_path}"
         = yield
-      .clearfix
 
       footer
         ul.nav-links
           li
-            a href="/" BibleDrill.me
+            a href="/" Home
           li
             a href="/books" Bible
+          li
+            a href="/contact" About
+          li
+            a href="/contact/new" Contact
     = javascript_include_tag 'application'
     = javascript_include_tag controller.controller_name if Rails.application.assets.find_asset("#{controller.controller_name}.js")
     = yield :footer

@@ -21,6 +21,10 @@ gem 'paperclip'
 gem "bootstrap_flash_messages", github: 'RobinBrouwer/bootstrap_flash_messages'
 gem 'simple_form'
 gem 'leaderboard'
+gem 'delayed_job_active_record'
+gem 'whenever', require: false
+gem "recaptcha", require: false
+gem 'valid_email', require: false
 
 group :development do
   gem 'capistrano',  '~> 3.1'
@@ -43,4 +47,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem "capybara-webkit"
+  gem 'shoulda-matchers'
+  gem 'shoulda-callback-matchers'
 end

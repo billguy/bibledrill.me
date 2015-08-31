@@ -1,7 +1,7 @@
 class BooksController < KjController
 
   def index
-    @page_title = "King James Bible Books"
+    @page_title = "King James Bible"
     @old = Rails.cache.fetch('books/old'){ Book.old_testament.to_a }
     @new = Rails.cache.fetch('books/new'){ Book.new_testament.to_a }
   end

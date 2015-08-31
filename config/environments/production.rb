@@ -77,6 +77,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.active_job.queue_adapter = :delayed_job
+
   config.to_prepare { Users::SessionsController.force_ssl }
   config.to_prepare { Users::RegistrationsController.force_ssl }
   config.to_prepare { Devise::PasswordsController.force_ssl }

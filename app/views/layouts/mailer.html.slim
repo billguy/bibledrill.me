@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'
+    = stylesheet_link_tag 'mailer', media: 'all'
+  body
+    = yield
+    = javascript_include_tag 'mailer'

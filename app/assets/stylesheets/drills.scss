@@ -8,7 +8,7 @@
 
 .loader{
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
 }
 
@@ -87,27 +87,22 @@ ol.verses{
   clear: both;
 }
 
-@media only screen and (min-width : 320px) {
+.unavailable{
+  display: none;
+}
+
+
+@media only screen and (max-width : 480px) {
   #jacket{
-    width: 300px;
-    height: 316px;
-  }
-  .instructions{
     display: none;
   }
-  #slider-container {
-    margin-right: -25px;
-    #slider {
-      height: 200px;
-    }
-  }
-  #bible .content {
-    padding: 38px;
+  .unavailable{
+    display: block;
   }
 }
 
 /* Extra Small Devices, Phones */
-@media only screen and (min-width : 480px) {
+@media only screen and (min-width : 481px) {
 
   #jacket{
     width: 450px;
@@ -154,13 +149,16 @@ ol.verses{
 
   #jacket{
     width: 900px;
-    height: 647px;
+    height: 600px;
   }
   .instructions {
     width: 425px;
   }
-  #slider-container #slider {
-    height: 620px;
+  #slider-container {
+    margin-right: 60px;
+    #slider {
+      height: 569px;
+    }
   }
 }
 
