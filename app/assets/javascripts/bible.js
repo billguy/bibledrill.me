@@ -1,8 +1,5 @@
 //= require bootstrap/tab
 //= require jquery.sticky-kit
-//= require jquery.hammer
-
-delete Hammer.defaults.cssProps.userSelect;
 
 if (history && history.pushState){
   $(function(){
@@ -19,26 +16,6 @@ $('body').on('click', 'ol.chapter li', function(){
     var path = $(this).data('path');
     $.getScript(path);
     history.pushState(null, '', path);
-});
-
-$('#content').hammer()
-    .on('swipeleft', function(ev) {
-        var next_path = content.getAttribute('data-next-path');
-        if (next_path) {
-            $.getScript(next_path).success( function( data, textStatus, jqxhr ) {
-                window.scrollTo(0, 0);
-                history.pushState(null, '', next_path);
-            });
-        }
-    })
-    .on('swiperight', function(ev) {
-        var prev_path = content.getAttribute('data-prev-path');
-        if (prev_path) {
-            $.getScript(prev_path).success( function( data, textStatus, jqxhr ) {
-                window.scrollTo(0, 0);
-                history.pushState(null, '', prev_path);
-            });
-        }
 });
 
 var verses = [];

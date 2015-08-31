@@ -12,7 +12,6 @@ gem 'slim-rails'
 gem 'redis-rails'
 gem "breadcrumbs_on_rails"
 gem 'meta-tags'
-gem 'hammerjs-rails'
 gem 'stickykit-rails'
 gem 'exception_notification'
 gem 'devise', github: 'plataformatec/devise'
