@@ -1,0 +1,5 @@
+= link_to(@verse.title, '#', class: 'refresh')
+span<> •
+= link_to('#', id: 'hint', data: {page: @verse.page}) do
+  small
+    | (hint)

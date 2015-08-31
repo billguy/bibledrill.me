@@ -169,7 +169,10 @@ ol.verses{
     width: 1085px;
     height: 780px;
   }
-  #slider-container #slider {
-    height: 750px;
+  #slider-container {
+    margin-right: 8px;
+    #slider {
+      height: 750px;
+    }
   }
 }

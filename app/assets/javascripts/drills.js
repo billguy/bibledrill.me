@@ -14,6 +14,7 @@ $(document).ready(function() {
     var currentTime = 0;
     var currentPage = 0;
     var found = false;
+    var hint = false;
 
     noUiSlider.create(slider, {
         start: 1,
@@ -83,8 +84,15 @@ $(document).ready(function() {
         if (verse_id == random_verse_id){
             found = true;
             stopTimer();
-            $.post(randomVerseResultsPath, { time: currentTime, verse_id: random_verse_id });
+            $.post(randomVerseResultsPath, { time: currentTime, verse_id: random_verse_id, hint: hint });
         }
+    });
+
+    $('.timer-container').on('click', '#hint', function(){
+        var page = $(this).data('page');
+        slider.noUiSlider.set(page);
+        bible.wowBook('gotoPage', page);
+        hint = true;
     });
 
     $('.timer-container').on('click', 'a.refresh', function(e){
@@ -92,6 +100,7 @@ $(document).ready(function() {
         e.preventDefault();
         bible.wowBook('gotoPage', 1);
         found = false;
+        hint = false;
         restartTimer();
     });
 

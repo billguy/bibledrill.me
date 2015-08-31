@@ -3,10 +3,6 @@
 @import "bootstrap/buttons";
 @import "bootstrap/panels";
 
-.account{
-  display: none;
-}
-
 p {
   color:#CCC;
 }
@@ -18,7 +14,7 @@ p {
 
 .middlePage {
   position: absolute;
-  top:0;
+  top:50px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -26,8 +22,7 @@ p {
 }
 
 footer{
-  position: fixed;
-  bottom: 0;
+  display: none;
 }
 
 /* Custom, iPhone Retina */
@@ -44,6 +39,7 @@ footer{
     width: 480px;
     height: 500px;
   }
+
 }
 
 /* Small Devices, Tablets */
@@ -52,14 +48,4 @@ footer{
     width: 680px;
     height: 500px;
   }
-}
-
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
-
-}
-
-/* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
-
 }

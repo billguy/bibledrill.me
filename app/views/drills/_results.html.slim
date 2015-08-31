@@ -1,4 +1,6 @@
 blockquote=@verse.text
+- if @hint
+  p You used a hint but keep practicing!
 - if @leaders.present?
   h3 #{@verse.title} best times
   ol

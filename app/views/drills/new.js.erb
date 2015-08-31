@@ -1,1 +1,1 @@
-$('#random-verse').data('verse-id', '<%= @verse.id%>').html('<%= j link_to(@verse.title, '#', class: 'refresh') %>');
+$('#random-verse').data('verse-id', '<%= @verse.id%>').html('<%= j render('random_verse') %>');
