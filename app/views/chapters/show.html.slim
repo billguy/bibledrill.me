@@ -1,7 +1,1 @@
 = render 'show'
-
-= content_for :data_next_path do
-  = book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number)
-
-- content_for :data_prev_path do
-  = book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number)
