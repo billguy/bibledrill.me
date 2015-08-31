@@ -13,7 +13,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     verified = verify_recaptcha(model: @contact, private_key: APP_CONFIG['recaptcha_private_key'])
     if @contact.valid? && verified
-      ContactMailer.new_contact(@contact).deliver_later
+      ContactMailer.new_contact(@contact).deliver_now
       redirect_to root_path, notice: "Thanks for your message."
     else
       flash_now!(:error) if verified
