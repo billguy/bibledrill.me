@@ -48,8 +48,9 @@ $(document).ready(function() {
       }
     });
 
+    $('.wowbook-zoomwindow').css({'height': '0px', 'width': '0px'});
+
     function startDrill(){
-        $('.wowbook-zoomwindow').css({'height': '0px', 'width': '0px'});
         if ($('#slider-container').hasClass('hide')){
             $('#slider-container').fadeIn().removeClass('hide');
             startTimer();
