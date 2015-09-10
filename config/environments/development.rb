@@ -45,15 +45,4 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :delayed_job
 
-  config.action_mailer.smtp_settings = {
-    :address => APP_CONFIG['smtp_host'],
-    :domain  => APP_CONFIG['smtp_domain'],
-    :port => APP_CONFIG['smtp_port'],
-    :enable_starttls_auto => true,
-    :openssl_verify_mode  => 'none',
-    :authentication => "login",
-    :user_name => APP_CONFIG['smtp_user'],
-    :password => APP_CONFIG['smtp_password'],
-  }
-
 end

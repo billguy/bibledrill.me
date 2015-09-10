@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: APP_CONFIG['admin_email']
+  default from: ENV['admin_email']
   layout 'mailer'
 end

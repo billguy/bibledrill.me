@@ -84,30 +84,22 @@ Rails.application.configure do
   config.to_prepare { Devise::PasswordsController.force_ssl }
   config.to_prepare { Users::OmniauthCallbacksController }
 
-  config.action_mailer.smtp_settings = {
-    :address => APP_CONFIG['smtp_host'],
-    :domain => APP_CONFIG['smtp_domain'],
-    :port => APP_CONFIG['smtp_port'],
-    :authentication => "login",
-    :user_name => APP_CONFIG['smtp_user'],
-    :password => APP_CONFIG['smtp_password'],
-    :enable_starttls_auto => true
-  }
-
   config.cache_store = :redis_store, {
-    :host => "localhost",
-    :port => APP_CONFIG['redis_port'],
+    :host => ENV['redis_host'],
+    :port => ENV['redis_port'],
     :db => 0,
-    :password => APP_CONFIG['redis_password'],
+    :password => ENV['redis_password'],
     :namespace => "cache",
   }
 
   config.middleware.use ExceptionNotification::Rack, :email => {
     :email_prefix => "[%s Exception]" % [Rails.application.class.parent_name],
-    :sender_address => %{"Exception Notifier" <#{APP_CONFIG['admin_email']}>},
-    :exception_recipients => [APP_CONFIG['admin_email']]
+    :sender_address => %{"Exception Notifier" <#{ENV['admin_email']}>},
+    :exception_recipients => [ENV['admin_email']]
   }
 
   config.action_mailer.default_url_options = { protocol: 'https', host: 'bibledrill.me' }
+
+  config.action_mailer.postmark_settings = { api_token: ENV['postmark_token'] }
 
 end

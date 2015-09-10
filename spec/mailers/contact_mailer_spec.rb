@@ -7,8 +7,8 @@ RSpec.describe ContactMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("BibleDrill.me contact form submission")
-      expect(mail.to).to eq([APP_CONFIG['admin_email']])
-      expect(mail.from).to eq([APP_CONFIG['admin_email']])
+      expect(mail.to).to eq([ENV['admin_email']])
+      expect(mail.from).to eq([ENV['admin_email']])
       expect(mail.reply_to).to eq([contact.email])
     end
 
