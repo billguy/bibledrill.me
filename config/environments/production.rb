@@ -92,12 +92,6 @@ Rails.application.configure do
     :namespace => "cache",
   }
 
-  config.middleware.use ExceptionNotification::Rack, :email => {
-    :email_prefix => "[%s Exception]" % [Rails.application.class.parent_name],
-    :sender_address => %{"Exception Notifier" <#{ENV['admin_email']}>},
-    :exception_recipients => [ENV['admin_email']]
-  }
-
   config.action_mailer.default_url_options = { protocol: 'https', host: 'bibledrill.me' }
 
   config.action_mailer.postmark_settings = { api_token: ENV['postmark_token'] }

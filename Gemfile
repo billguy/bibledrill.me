@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
 gem 'pg', group: :production
+gem 'raygun4ruby', group: :production
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -13,7 +14,6 @@ gem 'redis-rails'
 gem "breadcrumbs_on_rails"
 gem 'meta-tags'
 gem 'stickykit-rails'
-gem 'exception_notification'
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 gem 'paperclip'
