@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
+ruby '2.2.1'
 
 gem 'rails', '4.2.3'
 gem 'pg', group: :production
+gem 'rails_12factor', group: :production # 4 heroku
 gem 'raygun4ruby'
 gem 'puma'
 gem 'bootstrap-sass', '~> 3.3.5'
