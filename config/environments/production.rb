@@ -95,6 +95,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { protocol: 'https', host: 'bibledrill.me' }
 
   config.action_mailer.delivery_method = :postmark
-  config.action_mailer.postmark_settings = { api_token: ENV['postmark_token'] }
+  config.action_mailer.postmark_settings = { api_token: ENV['POSTMARK_API_TOKEN'] }
 
 end
