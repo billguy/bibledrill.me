@@ -11,7 +11,7 @@ class VersesController < KjController
   end
 
   def show
-    @verses = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:chapter_id]}/verses/#{parsed_verses.join(',')}"){ @chapter.verses.where(number: parsed_verses).to_a }
+    @verses = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:chapter_id]}/verses/#{parsed_verses.join(',')}"){ @chapter.verses.where(number: parsed_verses).reorder(id: :asc).to_a }
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true
     if @verses.length > 1
