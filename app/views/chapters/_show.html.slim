@@ -1,5 +1,5 @@
-=link_to "<", book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number), class: 'prev'
-=link_to ">", book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number), class: 'next'
+=link_to "<", book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number), class: 'prev', remote: true
+=link_to ">", book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number), class: 'next', remote: true
 
 .row
   .col-xs-12.col-sm-10

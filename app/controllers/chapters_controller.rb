@@ -13,7 +13,7 @@ class ChaptersController < KjController
     @chapter = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:id]}"){ @book.chapters.find_by_number(params[:id]) }
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
-    add_breadcrumb "Verses", nil, title: "Verses"
+    add_breadcrumb "Verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verses", remote: true
     @page_title = @chapter.title
     @verses = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:id]}/verses"){ @chapter.verses.reorder(id: :asc).to_a }
     @prev_chapter = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:id]}/prev") { @chapter.prev }
