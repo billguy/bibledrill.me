@@ -92,6 +92,17 @@ Rails.application.configure do
     :namespace => "cache",
   }
 
+  config.paperclip_defaults = {
+    :storage => :fog,
+    :fog_credentials => {
+      :provider => "Rackspace",
+      :rackspace_username => ENV['RACKSPACE_USERNAME'],
+      :rackspace_api_key => ENV['RACKSPACE_API_KEY'],
+      :persistent => false
+    },
+    :fog_directory => ENV["RACKSPACE_BUCKET_NAME"]
+  }
+
   config.action_mailer.default_url_options = { protocol: 'https', host: 'bibledrill.me' }
 
   config.action_mailer.delivery_method = :postmark
