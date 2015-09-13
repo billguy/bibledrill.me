@@ -1,4 +1,8 @@
 class Verse < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search_by_text, against: :text
+
+  scope :search_by_text, ->(text){where("text like ?", "%#{text}%")} unless Rails.env.production? # since postgres only in production
 
   belongs_to :chapter
 

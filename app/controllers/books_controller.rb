@@ -12,4 +12,8 @@ class BooksController < KjController
     @chapters = Rails.cache.fetch("books/#{@book.permalink}/chapters"){ @book.chapters.to_a }
   end
 
+  def search
+    @verses = Verse.includes(chapter: :book).search_by_text(params[:q]).page params[:page]
+  end
+
 end

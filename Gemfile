@@ -28,6 +28,8 @@ gem 'delayed_job_active_record'
 gem "recaptcha", require: false
 gem 'valid_email', require: false
 gem 'postmark-rails'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'pg_search'
 
 group :development do
   gem 'better_errors'

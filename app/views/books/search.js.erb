@@ -1,0 +1,4 @@
+$('.bible').addClass('hidden');
+$('#search-results').html('<%= j(render('search')) %>').removeClass('hidden');
+$('#search-results').append('<%= j(render('search_paginate')) %>');
+$("html, body").scrollTop(0);

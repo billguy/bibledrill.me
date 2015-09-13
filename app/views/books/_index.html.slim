@@ -1,12 +1,20 @@
 h1 King James Bible
 
-ul#books-nav.nav.nav-tabs.sticky role="tablist"
+= form_tag search_books_path, method: :get, remote: true do
+  = text_field_tag :q, params[:q], class: 'form-control input-lg clearable', placeholder: 'Keyword Search'
+
+hr
+.row
+  .col-xs-12
+    #search-results.hidden
+
+ul#books-nav.bible.nav.nav-tabs.sticky role="tablist"
   li.active.tab role="presentation"
     a aria-controls="old" data-toggle="tab" href="#old" role="tab" Old
   li.tab role="presentation"
     a aria-controls="new" data-toggle="tab" href="#new" role="tab" New
 
-.tab-content
+.tab-content.bible
   #old.tab-pane.fade.in.active role="tabpanel"
     .row
       = render partial: "book", collection: @old

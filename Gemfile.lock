@@ -230,6 +230,12 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     leaderboard (3.10.0)
       redis
     libv8 (3.16.14.11)
@@ -271,6 +277,10 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.3)
+    pg_search (1.0.5)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     postmark (1.6.0)
       json
       rake
@@ -428,11 +438,13 @@ DEPENDENCIES
   fog
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari-bootstrap (~> 3.0.1)
   leaderboard
   meta-tags
   omniauth-facebook!
   paperclip
   pg
+  pg_search
   postmark-rails
   puma
   quiet_assets
