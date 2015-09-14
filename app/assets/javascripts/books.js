@@ -5,6 +5,7 @@ var Bible = {
     init: function(){
         $('.clearable').clearSearch({
             callback: function() {
+                $("#q").blur();
                 Bible.showBible();
             }
         });
