@@ -10,6 +10,7 @@ var Bible = {
         });
         $('#search-form').on('submit', function(){
             $("#q").blur();
+            $('#search-results').html('<i>Please wait...</i>');
             Bible.showSearch();
         });
     },
