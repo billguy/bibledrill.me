@@ -25,8 +25,4 @@ var Bible = {
     }
 };
 
-$(document).on('ajaxComplete', function() {
-    Bible.init();
-});
-
 Bible.init();
