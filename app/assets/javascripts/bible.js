@@ -1,5 +1,6 @@
 //= require bootstrap/tab
 //= require jquery.sticky-kit
+//= require jquery.clearsearch
 
 if (history && history.pushState){
   $(function(){
@@ -11,6 +12,32 @@ if (history && history.pushState){
     });
   });
 }
+
+var Bible = {
+    init: function(){
+        $('.clearable').clearSearch({
+            callback: function() {
+                $("#q").blur();
+                Bible.showBible();
+            }
+        });
+        $('#search-form').on('submit', function(){
+            $("#q").blur();
+            $('#search-results').html('<i>Please wait...</i>');
+            Bible.showSearch();
+        });
+    },
+    showSearch: function(){
+        $('.bible').addClass('hidden');
+        $('#search-results').removeClass('hidden');
+    },
+    showBible: function(){
+        $('.bible').removeClass('hidden');
+        $('#search-results').addClass('hidden');
+    }
+};
+
+Bible.init();
 
 $('body').on('click', 'ol.chapter li', function(){
     var path = $(this).data('path');
