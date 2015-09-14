@@ -5,11 +5,21 @@ var Bible = {
     init: function(){
         $('.clearable').clearSearch({
             callback: function() {
-                $('#search-results').addClass('hidden');
-                $('.bible').removeClass('hidden');
-
+                Bible.showBible();
             }
         });
+        $('#search-form').on('submit', function(){
+            $("#q").blur();
+            Bible.showSearch();
+        });
+    },
+    showSearch: function(){
+        $('.bible').addClass('hidden');
+        $('#search-results').removeClass('hidden');
+    },
+    showBible: function(){
+        $('.bible').removeClass('hidden');
+        $('#search-results').addClass('hidden');
     }
 };
 
