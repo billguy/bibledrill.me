@@ -4,7 +4,7 @@
 if (history && history.pushState){
   $(function(){
    $(document).on('click', 'a[data-remote="true"]', function(e){
-      history.pushState(null, '', this.href);
+       history.pushState(null, '', this.href);
     });
     $(window).bind("popstate", function(){
         $.getScript(location.href);

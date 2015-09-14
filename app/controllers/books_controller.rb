@@ -13,7 +13,7 @@ class BooksController < KjController
   end
 
   def search
-    @verses = Verse.includes(chapter: :book).search_by_text(params[:q]).page params[:page]
+    @verses = Verse.includes(chapter: :book).where('text ~* ?', params[:q]).order(id: :asc).page params[:page]
   end
 
 end

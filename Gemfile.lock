@@ -277,10 +277,6 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.3)
-    pg_search (1.0.5)
-      activerecord (>= 3.1)
-      activesupport (>= 3.1)
-      arel
     postmark (1.6.0)
       json
       rake
@@ -444,7 +440,6 @@ DEPENDENCIES
   omniauth-facebook!
   paperclip
   pg
-  pg_search
   postmark-rails
   puma
   quiet_assets
