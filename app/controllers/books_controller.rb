@@ -13,7 +13,7 @@ class BooksController < KjController
   end
 
   def search
-    if Rails.env.prodcution?
+    if Rails.env.production?
       @verses = Verse.includes(chapter: :book).where('text ~* ?', params[:q]).order(id: :asc).page params[:page]
     else
       @verses = Verse.includes(chapter: :book).where('text like ?', "%#{params[:q]}%").order(id: :asc).page params[:page]
