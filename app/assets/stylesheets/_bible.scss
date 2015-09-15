@@ -84,11 +84,12 @@ span.read{
 ol.chapter{
   li{
     margin-top: 10px;
-    cursor: pointer;
-    &:hover{
-      span.text{
-        border-bottom: 1px dotted blue;
-      }
+    span.text:hover{
+      cursor: pointer;
+      border-bottom: 1px dotted blue;
+    }
+    a.verse-link{
+      img{ margin-bottom: 6px; }
     }
   }
 }

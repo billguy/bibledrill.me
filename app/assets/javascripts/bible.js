@@ -39,10 +39,14 @@ var Bible = {
 
 Bible.init();
 
-$('body').on('click', 'ol.chapter li', function(){
-    var path = $(this).data('path');
-    $.getScript(path);
-    history.pushState(null, '', path);
+$('body').on('click', 'ol.chapter li span', function(){
+    if ($(this).hasClass('selected')){
+        $(this).removeClass('selected');
+        $(this).next('a.verse-link').addClass('hidden');
+    } else {
+        $(this).addClass('selected');
+        $(this).next('a.verse-link').removeClass('hidden');
+    }
 });
 
 var verses = [];
