@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :book do
-    name "MyString"
-    permalink "MyString"
-    abbreviations "MyText"
+    name "Genesis"
+    permalink "genesis"
+    abbreviations "gen"
   end
 
 end

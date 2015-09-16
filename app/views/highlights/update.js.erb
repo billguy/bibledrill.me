@@ -1,0 +1,10 @@
+alert('<%= @verse.id %>');
+
+var $verse_span = $('span.verse[data-verse-id="<%= @verse.id %>"]');
+if ($verse_span.hasClass('selected')){
+    $verse_span.removeClass('selected');
+    $verse_span.next('a.verse-link').addClass('hidden');
+} else {
+    $verse_span.addClass('selected');
+    $verse_span.next('a.verse-link').removeClass('hidden');
+}

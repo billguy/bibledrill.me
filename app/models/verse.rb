@@ -1,6 +1,7 @@
 class Verse < ActiveRecord::Base
 
   belongs_to :chapter
+  has_many :highlights
 
   delegate :book_permalink, to: :chapter
   delegate :book_name, to: :chapter

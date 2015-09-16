@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
 
+  has_many :highlights
+
   after_create :notify_admin
 
   def self.from_omniauth(auth)

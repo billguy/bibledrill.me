@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :chapter do
-    book nil
+    before(:create) do |c|
+      c.book = Book.first || FactoryGirl.create(:book)
+    end
     number 1
   end
 

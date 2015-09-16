@@ -1,6 +1,7 @@
 //= require bootstrap/tab
 //= require jquery.sticky-kit
 //= require jquery.clearsearch
+//= require dragula
 
 if (history && history.pushState){
   $(function(){
@@ -40,13 +41,25 @@ var Bible = {
 Bible.init();
 
 $('body').on('click', 'ol.chapter li span', function(){
-    if ($(this).hasClass('selected')){
-        $(this).removeClass('selected');
-        $(this).next('a.verse-link').addClass('hidden');
-    } else {
-        $(this).addClass('selected');
-        $(this).next('a.verse-link').removeClass('hidden');
-    }
+//    if ($(this).hasClass('selected')){
+//        $(this).removeClass('selected');
+//        $(this).next('a.verse-link').addClass('hidden');
+//    } else {
+//        $(this).addClass('selected');
+//        $(this).next('a.verse-link').removeClass('hidden');
+//    }
+    var verse_id = $(this).data('verse-id');
+    var highlight_path = $(this).data('highlight-path');
+    $.getScript({
+      type: "POST",
+      url: highlight_path,
+      data: { _method:'PUT', id: verse_id },
+      dataType: 'json',
+      success: function(msg) {
+        alert( "Data Saved: " + msg );
+      }
+    });
+
 });
 
 var verses = [];

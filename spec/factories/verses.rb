@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :verse do
-    chapter nil
+    before(:create) do |v|
+      v.chapter = Chapter.first || FactoryGirl.create(:chapter)
+    end
     number 1
     page 1
-    text "MyText"
+    text "In the beginning God created the heaven and the earth."
   end
 
 end
