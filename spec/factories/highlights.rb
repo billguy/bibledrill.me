@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :highlight do
     user nil
-verse nil
+    verse nil
   end
 
 end

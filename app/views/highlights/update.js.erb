@@ -1,5 +1,3 @@
-alert('<%= @verse.id %>');
-
 var $verse_span = $('span.verse[data-verse-id="<%= @verse.id %>"]');
 if ($verse_span.hasClass('selected')){
     $verse_span.removeClass('selected');

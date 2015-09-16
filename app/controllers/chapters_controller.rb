@@ -16,6 +16,7 @@ class ChaptersController < KjController
     add_breadcrumb "Verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verses", remote: true
     @page_title = @chapter.title
     @verses = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:id]}/verses"){ @chapter.verses.reorder(id: :asc).to_a }
+    @highlight_verse_ids = current_user ? current_user.highlights.where(verse_id: @verses.collect(&:id)).pluck(:verse_id) : []
     @prev_chapter = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:id]}/prev") { @chapter.prev }
     @next_chapter = Rails.cache.fetch("books/#{@book.permalink}/chapters/#{params[:id]}/next") { @chapter.next }
   end
