@@ -30,6 +30,7 @@ describe "highlights", type: :feature do
 
     before do
       user.confirm
+      login_as(user, scope: :user)
       allow_any_instance_of(Chapter).to receive(:prev){ chapter }
       allow_any_instance_of(Chapter).to receive(:next){ chapter }
     end
@@ -37,10 +38,8 @@ describe "highlights", type: :feature do
     it 'can highlight and save', js: true, focus: true do
       visit book_chapter_path(book_id: book.permalink, id: chapter.id)
       span = find("ol.verses").find("li:first-child span")
-      p Highlight.count
       span.click
       wait_for_ajax
-      p Highlight.count
       expect(span[:class]).to match('selected')
       visit current_path #reload the page
       expect(span[:class]).to match('selected')
