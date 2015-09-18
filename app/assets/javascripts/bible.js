@@ -2,6 +2,7 @@
 //= require jquery.sticky-kit
 //= require jquery.clearsearch
 //= require dragula
+//= require jquery.infinitescroll
 
 if (history && history.pushState){
   $(function(){
@@ -35,10 +36,29 @@ var Bible = {
     showBible: function(){
         $('.bible').removeClass('hidden');
         $('#search-results').addClass('hidden');
+    },
+    initInfiniteScroll: function(){
+        $("#search-results").infinitescroll({
+            navSelector: "ul.pagination",
+            nextSelector: "ul.pagination a[rel=next]",
+            itemSelector: "#search-results div.search-result",
+            loading: {
+              finishedMsg: "",
+              msgText: "<em>Loading...</em>"
+            }
+        });
+    },
+    destroyInfiniteScroll: function(){
+        $('#search-results').infinitescroll('destroy').data('infinitescroll', null);
     }
+
 };
 
 Bible.init();
+
+$(document).on('ajaxComplete', function() {
+    Bible.init();
+});
 
 $('body').on('click', 'ol.chapter li span', function(){
     var verse_id = $(this).data('verse-id');

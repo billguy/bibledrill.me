@@ -1,3 +1,4 @@
-$('#search-results').html('<%= j(render('search')) %>');
-$('#search-results').append('<%= j(render('search_paginate')) %>');
 $("html, body").scrollTop(0);
+Bible.destroyInfiniteScroll(); // order important here
+$('#search-results').html('<%= j(render('search')) %>').append('<%= j(render('search_paginate')) %>');
+Bible.initInfiniteScroll();

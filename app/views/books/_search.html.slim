@@ -1,6 +1,11 @@
 - if @verses.present?
+  .row
+    .col-xs-12
+      p
+        i #{@verses.total_count} results
+
   - @verses.each do |verse|
-    .row
+    .row.search-result
       .col-xs-12
         p
           = link_to verse.title, book_chapter_verse_path(book_id: verse.book_permalink, chapter_id: verse.chapter_number, id: verse.number), target: :blank
