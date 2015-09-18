@@ -9,7 +9,8 @@
       .col-sm-offset-2.col-sm-10
         #user_avatar_preview
           - if resource.avatar.exists?
-            = image_tag resource.avatar.url(:thumb)
+            / not sure how to force ssl
+            = image_tag resource.avatar.url(:thumb).gsub('http://', 'https://')
 
     = f.input :avatar, wrapper: :horizontal_file_input
     = f.input :name, autofocus: true
