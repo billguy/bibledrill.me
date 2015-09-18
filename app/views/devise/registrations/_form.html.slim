@@ -10,7 +10,7 @@
         #user_avatar_preview
           - if resource.avatar.exists?
             / not sure how to force ssl
-            = image_tag resource.avatar.url(:thumb).gsub(/http:\/\/([A-z0-9]+-[A-z0-9]+\.)r[0-9]{1,2}(\.cf1\.rackcdn\.com\/.*)/,"https://#{1}ssl#{2}");
+            = image_tag resource.avatar.url(:thumb).gsub(/http:\/\/([A-z0-9]+-[A-z0-9]+\.)r[0-9]{1,2}(\.cf1\.rackcdn\.com\/.*)/, 'https://\1ssl\2')
 
     = f.input :avatar, wrapper: :horizontal_file_input
     = f.input :name, autofocus: true
