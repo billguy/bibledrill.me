@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916175814) do
+ActiveRecord::Schema.define(version: 20150918175233) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150916175814) do
     t.string   "website"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "time_zone"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

@@ -14,6 +14,7 @@
     = f.input :avatar, wrapper: :horizontal_file_input
     = f.input :name, autofocus: true
     = f.input :email, class: 'input-xlarge', hint: 'Enter your email address'
+    = f.input :time_zone, as: :select, collection: ActiveSupport::TimeZone.all.collect(&:name)
     = f.input :password, class: 'input-xlarge', hint: "Password should be at least #{@minimum_password_length} characters"
     = f.input :password_confirmation, class: 'input-xlarge', hint: 'Please confirm password'
 

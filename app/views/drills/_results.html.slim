@@ -12,7 +12,7 @@ blockquote=@verse.text
           |(
           =Time.at(leader[:score]).utc.strftime("%H:%M:%S")
           |)
-        span< on #{Time.at(member_data[:datetime]).strftime("%m/%d/%Y %I:%M%p")}
+        span< on #{Time.at(member_data[:datetime]).in_time_zone(current_user ? current_user.try(:time_zone) : 'UTC').strftime("%m/%d/%Y %I:%M%p")}
 - else
   i No scores registered yet.
 
