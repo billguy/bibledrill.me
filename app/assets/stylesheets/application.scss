@@ -19,12 +19,15 @@ body{
   font-size: 17px;
 }
 
+#site-container{
+  padding-top: 20px;
+}
+
 div.alert{
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 100%;
-  z-index: 1001;
   font-weight: bold;
   text-align: center;
 }

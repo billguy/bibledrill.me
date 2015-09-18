@@ -4,6 +4,7 @@ class BooksController < KjController
     @page_title = "King James Bible"
     @old = Book.old_testament
     @new = Book.new_testament
+    @higlights = current_user ? current_user.highlights.order(verse_id: :asc) : []
   end
 
   def show
