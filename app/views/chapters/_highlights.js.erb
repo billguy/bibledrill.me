@@ -1,0 +1,3 @@
+<% @highlight_verse_ids.each do |verse_id| %>
+    $('span.verse[data-verse-id="<%= verse_id %>"]').addClass('selected').next('a.verse-link').removeClass('hidden');
+<% end %>
