@@ -17,6 +17,9 @@ en:
     contacts:
       create:
         error: "Please correct the errors below"
+
+    studies:
+      not_found: "That study was not found."
     #   success: "This is a notification"
     #   error: "Something went wrong"
     #   create:

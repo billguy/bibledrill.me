@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap/transition
 //= require bootstrap/alert
-//= require bootstrap/collapse
 //= require bootstrap/dropdown
 
 $(function() {

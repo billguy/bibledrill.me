@@ -66,6 +66,8 @@ GEM
     autoprefixer-rails (5.2.1.3)
       execjs
       json
+    awesome_nested_set (3.0.2)
+      activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -78,6 +80,7 @@ GEM
       sass (>= 3.3.0)
     breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
+    cancancan (1.12.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -91,6 +94,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
+    cocoon (1.2.6)
     coderay (1.1.0)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
@@ -211,9 +215,12 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    has_permalink (0.1.7)
     hashie (3.4.2)
     httparty (0.13.5)
       json (~> 1.8)
@@ -420,18 +427,23 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_nested_set
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.5)
   bootstrap_flash_messages!
   breadcrumbs_on_rails
+  cancancan
   capybara
   capybara-webkit
+  cocoon
   database_cleaner
   delayed_job_active_record
   devise!
   factory_girl_rails
   fog
+  font-awesome-rails
+  has_permalink
   jbuilder (~> 2.0)
   jquery-rails
   kaminari-bootstrap (~> 3.0.1)
@@ -461,3 +473,6 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.3.0)
   valid_email
+
+BUNDLED WITH
+   1.10.5

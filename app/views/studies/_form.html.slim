@@ -1,0 +1,21 @@
+= simple_form_for(@study, html: { class: 'form-horizontal' }) do |f|
+  = f.error_notification
+  fieldset
+    = f.input :title
+    = render 'toolbar', target: '#study_description_editor'
+    #study_description_editor contenteditable="true"
+      =f.object.try(:description)
+    = f.input :description, as: :hidden
+  #sections
+    = f.simple_fields_for :sections do |section|
+      = render 'section_fields', f: section
+    .links
+      = link_to_add_association 'add new section', f, :sections
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.button :submit, class: 'btn btn-primary'
+
+= content_for :footer do
+  javascript:
+    $('#study_description_editor').wysiwyg();

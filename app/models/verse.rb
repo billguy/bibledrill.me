@@ -3,6 +3,10 @@ class Verse < ActiveRecord::Base
   belongs_to :chapter
   has_many :highlights
 
+  has_many :section_verses
+  has_many :sections, through: :section_verses
+  has_many :studies, through: :sections
+
   delegate :book_permalink, to: :chapter
   delegate :book_name, to: :chapter
   delegate :chapter_id, to: :chapter

@@ -7,5 +7,6 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_attachment_content_type(:avatar).allowing('image/jpg', 'image/png') }
   it { is_expected.to callback(:notify_admin).after(:create) }
   it { is_expected.to have_many(:highlights)}
+  it { is_expected.to have_many(:studies)}
 
 end

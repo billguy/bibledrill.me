@@ -1,0 +1,18 @@
+h1 Bible Studies
+- if current_user
+  = link_to "Create a Bible Study", new_study_path
+
+hr
+- if @studies.present?
+  - @studies.each do |study|
+    .row
+      .col-xs-12
+        = link_to study.title, study_path(study)
+        br=truncate(study.description, length: 300)
+- else
+  .row
+    .col-xs-12
+      i
+        span> No Bible Studies at the moment.
+        = link_to "Login", new_user_session_path
+        span< to create one.

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :highlights
+  has_many :studies
 
   after_create :notify_admin
 

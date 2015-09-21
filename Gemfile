@@ -29,6 +29,11 @@ gem "recaptcha", require: false
 gem 'valid_email', require: false
 gem 'postmark-rails'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'awesome_nested_set'
+gem 'cancancan'
+gem "cocoon"
+gem "has_permalink"
+gem "font-awesome-rails"
 
 group :development do
   gem 'better_errors'

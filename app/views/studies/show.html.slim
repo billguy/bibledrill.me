@@ -1,0 +1,27 @@
+h1=@study.title
+ul.breadcrumb
+  li= link_to 'Bible Studies', studies_path
+  li.active=@study.title
+  - if can?(:edit, @study)
+    li=link_to "Edit", edit_study_path(@study)
+.row
+  .col-xs-12
+    p=@study.description
+
+#accordion.panel-group aria-multiselectable="true" role="tablist"
+  - @study.sections.each_with_index do |section, index|
+    .panel.panel-default
+      .panel-heading role="tab" id="section-#{section.id}"
+        h4.panel-title
+          a aria-controls="collapse-#{section.id}" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapse-#{section.id}" role="button"
+            = section.formatted_title
+      .panel-collapse.collapse aria-labelledby="section-#{section.id}" role="tabpanel" id="collapse-#{section.id}"
+        .panel-body
+          - section.verses.each do |verse|
+          ol
+            li
+              p=verse.title
+              br=verse.text
+          .row
+            .col-xs-12
+              = section.notes

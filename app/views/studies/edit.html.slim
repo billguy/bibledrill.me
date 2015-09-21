@@ -1,0 +1,7 @@
+h1 Editing "#{@study.title}"
+
+ul.breadcrumb
+  li= link_to 'Bible Studies', studies_path
+  li= link_to @study.title, study_path(@study)
+
+== render 'form'
