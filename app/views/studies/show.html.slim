@@ -6,7 +6,7 @@ ul.breadcrumb
     li=link_to "Edit", edit_study_path(@study)
 .row
   .col-xs-12
-    p=@study.description
+    p=@study.description.html_safe
 
 #accordion.panel-group aria-multiselectable="true" role="tablist"
   - @study.sections.each_with_index do |section, index|
@@ -24,4 +24,4 @@ ul.breadcrumb
               br=verse.text
           .row
             .col-xs-12
-              = section.notes
+              = section.notes.html_safe

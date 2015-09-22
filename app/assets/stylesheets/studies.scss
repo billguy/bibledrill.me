@@ -1,4 +1,5 @@
 @import "font-awesome";
+@import "summernote";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/glyphicons";
@@ -7,3 +8,64 @@
 @import "bootstrap/breadcrumbs";
 @import "bootstrap/panels";
 @import "bootstrap/wells";
+@import "bootstrap/tooltip";
+@import "bootstrap/modals";
+
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.book{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+  height: 34px;
+  border: 1px solid;
+  text-align: center;
+  font-size: 14px;
+  a {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    vertical-align: sub;
+  }
+}
+
+a.chapter{
+  width: 60px;
+  height: 60px;
+  border: 1px solid;
+  text-align: center;
+  font-size: 35px;
+  display: inline-block;
+  margin-bottom: 10px;
+  z-index: 1000;
+}
+
+a.prev{
+  position: fixed;
+  top: 50%;
+  left: 0;
+  font-size: 34px;
+  text-decoration: none;
+}
+
+a.next{
+  position: fixed;
+  top: 50%;
+  right: 0;
+  font-size: 34px;
+  text-decoration: none;
+}
+
+.selected{
+  background: yellow;
+}
+
+ol.verses{
+  span.verse:hover{
+    cursor: pointer;
+    border-bottom: 1px dotted blue;
+  }
+}

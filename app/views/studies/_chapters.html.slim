@@ -1,0 +1,9 @@
+h1 #{@book.name} chapters
+
+ol.breadcrumb.sticky
+  = render_breadcrumbs tag: :li, separator: ''
+
+ul.list-inline.chapters
+  - @chapters.each do |chapter|
+    li
+      =link_to chapter.number, verses_studies_path(book_id: @book.permalink, chapter_number: chapter.number), class: 'chapter z-index-100', remote: true

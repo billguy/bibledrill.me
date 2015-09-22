@@ -1,0 +1,16 @@
+=link_to "<", verses_studies_path(book_id: @prev_chapter.book_permalink, chapter_number: @prev_chapter.number), class: 'prev', remote: true
+=link_to ">", verses_studies_path(book_id: @next_chapter.book_permalink, chapter_number: @next_chapter.number), class: 'next', remote: true
+
+.row
+  .col-xs-12.col-sm-10
+    h1
+      =@chapter.title
+
+ol.breadcrumb.sticky
+  = render_breadcrumbs tag: :li, separator: ''
+
+ol.chapter.verses
+  - @verses.each do |verse|
+    li value="#{verse.number}"
+      span.verse.text> data-verse-id="#{verse.id}" data-verse-title="#{verse.title}"
+        = verse.text

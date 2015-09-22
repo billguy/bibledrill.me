@@ -34,6 +34,7 @@ gem 'cancancan'
 gem "cocoon"
 gem "has_permalink"
 gem "font-awesome-rails"
+gem 'summernote-rails'
 
 group :development do
   gem 'better_errors'

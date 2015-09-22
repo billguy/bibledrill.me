@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :drills, only: [:index, :new, :create]
   resources :contacts, only: [:index, :new, :create], path: :contact
   resources :highlights, only: [:update]
-  resources :studies
+  resources :studies do
+    get 'books', on: :collection
+    get 'chapters', on: :collection
+    get 'verses', on: :collection
+  end
   root to: 'drills#index'
 end

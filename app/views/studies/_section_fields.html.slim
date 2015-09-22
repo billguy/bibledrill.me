@@ -1,15 +1,16 @@
-hr
-.nested-fields
-  = f.input :title, label: "Section Title"
-  .verses-container.well
-  .verses
-    = f.simple_fields_for :section_verses do |section_verse|
-      = render 'section_verse_fields', f: section_verse
-    .links
-      = link_to_add_association 'add verse', f, :section_verses, data: { "association-insertion-method" => 'after'}
+section.nested-fields
+  hr
+  span.h3= f.object.id.present? ? section.formatted_title : "New Section"
+  small<= link_to_remove_association "remove section", f, data: { confirm: 'Are you sure you want to remove this section?' }
+  = f.input :title, placeholder: "Section Title"
+  .row
+    .col-sm-12
+      .well.verses-container
+        .section_verses
+          = f.simple_fields_for :section_verses do |section_verse|
+            = render 'section_verse_fields', f: section_verse
+          .links
+            = link_to_add_association 'add verse', f, :section_verses, class: 'add-verse hidden'
+            = link_to "+ add verses", books_studies_path(format: :js), class: 'load-bible'
 
-  = render 'toolbar', target: '#'
-  .editor contenteditable="true"
-    =f.object.try(:notes)
-  = f.input :notes, as: :hidden, input_html: { class: 'notes' }
-  = link_to_remove_association "remove section", f
+  = f.input :notes, as: :summernote, hint: "Enter some notes about the verses", wrapper: :full_size

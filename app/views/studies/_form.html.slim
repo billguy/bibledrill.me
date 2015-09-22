@@ -1,21 +1,18 @@
-= simple_form_for(@study, html: { class: 'form-horizontal' }) do |f|
+= render 'shared/bible_modal'
+
+= simple_form_for(@study, html: { class: 'form-horizontal' }, wrapper: :study_form) do |f|
   = f.error_notification
-  fieldset
-    = f.input :title
-    = render 'toolbar', target: '#study_description_editor'
-    #study_description_editor contenteditable="true"
-      =f.object.try(:description)
-    = f.input :description, as: :hidden
+  = f.input :title, placeholder: "Give your study a title"
+  = f.input :description, as: :summernote, hint: "Give your study a good description", wrapper: :full_size
   #sections
     = f.simple_fields_for :sections do |section|
       = render 'section_fields', f: section
-    .links
-      = link_to_add_association 'add new section', f, :sections
+    p.links
+      = link_to_add_association ' + add new section', f, :sections
 
   .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.button :submit, class: 'btn btn-primary'
-
-= content_for :footer do
-  javascript:
-    $('#study_description_editor').wysiwyg();
+    .col-sm-6
+      .well.well-sm
+        = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Updating...' }
+        - unless @study.new_record?
+          small<= link_to "Delete Study", study_path(@study), method: :delete, data: { confirm: 'Are you sure you want to DELETE this study?'}

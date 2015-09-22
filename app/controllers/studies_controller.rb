@@ -1,12 +1,34 @@
 class StudiesController < ApplicationController
 
   load_and_authorize_resource find_by: :permalink
-  skip_authorize_resource only: [:index, :show]
+  skip_authorize_resource only: [:index, :show, :books, :chapters, :verses]
 
   # GET /studies
   # GET /studies.json
   def index
     @studies = Study.active
+  end
+
+  def books
+    @old = Book.old_testament
+    @new = Book.new_testament
+  end
+
+  def chapters
+    @book = Book.find_by_permalink(params[:book_id])
+    add_breadcrumb @book.name, :books_studies_path, title: "Books", remote: true
+    add_breadcrumb "Chapters", chapters_studies_path(book_id: @book.permalink), title: "Chapters", remote: true
+    @chapters = @book.chapters
+  end
+
+  def verses
+    @book = Book.find_by_permalink(params[:book_id])
+    @chapter = @book.chapters.find_by_number(params[:chapter_number])
+    add_breadcrumb @book.name, :books_studies_path, title: "Books", remote: true
+    add_breadcrumb "Chapter #{@chapter.number}", chapters_studies_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
+    @verses = @chapter.verses.reorder(id: :asc)
+    @prev_chapter = @chapter.prev
+    @next_chapter = @chapter.next
   end
 
   # GET /studies/1
@@ -65,9 +87,9 @@ class StudiesController < ApplicationController
       params.require(:study).permit(
         [
           :title, :description,
-          section_attributes: [
+          sections_attributes: [
             :id, :study_id, :_destroy, :title, :notes, :parent_id, :lft, :rgt,
-            verse_attributes: [:id, :_destroy]
+            verses_attributes: [:id, :_destroy]
           ]
         ]
       )
