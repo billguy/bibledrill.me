@@ -13,15 +13,19 @@ ul.breadcrumb
     .panel.panel-default
       .panel-heading role="tab" id="section-#{section.id}"
         h4.panel-title
-          a aria-controls="collapse-#{section.id}" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapse-#{section.id}" role="button"
+          a aria-controls="collapse-#{section.id}" aria-expanded="#{index==0 ? 'true' : 'false'}" data-parent="#accordion" data-toggle="collapse" href="#collapse-#{section.id}" role="button"
             = section.formatted_title
-      .panel-collapse.collapse aria-labelledby="section-#{section.id}" role="tabpanel" id="collapse-#{section.id}"
+      .panel-collapse.collapse aria-labelledby="section-#{section.id}" role="tabpanel" id="collapse-#{section.id}" class="#{'in' if index==0}"
         .panel-body
-          - section.verses.each do |verse|
-          ol
-            li
-              p=verse.title
-              br=verse.text
+          - if section.verses.present?
+            .well.well-sm
+              ul.list-unstyled
+                - section.verses.each do |verse|
+                  li
+                    p
+                      = link_to verse.title, book_chapter_path(book_id: verse.book_permalink, id: verse.chapter_number), target: :blank
+                      br
+                      =verse.text
           .row
             .col-xs-12
               = section.notes.html_safe

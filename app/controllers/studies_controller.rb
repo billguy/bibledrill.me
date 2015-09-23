@@ -89,7 +89,7 @@ class StudiesController < ApplicationController
           :title, :description,
           sections_attributes: [
             :id, :study_id, :_destroy, :title, :notes, :parent_id, :lft, :rgt,
-            verses_attributes: [:id, :_destroy]
+            section_verses_attributes: [:id, :_destroy, :parent_id, :lft, :rgt, :verse_id]
           ]
         ]
       )

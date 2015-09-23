@@ -8,8 +8,8 @@ class Section < ActiveRecord::Base
 
   accepts_nested_attributes_for :section_verses, allow_destroy: true
 
-  def title_formatted
-    title || "Section ##{lft}"
+  def formatted_title
+    title.present? ? title : "Section ##{lft}"
   end
 
 end

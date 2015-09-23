@@ -5,26 +5,48 @@
 //= require bootstrap/tab
 //= require summernote
 
-$(document).on('cocoon:after-insert', '#sections', function(event, field){
+$('#sections').on('cocoon:after-insert', function(event, field){
+    if (!field.hasClass('panel')) { return; } // since our form is deeply nested we need to abort events that aren't for us
     var editor = field.find('[data-provider="summernote"]');
     Study.instantiateEditor(editor);
+    // need to assign id to new section panel
+    var collapse_id = new Date().getTime();
+    $('#sections .collapse').collapse('hide');
+    field.find('div.panel-heading').attr('id', 'panel-'+collapse_id);
+    field.find('a[data-toggle=collapse]').attr('href', '#collapse-'+collapse_id).attr('aria-controls', 'collapse-'+collapse_id);
+    var $section_panel = field.find('div.panel-collapse').attr('id', 'collapse-'+collapse_id).attr('aria-labelledby', 'panel-'+collapse_id);
+    $section_panel.collapse('show');
 });
 
-$(document).on('cocoon:after-insert', '.section_verses', function(event, field){
+$('body').on('cocoon:after-insert', '.section_verses', function(event, field){
     var verse_id = $('section.active a.add-verse').data('verse-id');
     var verse_title = $('section.active a.add-verse').data('verse-title');
     var verse_text = $('section.active a.add-verse').data('verse-text');
+    var section_verse_ids = $("section.active").data('verse-ids') || [];
+    section_verse_ids.push(verse_id);
+    $("section.active").data('verse-ids', section_verse_ids);
     field.find('input.verse-id').val(verse_id);
     field.find('.verse-title').html(verse_title);
     field.find('.verse-text').html(verse_text);
-    field.find('a.remove-verse').data('verse-id', verse_id);
+    field.find('a.remove-verse').attr('data-verse-id', verse_id);
+    $("#bible-modal .modal-body span.verse[data-verse-id="+verse_id+"]").add('selected'); // select the verse in the modal
+});
+
+$('body').on('cocoon:before-remove', '.section_verses', function(event, field){
+    var verse_id = field.find('a.remove-verse').data('verse-id');
+    var section_verse_ids = $("section.active").data('verse-ids') || [];
+    section_verse_ids.pop(verse_id);
+    $("section.active").data('verse-ids', section_verse_ids);
+    $("#bible-modal .modal-body span.verse[data-verse-id="+verse_id+"]").removeClass('selected'); // deselect the verse in the modal
 });
 
 var Study = {
     init: function(){
         $('[data-provider="summernote"]').each(function(){
           Study.instantiateEditor(this);
-        })
+        });
+        Study.setUpSectionVerseIds();
+        $('#sections .collapse').collapse(); // open the first section
     },
     instantiateEditor: function(instance){
         $(instance).summernote({
@@ -35,6 +57,13 @@ var Study = {
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['insert', ['link', 'picture']]
             ]
+        });
+    },
+    setUpSectionVerseIds: function(){
+        // convert data-verse-ids attribute to jquery data object
+        $('section').each(function(){
+            var verse_ids = $(this).attr('data-verse-ids');
+            $(this).data('verse-ids', verse_ids);
         });
     }
 };
@@ -49,6 +78,13 @@ $('body').on('click', 'a.load-bible', function(e){
     var $modal_body = $("#bible-modal .modal-body");
     if ($modal_body.data('loaded') != true){
         $.getScript(path);
+    } else {
+        //load the selected verses from the active section into the modal
+        var section_verse_ids = $("section.active").data('verse-ids') || [];
+        $("#bible-modal .modal-body span.verse.selected").removeClass('selected');
+        $.each(section_verse_ids, function(index, verse_id){
+            $("#bible-modal .modal-body span.verse[data-verse-id="+verse_id+"]").addClass('selected');
+        });
     }
     $("#bible-modal").modal('show');
 });
@@ -66,6 +102,6 @@ $('body').on('click', 'ol.verses span.verse', function(){
             .click();
     } else {
         $(this).removeClass('selected');
-        $("section.active .section_verses a.remove-verse[data-verse-id="+verse_id+"]").click();
+        $("section.active a.remove-verse[data-verse-id="+verse_id+"]").click();
     }
 });

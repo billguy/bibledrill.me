@@ -1,1 +1,8 @@
 $("#bible-modal .modal-body").html("<%= j render('verses') %>").scrollTop(0);
+
+//load the selected verses from the active section into the modal
+var section_verse_ids = $("section.active").data('verse-ids') || [];
+$("#bible-modal .modal-body span.verse.selected").removeClass('selected');
+$.each(section_verse_ids, function(index, verse_id){
+    $("#bible-modal .modal-body span.verse[data-verse-id="+verse_id+"]").addClass('selected');
+});

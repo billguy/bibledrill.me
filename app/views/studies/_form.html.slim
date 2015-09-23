@@ -4,11 +4,12 @@
   = f.error_notification
   = f.input :title, placeholder: "Give your study a title"
   = f.input :description, as: :summernote, hint: "Give your study a good description", wrapper: :full_size
-  #sections
+  #sections.panel-group role="tablist" aria-multiselectable="true"
     = f.simple_fields_for :sections do |section|
       = render 'section_fields', f: section
-    p.links
-      = link_to_add_association ' + add new section', f, :sections
+
+  p.links
+    = link_to_add_association ' + add new section', f, :sections, data: { "association-insertion-node" => '#sections', "association-insertion-method" => 'append' }
 
   .form-group
     .col-sm-6
