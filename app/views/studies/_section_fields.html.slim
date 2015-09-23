@@ -20,4 +20,4 @@ section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_ver
                 = link_to_add_association 'add verse', f, :section_verses, class: 'add-verse hidden'
                 = link_to "+ add verses", books_studies_path(format: :js), class: 'load-bible'
 
-      = f.input :notes, as: :summernote, hint: "Enter some notes about the verses", wrapper: :full_size
+      = f.input :notes, as: :summernote, wrapper: :full_size, input_html: {value: f.object.notes || 'Enter some notes about the verses here.'}

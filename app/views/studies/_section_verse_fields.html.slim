@@ -1,7 +1,7 @@
 .nested-fields
   p
     span.verse-title=f.object.try(:verse_title)
-    small<= link_to_remove_association "remove verse", f, class: 'remove-verse'
+    small<= link_to_remove_association "remove verse", f, class: 'remove-verse', data: { "verse-id" => f.object.try(:verse_id)}
     br
     span.verse-text=f.object.try(:verse_text)
   = f.input :verse_id, as: :hidden, input_html: { class: 'verse-id' }

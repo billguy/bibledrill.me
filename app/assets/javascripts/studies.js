@@ -35,7 +35,9 @@ $('body').on('cocoon:after-insert', '.section_verses', function(event, field){
 $('body').on('cocoon:before-remove', '.section_verses', function(event, field){
     var verse_id = field.find('a.remove-verse').data('verse-id');
     var section_verse_ids = $("section.active").data('verse-ids') || [];
-    section_verse_ids.pop(verse_id);
+    var index = section_verse_ids.indexOf(parseInt(verse_id));
+    if (index > -1)
+        section_verse_ids.splice(index, 1);
     $("section.active").data('verse-ids', section_verse_ids);
     $("#bible-modal .modal-body span.verse[data-verse-id="+verse_id+"]").removeClass('selected'); // deselect the verse in the modal
 });
@@ -45,8 +47,8 @@ var Study = {
         $('[data-provider="summernote"]').each(function(){
           Study.instantiateEditor(this);
         });
-        Study.setUpSectionVerseIds();
-        $('#sections .collapse').collapse(); // open the first section
+        Study.parseVerseIds();
+        $('#sections .collapse').first().collapse(); // open the first section
     },
     instantiateEditor: function(instance){
         $(instance).summernote({
@@ -59,10 +61,14 @@ var Study = {
             ]
         });
     },
-    setUpSectionVerseIds: function(){
+    parseVerseIds: function(){
         // convert data-verse-ids attribute to jquery data object
         $('section').each(function(){
-            var verse_ids = $(this).attr('data-verse-ids');
+            var section_verse_ids = $.parseJSON( $(this).attr('data-verse-ids') );
+            var verse_ids = [];
+            $.each(section_verse_ids, function(index, verse_id){
+                verse_ids.push(parseInt(verse_id));
+            });
             $(this).data('verse-ids', verse_ids);
         });
     }
@@ -93,15 +99,17 @@ $('body').on('click', 'ol.verses span.verse', function(){
     var verse_id = $(this).data('verse-id');
     var verse_title = $(this).data('verse-title');
     var verse_text = $(this).html();
-    if ($("section.active .section_verses input[value='"+verse_id+"']").length == 0) { //don't add the verse if it's already present
+    var section_verse_ids = $("section.active").data('verse-ids');
+    //don't add the verse if it's already present
+    if ($.inArray(verse_id, section_verse_ids) !== -1) {
+        $(this).removeClass('selected');
+        $("section.active a.remove-verse[data-verse-id="+verse_id+"]").click();
+    } else {
         $(this).addClass('selected');
         $('section.active a.add-verse')
             .data('verse-id', verse_id)
             .data('verse-title', verse_title)
             .data('verse-text', verse_text)
             .click();
-    } else {
-        $(this).removeClass('selected');
-        $("section.active a.remove-verse[data-verse-id="+verse_id+"]").click();
     }
 });
