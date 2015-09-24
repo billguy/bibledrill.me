@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  acts_as_voter
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:facebook]
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", micro: "32x32>" }, default_url: "/images/:style/missing.png"

@@ -17,3 +17,6 @@
         = f.button :submit, class: 'btn btn-primary', data: { disable_with: 'Updating...' }
         - unless @study.new_record?
           small<= link_to "Delete Study", study_path(@study), method: :delete, data: { confirm: 'Are you sure you want to DELETE this study?'}
+
+= content_for :footer do
+  = javascript_include_tag 'studies_form'

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :contacts, only: [:index, :new, :create], path: :contact
   resources :highlights, only: [:update]
   resources :studies do
+    get 'search', on: :collection
     get 'books', on: :collection
     get 'chapters', on: :collection
     get 'verses', on: :collection

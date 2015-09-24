@@ -1,0 +1,10 @@
+= form_tag search_studies_path, method: :get, remote: true, id: 'search-form' do
+  = text_field_tag :q, params[:q], class: 'form-control input-lg clearable', placeholder: 'Keyword Search'
+
+hr
+.row
+  .col-xs-12
+    #search-results
+      = render 'search'
+
+= render('search_paginate')

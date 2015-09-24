@@ -6,7 +6,17 @@ class StudiesController < ApplicationController
   # GET /studies
   # GET /studies.json
   def index
-    @studies = Study.active
+    @type = params[:type].try(:downcase)
+    case @type
+      when "popular"
+        @studies = Study.popular
+      when "liked"
+        @studies = current_user ? current_user.get_voted(Study) : []
+      when "mine"
+        @studies = current_user ? Study.mine(current_user.id) : []
+      else
+        @studies = Study.recent
+    end
   end
 
   def books
@@ -29,6 +39,14 @@ class StudiesController < ApplicationController
     @verses = @chapter.verses.reorder(id: :asc)
     @prev_chapter = @chapter.prev
     @next_chapter = @chapter.next
+  end
+
+  def search
+    if Rails.env.production?
+      @verses = Study.search_by_keyword(params[:q]).page params[:page]
+    else
+      @verses = Study.where('title like :keyword or description like :keyword', keyword: "%#{params[:q]}%").page params[:page]
+    end
   end
 
   # GET /studies/1

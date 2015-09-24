@@ -35,6 +35,8 @@ gem "cocoon"
 gem "has_permalink"
 gem "font-awesome-rails"
 gem 'summernote-rails'
+gem 'pg_search'
+gem 'acts_as_votable'
 
 group :development do
   gem 'better_errors'

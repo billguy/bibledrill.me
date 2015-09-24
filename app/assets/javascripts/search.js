@@ -1,26 +1,26 @@
 //= require jquery.clearsearch
 //= require jquery.infinitescroll
 
-var BibleSearch = {
+var Search = {
     init: function(){
         $('.clearable').clearSearch({
             callback: function() {
                 $("#q").blur();
-                BibleSearch.showBible();
+                Search.hideSearch();
             }
         });
         $('#search-form').on('submit', function(){
             $("#q").blur();
             $('#search-results').html('<i>Please wait...</i>');
-            BibleSearch.showSearch();
+            Search.showSearch();
         });
     },
     showSearch: function(){
-        $('.bible').addClass('hidden');
+        $('.contents').addClass('hidden');
         $('#search-results').removeClass('hidden');
     },
-    showBible: function(){
-        $('.bible').removeClass('hidden');
+    hideSearch: function(){
+        $('.contents').removeClass('hidden');
         $('#search-results').addClass('hidden');
     },
     initInfiniteScroll: function(){
@@ -41,7 +41,7 @@ var BibleSearch = {
 };
 
 $(document).on('ajaxComplete', function() {
-    BibleSearch.init();
+    Search.init();
 });
 
-BibleSearch.init();
+Search.init();

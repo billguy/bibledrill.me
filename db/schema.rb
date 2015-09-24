@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921133417) do
+ActiveRecord::Schema.define(version: 20150924190814) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -83,15 +83,31 @@ ActiveRecord::Schema.define(version: 20150921133417) do
   add_index "sections", ["study_id"], name: "index_sections_on_study_id"
 
   create_table "studies", force: :cascade do |t|
-    t.boolean  "active",      default: true
+    t.boolean  "active",                  default: true
     t.integer  "user_id"
     t.string   "title"
     t.string   "permalink"
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
+    t.float    "float",                   default: 0.0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
+  add_index "studies", ["cached_votes_down"], name: "index_studies_on_cached_votes_down"
+  add_index "studies", ["cached_votes_score"], name: "index_studies_on_cached_votes_score"
+  add_index "studies", ["cached_votes_total"], name: "index_studies_on_cached_votes_total"
+  add_index "studies", ["cached_votes_up"], name: "index_studies_on_cached_votes_up"
+  add_index "studies", ["cached_weighted_average"], name: "index_studies_on_cached_weighted_average"
+  add_index "studies", ["cached_weighted_score"], name: "index_studies_on_cached_weighted_score"
+  add_index "studies", ["cached_weighted_total"], name: "index_studies_on_cached_weighted_total"
+  add_index "studies", ["float"], name: "index_studies_on_float"
   add_index "studies", ["user_id"], name: "index_studies_on_user_id"
 
   create_table "users", force: :cascade do |t|
@@ -144,5 +160,20 @@ ActiveRecord::Schema.define(version: 20150921133417) do
   end
 
   add_index "verses", ["chapter_id"], name: "index_verses_on_chapter_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

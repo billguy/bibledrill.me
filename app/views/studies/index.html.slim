@@ -1,18 +1,30 @@
-h1 Bible Studies
-- if current_user
-  = link_to "Create a Bible Study", new_study_path
+h1
+  | Bible Studies
+  - if current_user
+    small<
+      = link_to "Create a Bible Study", new_study_path
+
+= form_tag search_studies_path, method: :get, remote: true, id: 'search-form' do
+  = text_field_tag :q, params[:q], class: 'form-control input-lg clearable', placeholder: 'Keyword Search'
 
 hr
-- if @studies.present?
-  - @studies.each do |study|
-    .row
-      .col-xs-12
-        = link_to study.title, study_path(study)
-        br=truncate(strip_tags(study.description), length: 300)
-- else
-  .row
-    .col-xs-12
-      i
-        span> No Bible Studies at the moment.
-        = link_to "Login", new_user_session_path
-        span< to create one.
+.row
+  .col-xs-12
+    #search-results.hidden
+
+ul#studies-nav.studies.contents.nav.nav-tabs.sticky role="tablist"
+  li.active.tab role="presentation"
+    a href="#{studies_path(format: :js)}" aria-controls="recent" data-toggle="tabajax" data-target="#recent" role="tab" Recent
+  li.tab role="presentation"
+    a href="#{studies_path(type: "popular", format: :js)}" aria-controls="popular" data-toggle="tabajax" data-target="#popular" role="tab" Popular
+  li.tab role="presentation"
+    a href="#{studies_path(type: "liked", format: :js)}" aria-controls="liked" data-toggle="tabajax" data-target="#liked" role="tab" Liked
+  li.tab role="presentation"
+    a href="#{studies_path(type: "mine", format: :js)}" aria-controls="mine" data-toggle="tabajax" data-target="#mine" role="tab" My Studies
+
+.tab-content.contents
+  #recent.tab-pane.fade.in.active role="tabpanel"
+    = render 'studies'
+  #popular.tab-pane.fade role="tabpanel"
+  #liked.tab-pane.fade role="tabpanel"
+  #mine.tab-pane.fade role="tabpanel"

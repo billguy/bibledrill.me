@@ -8,7 +8,7 @@ hr
   .col-xs-12
     #search-results.hidden
 
-ul#books-nav.bible.nav.nav-tabs.sticky role="tablist"
+ul#books-nav.bible.contents.nav.nav-tabs.sticky role="tablist"
   li.active.tab role="presentation"
     a aria-controls="old" data-toggle="tab" href="#old" role="tab" Old
   li.tab role="presentation"
@@ -16,7 +16,7 @@ ul#books-nav.bible.nav.nav-tabs.sticky role="tablist"
   li.tab role="presentation"
     a aria-controls="highlights" data-toggle="tab" href="#highlights" role="tab" Highlights
 
-.tab-content.bible
+.tab-content.bible.contents
   #old.tab-pane.fade.in.active role="tabpanel"
     .row
       = render partial: "book", collection: @old

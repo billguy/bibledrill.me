@@ -1,6 +1,6 @@
 //= require bootstrap/tab
 //= require jquery.sticky-kit
-//= require bible_search
+//= require search
 
 if (history && history.pushState){
   $(function(){
