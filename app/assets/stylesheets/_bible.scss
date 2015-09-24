@@ -3,7 +3,6 @@
 @import "bootstrap/breadcrumbs";
 @import "bootstrap/pagination";
 @import "bootstrap/list-group";
-@import "dragula";
 
 body{
   font-family: 'Merriweather', serif;
@@ -54,7 +53,7 @@ a.next{
   }
 }
 
-a.chapter, a.verse{
+a.chapter, a.verse:not(.search-result){
   width: 60px;
   height: 60px;
   border: 1px solid;

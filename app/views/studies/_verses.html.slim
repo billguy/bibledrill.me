@@ -11,6 +11,4 @@ ol.breadcrumb.sticky
 
 ol.chapter.verses
   - @verses.each do |verse|
-    li value="#{verse.number}"
-      span.verse.text> data-verse-id="#{verse.id}" data-verse-title="#{verse.title}"
-        = verse.text
+    li.verse value="#{verse.number}" data-verse-id="#{verse.id}" data-verse-title="#{verse.title}" #{verse.text}

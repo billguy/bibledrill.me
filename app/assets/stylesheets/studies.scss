@@ -6,6 +6,7 @@
 @import "bootstrap/buttons";
 @import "bootstrap/button-groups";
 @import "bootstrap/breadcrumbs";
+@import "bootstrap/pagination";
 @import "bootstrap/panels";
 @import "bootstrap/wells";
 @import "bootstrap/tooltip";
@@ -64,7 +65,7 @@ a.next{
 }
 
 ol.verses{
-  span.verse:hover{
+  li.verse:hover{
     cursor: pointer;
     border-bottom: 1px dotted blue;
   }

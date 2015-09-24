@@ -1,8 +1,6 @@
 //= require bootstrap/tab
 //= require jquery.sticky-kit
-//= require jquery.clearsearch
-//= require dragula
-//= require jquery.infinitescroll
+//= require bible_search
 
 if (history && history.pushState){
   $(function(){
@@ -15,49 +13,10 @@ if (history && history.pushState){
   });
 }
 
-var Bible = {
-    init: function(){
-        $('.clearable').clearSearch({
-            callback: function() {
-                $("#q").blur();
-                Bible.showBible();
-            }
-        });
-        $('#search-form').on('submit', function(){
-            $("#q").blur();
-            $('#search-results').html('<i>Please wait...</i>');
-            Bible.showSearch();
-        });
-    },
-    showSearch: function(){
-        $('.bible').addClass('hidden');
-        $('#search-results').removeClass('hidden');
-    },
-    showBible: function(){
-        $('.bible').removeClass('hidden');
-        $('#search-results').addClass('hidden');
-    },
-    initInfiniteScroll: function(){
-        $("#search-results").infinitescroll({
-            navSelector: "ul.pagination",
-            nextSelector: "ul.pagination a[rel=next]",
-            itemSelector: "#search-results div.search-result",
-            loading: {
-              finishedMsg: "",
-              msgText: "<em>Loading...</em>"
-            }
-        });
-    },
-    destroyInfiniteScroll: function(){
-        $('#search-results').infinitescroll('destroy').data('infinitescroll', null);
-    }
-
-};
-
-Bible.init();
+$(".sticky").stick_in_parent();
 
 $(document).on('ajaxComplete', function() {
-    Bible.init();
+    $(".sticky").stick_in_parent();
 });
 
 $('body').on('click', 'ol.chapter li span', function(){
@@ -103,34 +62,3 @@ $('body').on('click', 'ul.verses li:not(.read) a', function(e){
 $('body').on('click', 'ul.verses li.read a', function(e){
     verses = [];
 });
-
-function detectSpeechEnabled() {
-    if ('speechSynthesis' in window) {
-        $('.text-to-speech').removeClass('disabled');
-        window.speechSynthesis.cancel();
-    } else {
-        $('.text-to-speech').addClass('enabled');
-    }
-}
-
-detectSpeechEnabled();
-
-$(document).on('ajaxComplete', function() {
-    detectSpeechEnabled();
-    $(".sticky").stick_in_parent();
-});
-
-$('body').on('click', '.text-to-speech a', function(e){
-    e.preventDefault();
-    if (window.speechSynthesis.speaking){
-        window.speechSynthesis.cancel();
-    } else {
-        $('span.verse').each(function(index, verse) {
-            var utterance = new SpeechSynthesisUtterance( $(verse).html() );
-            utterance.rate = 1;
-            window.speechSynthesis.speak(utterance);
-        });
-    }
-});
-
-$(".sticky").stick_in_parent();

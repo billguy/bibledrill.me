@@ -1,4 +1,5 @@
 $("html, body").scrollTop(0);
-Bible.destroyInfiniteScroll(); // order important here
+$("#bible-modal .modal-body").scrollTop(0);
+BibleSearch.destroyInfiniteScroll(); // order important here
 $('#search-results').html('<%= j(render('search')) %>').append('<%= j(render('search_paginate')) %>');
-Bible.initInfiniteScroll();
+BibleSearch.initInfiniteScroll();
