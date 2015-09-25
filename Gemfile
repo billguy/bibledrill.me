@@ -37,6 +37,7 @@ gem "font-awesome-rails"
 gem 'summernote-rails'
 gem 'pg_search'
 gem 'acts_as_votable'
+gem 'impressionist'
 
 group :development do
   gem 'better_errors'

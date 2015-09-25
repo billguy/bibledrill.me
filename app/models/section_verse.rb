@@ -1,5 +1,7 @@
 class SectionVerse < ActiveRecord::Base
 
+  acts_as_nested_set
+
   belongs_to :section
   belongs_to :verse
 

@@ -6,6 +6,7 @@ class CreateStudies < ActiveRecord::Migration
       t.string :title
       t.string :permalink
       t.text :description
+      t.integer :cached_views_total, index: true, :default => 0
       t.integer :cached_votes_total, index: true, :default => 0
       t.integer :cached_votes_score, index: true, :default => 0
       t.integer :cached_votes_up, index: true, :default => 0

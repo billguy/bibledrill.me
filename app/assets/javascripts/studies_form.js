@@ -1,14 +1,15 @@
 //= require cocoon
-//= require bootstrap/collapse
-//= require bootstrap/tooltip
 //= require bootstrap/modal
-//= require bootstrap/tab
+//= require bootstrap/tooltip
 //= require summernote
+//= require jquery.fn.sortable
 
 $('#sections').on('cocoon:after-insert', function(event, field){
     if (!field.hasClass('panel')) { return; } // since our form is deeply nested we need to abort events that aren't for us
     var editor = field.find('[data-provider="summernote"]');
+    var section_verses = field.find('ol.section_verses');
     Study.instantiateEditor(editor);
+    Study.instantiateSortable(section_verses);
     // need to assign id to new section panel
     var collapse_id = new Date().getTime();
     $('#sections .collapse').collapse('hide');
@@ -23,7 +24,7 @@ $('body').on('cocoon:after-insert', '.section_verses', function(event, field){
     var verse_title = $('section.active a.add-verse').data('verse-title');
     var verse_text = $('section.active a.add-verse').data('verse-text');
     var section_verse_ids = $("section.active").data('verse-ids') || [];
-    section_verse_ids.push(verse_id);
+    section_verse_ids.push(parseInt(verse_id));
     $("section.active").data('verse-ids', section_verse_ids);
     field.find('input.verse-id').val(verse_id);
     field.find('.verse-title').html(verse_title);
@@ -47,6 +48,9 @@ var Study = {
         $('[data-provider="summernote"]').each(function(){
           Study.instantiateEditor(this);
         });
+        $('ol.section_verses').each(function(){
+          Study.instantiateSortable(this);
+        });
         Study.parseVerseIds();
         $('#sections .collapse').first().collapse(); // open the first section
     },
@@ -59,6 +63,11 @@ var Study = {
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['insert', ['link', 'picture']]
             ]
+        });
+    },
+    instantiateSortable: function(instance){
+        $(instance).sortable({
+            //handle: '.glyphicon-move'
         });
     },
     parseVerseIds: function(){
@@ -95,7 +104,7 @@ $('body').on('click', 'a.load-bible', function(e){
     $("#bible-modal").modal('show');
 });
 
-$('body').on('click', 'ol.verses li.verse, a.verse', function(e){
+$('body').on('click', 'ol.verses .verse', function(e){
     e.preventDefault(); // override the hyperlink if from a search
     var verse_id = $(this).data('verse-id');
     var verse_title = $(this).data('verse-title');

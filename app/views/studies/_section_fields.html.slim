@@ -1,4 +1,4 @@
-section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_verses.map{|v| '%s' % v.verse_id}}" class="#{'active' if f.index == 0}"
+section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_verses.collect(&:verse_id)}" class="#{'active' if f.index == 0}"
   .panel-heading role="tab" id="panel-#{f.index}"
 
     .panel-title
@@ -13,10 +13,11 @@ section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_ver
       .row
         .col-sm-12
           .well.verses-container
-            .section_verses
+            ol.section_verses
               = f.simple_fields_for :section_verses do |section_verse|
                 = render 'section_verse_fields', f: section_verse
-              .links
+
+              li.links style="list-style-type:none;margin-left: -25px;"
                 = link_to_add_association 'add verse', f, :section_verses, class: 'add-verse hidden'
                 = link_to "+ add verses", books_studies_path(format: :js), class: 'load-bible'
 

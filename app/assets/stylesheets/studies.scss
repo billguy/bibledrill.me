@@ -1,5 +1,6 @@
 @import "font-awesome";
 @import "summernote";
+@import "bootstrap-sprockets";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/glyphicons";
@@ -68,5 +69,23 @@ ol.verses{
   li.verse:hover{
     cursor: pointer;
     border-bottom: 1px dotted blue;
+  }
+}
+
+span.likes{
+  vertical-align: text-bottom;
+}
+
+ul.study-details{
+  list-style: none;
+  padding: 0px;
+  margin-bottom: 0px;
+  li{
+    display: inline-block;
+    color: #777777;
+    font-size: smaller;
+    &:not(:first-child):before{
+      content: '•';
+    }
   }
 }

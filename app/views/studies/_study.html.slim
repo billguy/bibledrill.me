@@ -1,0 +1,10 @@
+.row style="margin-top: 20px;"
+  .col-xs-12
+    = link_to study.title, study_path(study)
+    ul.study-details
+      li
+        = image_tag study.user.avatar(:micro)
+        span<=study.user.name
+      li #{time_ago_in_words(study.created_at)} ago
+      li #{study.cached_views_total} views
+    =truncate(strip_tags(study.description), length: 300)

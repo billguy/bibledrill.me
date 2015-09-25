@@ -9,13 +9,13 @@ class StudiesController < ApplicationController
     @type = params[:type].try(:downcase)
     case @type
       when "popular"
-        @studies = Study.popular
+        @studies = Study.popular.page(params[:page])
       when "liked"
-        @studies = current_user ? current_user.get_voted(Study) : []
+        @studies = current_user ? current_user.get_voted(Study).page(params[:page]) : Kaminari.paginate_array([]).page(params[:page])
       when "mine"
-        @studies = current_user ? Study.mine(current_user.id) : []
+        @studies = current_user ? Study.mine(current_user.id).page(params[:page]) : Kaminari.paginate_array([]).page(params[:page])
       else
-        @studies = Study.recent
+        @studies = Study.recent.page(params[:page])
     end
   end
 
@@ -43,15 +43,30 @@ class StudiesController < ApplicationController
 
   def search
     if Rails.env.production?
-      @verses = Study.search_by_keyword(params[:q]).page params[:page]
+      @studies = Study.search_by_keyword(params[:q]).page(params[:page])
     else
-      @verses = Study.where('title like :keyword or description like :keyword', keyword: "%#{params[:q]}%").page params[:page]
+      @studies = Study.where('title like :keyword or description like :keyword', keyword: "%#{params[:q]}%").page(params[:page])
     end
   end
+
+  def like
+    current_user.voted_up_on?(@study) ? @study.unliked_by(current_user) : @study.liked_by(current_user)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  # def dislike
+  #   current_user.voted_down_on?(@card) ? @card.undisliked_by(current_user) : @card.disliked_by(current_user)
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 
   # GET /studies/1
   # GET /studies/1.json
   def show
+    impressionist(@study, unique: [:session_hash]) #track page view count
   end
 
   # GET /studies/new

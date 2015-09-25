@@ -1,4 +1,19 @@
 h1=@study.title
+.row
+  .col-xs-6
+    .pull-left
+      p
+        = image_tag @study.user.avatar(:micro)
+        span.text-muted<=@study.user.name
+  .col-xs-6
+    .pull-right
+      p
+        span.view_counts< style="vertical-align: text-bottom;" #{@study.cached_views_total} views
+        span.text-muted<> |
+        = link_to like_study_path(@study, format: :js), remote: true, method: :put, class: 'like' do
+          span.glyphicon.glyphicon-thumbs-up
+        span.likes< data-study-id="#{@study.id}" #{@study.get_likes.size}
+.clearfix
 ul.breadcrumb
   li= link_to 'Bible Studies', studies_path
   li.active=@study.title

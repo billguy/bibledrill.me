@@ -1,13 +1,11 @@
 - if @studies.present?
   - @studies.each do |study|
-    .row style="margin-top: 20px;"
-      .col-xs-12
-        = link_to study.title, study_path(study)
-        br=truncate(strip_tags(study.description), length: 300)
+    = render study
 - else
   .row style="margin-top: 20px;"
     .col-xs-12
       i
         span> No Bible Studies at the moment.
-        = link_to "Login", new_user_session_path
-        span< to create one.
+        - unless current_user
+          = link_to "Login", new_user_session_path
+          span< to create one.

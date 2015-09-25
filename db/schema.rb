@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924190814) do
+ActiveRecord::Schema.define(version: 20150925153522) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -56,13 +56,44 @@ ActiveRecord::Schema.define(version: 20150924190814) do
   add_index "highlights", ["user_id"], name: "index_highlights_on_user_id"
   add_index "highlights", ["verse_id"], name: "index_highlights_on_verse_id"
 
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
   create_table "section_verses", force: :cascade do |t|
     t.integer  "section_id"
     t.integer  "verse_id"
+    t.integer  "parent_id"
+    t.integer  "lft",        null: false
+    t.integer  "rgt",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "section_verses", ["lft"], name: "index_section_verses_on_lft"
+  add_index "section_verses", ["parent_id"], name: "index_section_verses_on_parent_id"
+  add_index "section_verses", ["rgt"], name: "index_section_verses_on_rgt"
   add_index "section_verses", ["section_id"], name: "index_section_verses_on_section_id"
   add_index "section_verses", ["verse_id"], name: "index_section_verses_on_verse_id"
 
@@ -88,6 +119,7 @@ ActiveRecord::Schema.define(version: 20150924190814) do
     t.string   "title"
     t.string   "permalink"
     t.text     "description"
+    t.integer  "cached_views_total",      default: 0
     t.integer  "cached_votes_total",      default: 0
     t.integer  "cached_votes_score",      default: 0
     t.integer  "cached_votes_up",         default: 0
@@ -100,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150924190814) do
     t.datetime "updated_at",                             null: false
   end
 
+  add_index "studies", ["cached_views_total"], name: "index_studies_on_cached_views_total"
   add_index "studies", ["cached_votes_down"], name: "index_studies_on_cached_votes_down"
   add_index "studies", ["cached_votes_score"], name: "index_studies_on_cached_votes_score"
   add_index "studies", ["cached_votes_total"], name: "index_studies_on_cached_votes_total"
