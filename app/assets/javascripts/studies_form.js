@@ -2,7 +2,7 @@
 //= require bootstrap/modal
 //= require bootstrap/tooltip
 //= require summernote
-//= require jquery.fn.sortable
+//= require Sortable
 
 $('#sections').on('cocoon:after-insert', function(event, field){
     if (!field.hasClass('panel')) { return; } // since our form is deeply nested we need to abort events that aren't for us
@@ -10,6 +10,9 @@ $('#sections').on('cocoon:after-insert', function(event, field){
     var section_verses = field.find('ol.section_verses');
     Study.instantiateEditor(editor);
     Study.instantiateSortable(section_verses);
+    // set position input
+    var position = field.index();
+    field.find('input.position').val(position);
     // need to assign id to new section panel
     var collapse_id = new Date().getTime();
     $('#sections .collapse').collapse('hide');
@@ -26,6 +29,9 @@ $('body').on('cocoon:after-insert', '.section_verses', function(event, field){
     var section_verse_ids = $("section.active").data('verse-ids') || [];
     section_verse_ids.push(parseInt(verse_id));
     $("section.active").data('verse-ids', section_verse_ids);
+    // set position input
+    var position = field.index();
+    field.find('input.position').val(position);
     field.find('input.verse-id').val(verse_id);
     field.find('.verse-title').html(verse_title);
     field.find('.verse-text').html(verse_text);
@@ -48,7 +54,7 @@ var Study = {
         $('[data-provider="summernote"]').each(function(){
           Study.instantiateEditor(this);
         });
-        $('ol.section_verses').each(function(){
+        $('.sortable').each(function(){
           Study.instantiateSortable(this);
         });
         Study.parseVerseIds();
@@ -66,8 +72,14 @@ var Study = {
         });
     },
     instantiateSortable: function(instance){
-        $(instance).sortable({
-            //handle: '.glyphicon-move'
+        Sortable.create($(instance)[0], {
+            handle: '.handle',
+            onUpdate: function (event) {
+                $(event.item).parent('.sortable').children().each(function(index, item){
+                    var position = $(item).index();
+                    $(item).find('input.position').val(position);
+                });
+            }
         });
     },
     parseVerseIds: function(){

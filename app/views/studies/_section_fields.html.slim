@@ -2,6 +2,7 @@ section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_ver
   .panel-heading role="tab" id="panel-#{f.index}"
 
     .panel-title
+      span.glyphicon.glyphicon-move.handle<>
       a role="button" data-toggle="collapse" data-parent="#sections" href="#collapse-#{f.index}" aria-expanded="false" aria-controls="collapse-#{f.index}"
         span.h3.panel-title= f.object.id.present? ? f.object.formatted_title : "New Section"
       .pull-right
@@ -9,16 +10,16 @@ section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_ver
       .clearfix
   .panel-collapse.collapse aria-labelledby="panel-#{f.index}" id="collapse-#{f.index}"
     .panel-body
+      = f.input :position, as: :hidden, input_html: { class: 'position' }
       = f.input :title, placeholder: "Section Title"
       .row
         .col-sm-12
           .well.verses-container
-            ol.section_verses
+            ol.section_verses.sortable
               = f.simple_fields_for :section_verses do |section_verse|
                 = render 'section_verse_fields', f: section_verse
 
-              li.links style="list-style-type:none;margin-left: -25px;"
-                = link_to_add_association 'add verse', f, :section_verses, class: 'add-verse hidden'
-                = link_to "+ add verses", books_studies_path(format: :js), class: 'load-bible'
+            = link_to_add_association 'add verse', f, :section_verses, class: 'add-verse hidden', data: { "association-insertion-node" => 'ol.section_verses', "association-insertion-method" => 'append', "association-insertion-traversal" => 'prev'}
+            = link_to "+ add verses", books_studies_path(format: :js), class: 'load-bible'
 
       = f.input :notes, as: :summernote, wrapper: :full_size, input_html: {value: f.object.notes || 'Enter some notes about the verses here.'}

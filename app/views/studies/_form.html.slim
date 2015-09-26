@@ -4,7 +4,7 @@
   = f.error_notification
   = f.input :title, placeholder: "Give your study a title"
   = f.input :description, as: :summernote, wrapper: :full_size, input_html: {value: f.object.description || 'Give your study a good description here.'}
-  #sections.panel-group role="tablist" aria-multiselectable="true"
+  #sections.panel-group.sortable role="tablist" aria-multiselectable="true"
     = f.simple_fields_for :sections do |section|
       = render 'section_fields', f: section
 

@@ -2,9 +2,12 @@ h1=@study.title
 .row
   .col-xs-6
     .pull-left
-      p
-        = image_tag @study.user.avatar(:micro)
-        span.text-muted<=@study.user.name
+      ul.study-details style="font-size: large;"
+        li
+          = image_tag @study.user.avatar(:micro)
+          span<=@study.user.name
+        li #{time_ago_in_words(@study.created_at)} ago
+
   .col-xs-6
     .pull-right
       p

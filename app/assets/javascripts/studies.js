@@ -10,9 +10,3 @@ $('[data-toggle="tabajax"]').click(function(e) {
     $this.tab('show');
     return false;
 });
-
-$('body').on('click', 'a.like', function(e){
-    e.preventDefault();
-    var path = $(this).attr('href');
-    $.getScript(path);
-});

@@ -3,9 +3,7 @@ class CreateSectionVerses < ActiveRecord::Migration
     create_table :section_verses do |t|
       t.references :section, index: true, foreign_key: true
       t.references :verse, index: true, foreign_key: true
-      t.integer :parent_id, :null => true, :index => true
-      t.integer :lft, :null => false, :index => true
-      t.integer :rgt, :null => false, :index => true
+      t.integer :position, :default => 0
 
       t.timestamps null: false
     end

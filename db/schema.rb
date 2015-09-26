@@ -84,16 +84,11 @@ ActiveRecord::Schema.define(version: 20150925153522) do
   create_table "section_verses", force: :cascade do |t|
     t.integer  "section_id"
     t.integer  "verse_id"
-    t.integer  "parent_id"
-    t.integer  "lft",        null: false
-    t.integer  "rgt",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "position",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "section_verses", ["lft"], name: "index_section_verses_on_lft"
-  add_index "section_verses", ["parent_id"], name: "index_section_verses_on_parent_id"
-  add_index "section_verses", ["rgt"], name: "index_section_verses_on_rgt"
   add_index "section_verses", ["section_id"], name: "index_section_verses_on_section_id"
   add_index "section_verses", ["verse_id"], name: "index_section_verses_on_verse_id"
 
@@ -101,16 +96,11 @@ ActiveRecord::Schema.define(version: 20150925153522) do
     t.integer  "study_id"
     t.string   "title"
     t.text     "notes"
-    t.integer  "parent_id"
-    t.integer  "lft",        null: false
-    t.integer  "rgt",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "position",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "sections", ["lft"], name: "index_sections_on_lft"
-  add_index "sections", ["parent_id"], name: "index_sections_on_parent_id"
-  add_index "sections", ["rgt"], name: "index_sections_on_rgt"
   add_index "sections", ["study_id"], name: "index_sections_on_study_id"
 
   create_table "studies", force: :cascade do |t|

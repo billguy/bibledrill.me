@@ -19,6 +19,7 @@ gem "breadcrumbs_on_rails"
 gem 'meta-tags'
 gem 'stickykit-rails'
 gem 'devise', github: 'plataformatec/devise'
+gem 'cancancan'
 gem 'omniauth-facebook', github: 'mkdynamic/omniauth-facebook'
 gem 'paperclip'
 gem "bootstrap_flash_messages", github: 'RobinBrouwer/bootstrap_flash_messages'
@@ -29,8 +30,6 @@ gem "recaptcha", require: false
 gem 'valid_email', require: false
 gem 'postmark-rails'
 gem 'kaminari-bootstrap', '~> 3.0.1'
-gem 'awesome_nested_set'
-gem 'cancancan'
 gem "cocoon"
 gem "has_permalink"
 gem "font-awesome-rails"

@@ -1,6 +1,6 @@
 class SectionVerse < ActiveRecord::Base
 
-  acts_as_nested_set
+  default_scope { order(position: :asc) }
 
   belongs_to :section
   belongs_to :verse

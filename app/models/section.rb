@@ -1,6 +1,6 @@
 class Section < ActiveRecord::Base
 
-  acts_as_nested_set
+  default_scope { order(position: :asc) }
 
   belongs_to :study
   has_many :section_verses, dependent: :destroy
@@ -9,7 +9,11 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :section_verses, allow_destroy: true
 
   def formatted_title
-    title.present? ? title : "Section ##{lft}"
+    title.present? ? title : "Section ##{section_position}"
+  end
+
+  def section_position
+    study.sections.index{|s| s.id == id} + 1
   end
 
 end
