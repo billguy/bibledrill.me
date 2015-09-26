@@ -6,6 +6,8 @@ class StudiesController < ApplicationController
   # GET /studies
   # GET /studies.json
   def index
+    @page_title = "Bible Studies"
+    @page_description = "Browse Bible studies by recent, most popular and liked."
     @type = params[:type].try(:downcase)
     case @type
       when "popular"
@@ -66,6 +68,8 @@ class StudiesController < ApplicationController
   # GET /studies/1
   # GET /studies/1.json
   def show
+    @page_title = @study.title
+    @page_description = @study.description
     impressionist(@study, unique: [:session_hash]) #track page view count
   end
 

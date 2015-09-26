@@ -35,6 +35,7 @@ describe "studies", type: :feature do
         visit new_study_path
         fill_in :study_title, with: 'Title'
         first('textarea#study_description', visible: false).set("Description") # hidden by summernote
+
         fill_in :study_sections_attributes_0_title, with: 'Title'
         first('textarea#study_sections_attributes_0_notes', visible: false).set("Description") # hidden by summernote
         first('a.load-bible').click

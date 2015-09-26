@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", micro: "32x32>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", micro: "32x32>" }, default_url: ":style/missing.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   validates_uniqueness_of :email
