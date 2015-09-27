@@ -2,6 +2,7 @@
 //= require bootstrap/modal
 //= require bootstrap/tooltip
 //= require summernote
+//= require summernote-ext-video
 //= require Sortable
 
 $('#sections').on('cocoon:after-insert', function(event, field){
@@ -67,7 +68,7 @@ var Study = {
                 ['color', ['color']],
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['link', 'picture']]
+                ['insert', ['link', 'picture', 'video']]
             ]
         });
     },

@@ -7,13 +7,17 @@ h1=@study.title
           = image_tag @study.user.avatar(:micro)
           span<=@study.user.name
         li #{time_ago_in_words(@study.created_at)} ago
+        li= social_share_button_tag(@study.title, url: study_url(@study))
 
   .col-xs-6
     .pull-right
       p
         span.view_counts< style="vertical-align: text-bottom;" #{@study.cached_views_total} views
         span.text-muted<> |
-        = link_to like_study_path(@study, format: :js), remote: true, method: :put, class: 'like' do
+        - if current_user
+          = link_to like_study_path(@study, format: :js), remote: true, method: :put, class: 'like' do
+            span.glyphicon.glyphicon-thumbs-up
+        - else
           span.glyphicon.glyphicon-thumbs-up
         span.likes< data-study-id="#{@study.id}" #{@study.get_likes.size}
 .clearfix
@@ -22,6 +26,7 @@ ul.breadcrumb
   li.active=@study.title
   - if can?(:edit, @study)
     li=link_to "Edit", edit_study_path(@study)
+
 .row
   .col-xs-12
     p=@study.description.html_safe

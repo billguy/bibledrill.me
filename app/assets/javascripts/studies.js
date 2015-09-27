@@ -1,6 +1,7 @@
 //= require search
 //= require bootstrap/tab
-//= require bootstrap/collapse
+//= require social-share-button
+//= require fitvids
 
 $('[data-toggle="tabajax"]').click(function(e) {
     var $this = $(this),
@@ -9,4 +10,11 @@ $('[data-toggle="tabajax"]').click(function(e) {
     $.getScript(loadurl);
     $this.tab('show');
     return false;
+});
+
+$(".embed-responsive-item").each(function(index, item){
+    var $wrapper = $('<div class="embed-responsive embed-responsive-16by9"></div>');
+    $wrapper.insertBefore(item);
+    $(item).appendTo($wrapper);
+    $wrapper.fitVids();
 });

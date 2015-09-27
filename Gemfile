@@ -37,6 +37,8 @@ gem 'summernote-rails'
 gem 'pg_search'
 gem 'acts_as_votable'
 gem 'impressionist'
+gem 'social-share-button'
+gem 'fitvidsjs_rails'
 
 group :development do
   gem 'better_errors'

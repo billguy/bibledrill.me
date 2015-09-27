@@ -12,6 +12,7 @@
 @import "bootstrap/wells";
 @import "bootstrap/tooltip";
 @import "bootstrap/modals";
+@import "social-share-button";
 
 .modal .modal-body {
     max-height: 420px;
@@ -88,4 +89,13 @@ ul.study-details{
       content: '•';
     }
   }
+}
+
+.social-share-button{
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+.embed-responsive{
+  max-width: 640px;
 }
