@@ -19,5 +19,5 @@ Rails.application.routes.draw do
     get 'chapters', on: :collection
     get 'verses', on: :collection
   end
-  root to: 'drills#index'
+  root to: 'site#index'
 end

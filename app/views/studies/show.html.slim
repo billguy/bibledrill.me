@@ -16,9 +16,9 @@ h1=@study.title
         span.text-muted<> |
         - if current_user
           = link_to like_study_path(@study, format: :js), remote: true, method: :put, class: 'like' do
-            span.glyphicon.glyphicon-thumbs-up
+            span.fa.fa-thumbs-o-up
         - else
-          span.glyphicon.glyphicon-thumbs-up
+          span.fa.fa-thumbs-o-up
         span.likes< data-study-id="#{@study.id}" #{@study.get_likes.size}
 .clearfix
 ul.breadcrumb

@@ -2,7 +2,7 @@ section.panel.panel-default.nested-fields data-verse-ids="#{f.object.section_ver
   .panel-heading role="tab" id="panel-#{f.index}"
 
     .panel-title
-      span.glyphicon.glyphicon-move.handle<>
+      span.fa.fa-arrows.handle<>
       a role="button" data-toggle="collapse" data-parent="#sections" href="#collapse-#{f.index}" aria-expanded="false" aria-controls="collapse-#{f.index}"
         span.h3.panel-title= f.object.id.present? ? f.object.formatted_title : "New Section"
       .pull-right

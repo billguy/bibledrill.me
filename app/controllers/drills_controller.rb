@@ -2,7 +2,7 @@ class DrillsController < ApplicationController
 
   def index
     @page_title = "Online Bible Drill"
-    @page_description = "Hone your verse finding skill with our innovative , online Bible drill.  Click on the right side of the cover to start the drill."
+    @page_description = "Hone your verse finding skill with our innovative, online Bible drill.  Click on the right side of the cover to start the drill."
   end
 
   def new
