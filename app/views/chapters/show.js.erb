@@ -5,4 +5,4 @@ $('#content').html('<%= j(render('show')) %>');
 $('#content').attr('data-next-path', '<%= book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number) %>');
 $('#content').attr('data-prev-path', '<%= book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number) %>');
 
-<%= render('highlights') %>
+<%= render('shared/highlights') %>

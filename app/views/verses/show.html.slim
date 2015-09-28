@@ -1,1 +1,4 @@
 = render 'show'
+= content_for :footer do
+  javascript:
+    #{render('shared/highlights.js.erb')}

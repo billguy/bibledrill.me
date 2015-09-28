@@ -12,6 +12,7 @@ class VersesController < KjController
 
   def show
     @verses = @chapter.verses.where(number: parsed_verses).reorder(id: :asc)
+    @highlight_verse_ids = current_user ? current_user.highlights.where(verse_id: @verses.collect(&:id)).pluck(:verse_id) : []
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true
     if @verses.length > 1

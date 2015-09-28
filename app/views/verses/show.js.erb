@@ -1,3 +1,5 @@
+document.title = "<%= display_title(default_meta_tags) %>";
+$("html, body").scrollTop(0);
 $('#content').html('<%= j(render('show')) %>');
 
 <% if @verses.length == 1 %>
@@ -8,5 +10,4 @@ $('#content').html('<%= j(render('show')) %>');
     $('#content').attr('data-prev-path', '<%= book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number) %>');
 <% end %>
 
-document.title = "<%= display_title(default_meta_tags) %>";
-$("html, body").scrollTop(0);
+<%= render('shared/highlights') %>
