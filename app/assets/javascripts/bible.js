@@ -1,11 +1,13 @@
 //= require bootstrap/tab
+//= require bootstrap/modal
 //= require jquery.sticky-kit
 //= require search
 
 if (history && history.pushState){
   $(function(){
    $(document).on('click', 'a[data-remote="true"]', function(e){
-       history.pushState(null, '', this.href);
+        if (!$(this).hasClass('x'))
+            history.pushState(null, '', this.href);
     });
     $(window).bind("popstate", function(){
         $.getScript(location.href);

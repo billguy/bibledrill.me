@@ -1,0 +1,7 @@
+- @verse.verses.each do |verse|
+  .row
+    .col-xs-12
+      p
+        = link_to verse.title, book_chapter_verse_path(book_id: verse.book_permalink, chapter_id: verse.chapter_number, id: verse.number)
+        br
+        = verse.text

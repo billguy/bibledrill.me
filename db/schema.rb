@@ -175,8 +175,9 @@ ActiveRecord::Schema.define(version: 20151003203502) do
 
   create_table "verse_cross_references", force: :cascade do |t|
     t.integer  "verse_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "cross_reference_verse_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "verse_cross_references", ["verse_id"], name: "index_verse_cross_references_on_verse_id"

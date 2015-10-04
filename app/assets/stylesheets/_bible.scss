@@ -3,6 +3,8 @@
 @import "bootstrap/mixins";
 @import "bootstrap/breadcrumbs";
 @import "bootstrap/pagination";
+@import "bootstrap/buttons";
+@import "bootstrap/modals";
 @import "bootstrap/list-group";
 @import "bootstrap/glyphicons";
 
@@ -94,6 +96,14 @@ ol.verses{
       img{ margin-bottom: 6px; }
     }
   }
+}
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 250px;
+    overflow-y: auto;
 }
 
 .is_stuck{

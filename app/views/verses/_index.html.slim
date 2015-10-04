@@ -8,3 +8,5 @@ ul.list-inline.verses
     =link_to book_chapter_path(book_id: @book.permalink, id: @chapter.number), remote: true, class: 'verse', data: { "chapter-path" => book_chapter_path(book_id: @book.permalink, id: @chapter.number), "verse-path" => book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number) } do
       span.read Read
   = render partial: "verse_link", collection: @verses, as: :verse
+
+= render 'shared/bible_modal'

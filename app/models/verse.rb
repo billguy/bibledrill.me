@@ -7,8 +7,8 @@ class Verse < ActiveRecord::Base
   has_many :sections, through: :section_verses
   has_many :studies, through: :sections
 
-  has_many :verse_cross_references
-  has_many :verses, through: :verse_cross_references
+  has_many :verse_cross_references, foreign_key: :verse_id
+  has_many :verses, through: :verse_cross_references, source: :cross_reference_verse
 
   delegate :book_permalink, to: :chapter
   delegate :book_name, to: :chapter

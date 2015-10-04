@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show] do
     get 'search', on: :collection
     resources :chapters, only: [:index, :show] do
-      resources :verses, only: [:index, :show]
+      resources :verses, only: [:index, :show] do
+        get 'cross-references', to:'verses#cross_references', on: :member
+      end
     end
   end
 

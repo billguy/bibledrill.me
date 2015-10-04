@@ -1,0 +1,3 @@
+$('#bible-modal h4.modal-title').html('<%= @verse.title %><p class="text-muted"><small><%= @verse.verse_cross_references_count %> cross references</small></p>');
+$('#bible-modal .modal-body').html('<%= j render('cross_references') %>');
+$('#bible-modal').modal('show');
