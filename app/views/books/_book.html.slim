@@ -1,2 +1,3 @@
 .col-xs-6.col-sm-3
-  .book= link_to book.name, book_chapters_path(book_id: book.permalink), remote: true, class: 'z-index-100'
+  .book class="#{'old' if [40,41,42,43].include?(book.id)}"
+    = link_to book.name, book_chapters_path(book_id: book.permalink), remote: true, class: 'z-index-100'

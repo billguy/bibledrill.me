@@ -85,6 +85,21 @@ span.read{
   font-size: 19px;
 }
 
+.old{
+  background: #ccc;
+}
+
+.legend{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #ccc;
+  border: solid 1px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
 ol.verses{
   li{
     margin-top: 5px;
