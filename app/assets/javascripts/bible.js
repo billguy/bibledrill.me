@@ -62,3 +62,9 @@ $('body').on('click', 'ul.verses li:not(.read) a', function(e){
 $('body').on('click', 'ul.verses li.read a', function(e){
     verses = [];
 });
+
+$('body').on('click', 'span.verse-details', function(e){
+    $(this).toggleClass('text-muted');
+    var $verse_details = $(this).next();
+    $verse_details.fadeToggle();
+});

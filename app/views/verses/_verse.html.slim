@@ -1,5 +1,8 @@
 li value="#{verse.number}"
   span.verse.text> data-highlight-path="#{highlight_path(id: verse.id, format: :js)}" data-verse-id="#{verse.id}"
     = verse.text
-  = link_to book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), remote: true, class: "verse-link hidden" do
-    img width='15' height='15' title='#{verse.title}' alt='#{verse.title}' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAhOAAAITgGMMQDsAAAAB3RJTUUH3wkPEwgglxjBlAAAAb9JREFUKM99k81LlFEYxX/3esf5MKwwCiKhNi3CVRAELSQKDGpT0KJ1MC1aJKi1iEiycFOjgRCMf0DbJKiBmZW5EpdJ4CykTZE5YY7ax7zvPS3mnXnHdObA3TyX8zznnnMfQztkJQOYfa4UHUcHnD8Fg6fBq6VoYHEV5lc6kQWfKzA2BL3pWIEX5IqwUAZHdsk1tQAYA2yB+Xviy3p3+ego6eBVy2DFjRzwDAN0RSUJfDd4HbJd/Bq5TPp3DVKJveIcMEo1gM1avZI2cPgM+KS9fwUmroOzECru34TNLmny/Vc1kP8gJbLSrdlmSbVQGnkt9d2T1jal5wXJ3ZEcwMZOyPYf8eStIV+CB0MwcSMe8HgOpkr89CHJgXFS506CB2zkPj1JeFGCnRDuXoqJN2dgsoD3JsiTCvrXqoTvPtZddw37Aw+VHAw8guNjsD4F00V4swyw4bGfvuP1g9kLrhGMbcmegxmYG4YjGTg2DDMFGL8GmLLBJyz2wG6//rf/bD8sP4XeDNy+CA+vgkIbJVzbExWYunQT6enrgcrL+lM6wQlYXN0mV/y2awlM9NlM63ZoH/L8SpWF8la7L96W/A/CHLlt929SGwAAAABJRU5ErkJggg=='
+  span.glyphicon.glyphicon-info-sign.text-muted.verse-details
+  span.details< style="display:none;"
+    span
+      = link_to book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), remote: true, class: "verse-link " do
+        span.glyphicon.glyphicon-link

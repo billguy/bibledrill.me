@@ -1,8 +1,10 @@
+@import "bootstrap-sprockets";
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/breadcrumbs";
 @import "bootstrap/pagination";
 @import "bootstrap/list-group";
+@import "bootstrap/glyphicons";
 
 body{
   font-family: 'Merriweather', serif;
@@ -108,12 +110,6 @@ ol.verses{
   -webkit-animation-duration:         .7s;
   -webkit-animation-iteration-count:  infinite;
   -webkit-animation-timing-function:  alternate;
-}
-
-.text-to-speech{
-  a {
-    vertical-align: text-top;
-  }
 }
 
 @keyframes glow {
