@@ -19,7 +19,7 @@ $(document).on('ajaxComplete', function() {
     $(".sticky").stick_in_parent();
 });
 
-$('body').on('click', 'ol.verses li span', function(){
+$('body').on('click', 'ol.verses li span.verse', function(){
     var verse_id = $(this).data('verse-id');
     var highlight_path = $(this).data('highlight-path');
     $.ajax({
