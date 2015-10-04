@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def show
-    @verses = Verse.where(page: params[:id])
+    @verses = Verse.where(page: params[:id]).reorder(id: :asc)
     @previous_verse = @verses.first.try(:prev)
     @previous_book_name = @previous_verse.try(:book_name)
     @previous_chapter_id = @previous_verse.try(:chapter_id)
