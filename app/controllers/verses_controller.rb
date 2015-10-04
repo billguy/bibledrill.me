@@ -7,7 +7,7 @@ class VersesController < KjController
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
     add_breadcrumb "Verses"
-    @verses = @chapter.verses
+    @verses = @chapter.verses.reorder(id: :asc)
   end
 
   def show

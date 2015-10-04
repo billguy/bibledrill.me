@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925153522) do
+ActiveRecord::Schema.define(version: 20151003203502) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -173,13 +173,22 @@ ActiveRecord::Schema.define(version: 20150925153522) do
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
+  create_table "verse_cross_references", force: :cascade do |t|
+    t.integer  "verse_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "verse_cross_references", ["verse_id"], name: "index_verse_cross_references_on_verse_id"
+
   create_table "verses", force: :cascade do |t|
     t.integer  "chapter_id"
     t.integer  "number"
     t.integer  "page"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "verse_cross_references_count", default: 0
   end
 
   add_index "verses", ["chapter_id"], name: "index_verses_on_chapter_id"
