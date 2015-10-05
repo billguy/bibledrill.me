@@ -1,6 +1,8 @@
 //= require bootstrap/tab
 //= require bootstrap/modal
 //= require jquery.sticky-kit
+//= require spin
+//= require jquery.spin
 //= require search
 
 if (history && history.pushState){
@@ -69,4 +71,10 @@ $('body').on('click', 'span.verse-details', function(e){
     $(this).toggleClass('text-muted');
     var $verse_details = $(this).next();
     $verse_details.fadeToggle();
+});
+
+$('body').on('click', 'a.x', function(){
+    $(this).hide();
+    var opts = { lines: 15, length: 10, width: 3, radius: 1, scale: 0.5, corners: 1, color: '#000', opacity: 0.25, rotate: 0, direction: 1, speed: 1, trail: 60, fps: 20, zIndex: 2e9, className: 'spinner', top: '50%', left: '50%', shadow: false, hwaccel: false, position: 'absolute'};
+    $(this).parent().next('span.s').spin(opts);
 });
