@@ -118,11 +118,8 @@ ol.verses{
   }
 }
 
-.modal-dialog{
-    overflow-y: initial !important
-}
-.modal-body{
-    height: 250px;
+.modal .modal-body {
+    max-height: 420px;
     overflow-y: auto;
 }
 
