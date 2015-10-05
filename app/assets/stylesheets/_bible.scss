@@ -118,8 +118,12 @@ ol.verses{
   }
 }
 
+.half-opacity{
+  opacity: 0.5;
+}
+
 .modal .modal-body {
-    max-height: 420px;
+    max-height: 350px;
     overflow-y: auto;
 }
 

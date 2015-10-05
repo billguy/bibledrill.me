@@ -67,8 +67,9 @@ $('body').on('click', 'ul.verses li.read a', function(e){
     verses = [];
 });
 
-$('body').on('click', 'span.verse-details', function(e){
-    $(this).toggleClass('text-muted');
+$('body').on('click', 'a.verse-details', function(e){
+    e.preventDefault();
+    $(this).toggleClass('half-opacity');
     var $verse_details = $(this).next();
     $verse_details.fadeToggle();
 });
@@ -76,5 +77,5 @@ $('body').on('click', 'span.verse-details', function(e){
 $('body').on('click', 'a.x', function(){
     $(this).hide();
     var opts = { lines: 15, length: 10, width: 3, radius: 1, scale: 0.5, corners: 1, color: '#000', opacity: 0.25, rotate: 0, direction: 1, speed: 1, trail: 60, fps: 20, zIndex: 2e9, className: 'spinner', top: '50%', left: '50%', shadow: false, hwaccel: false, position: 'absolute'};
-    $(this).parent().next('span.s').spin(opts);
+    $(this).next('span.s').spin(opts);
 });

@@ -1,11 +1,11 @@
 li value="#{verse.number}"
   span.verse.text> data-highlight-path="#{highlight_path(id: verse.id, format: :js)}" data-verse-id="#{verse.id}"
     = verse.text
-  span.glyphicon.glyphicon-info-sign.text-muted.verse-details
+  a.verse-details.half-opacity href="#"
+    span.glyphicon.glyphicon-info-sign
   span.details< style="display:none;"
-    span>
-      = link_to book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), remote: true, class: "verse-link" do
-        span.glyphicon.glyphicon-link
+    = link_to book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), remote: true, class: "verse-link" do
+      span.glyphicon.glyphicon-link
     span<> |
-    span=link_to verse.verse_cross_references_count, cross_references_book_chapter_verse_path(book_id: verse.book_permalink, chapter_id: verse.chapter_number, id: verse.number), class: 'x', remote: true
+    =link_to verse.verse_cross_references_count, cross_references_book_chapter_verse_path(book_id: verse.book_permalink, chapter_id: verse.chapter_number, id: verse.number), class: 'x', remote: true
     span.s
