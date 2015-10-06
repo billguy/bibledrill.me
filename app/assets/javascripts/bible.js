@@ -94,5 +94,5 @@ $('body').on('click', 'ol.breadcrumb a[data-quick-menu=true]', function(e){
         content: function(){
             return $(menu).html();
         }
-    }).popover("show");
+    }).popover("toggle");
 });
