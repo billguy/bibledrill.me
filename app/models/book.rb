@@ -4,7 +4,7 @@ class Book < ActiveRecord::Base
   scope :old_testament, ->{where("id < 40") }
   scope :new_testament, ->{where("id > 39") }
 
-  # serialize :abbreviations, Array
+  serialize :abbreviations, Array
 
   def to_param
     permalink
