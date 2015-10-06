@@ -11,8 +11,8 @@ class ChaptersController < KjController
 
   def show
     @chapter = @book.chapters.find_by_number(params[:id])
-    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
-    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, data: { 'quick-menu' => true, menu: '#books-menu' }
+    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true, data: { 'quick-menu' => true, menu: '#book-chapters-menu' }
     add_breadcrumb "Verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verses", remote: true
     @page_title = @chapter.title
     @verses = @chapter.verses.reorder(id: :asc)

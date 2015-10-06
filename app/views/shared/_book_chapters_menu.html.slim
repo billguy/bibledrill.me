@@ -1,0 +1,5 @@
+#book-chapters-menu.hidden
+  .row
+    - @book.chapters.each do |chapter|
+      .col-xs-2
+        = link_to chapter.number, book_chapter_path(book_id: @book.permalink, id: chapter.number), remote: true

@@ -1,0 +1,12 @@
+#books-menu.hidden
+  .row
+    .col-xs-6
+      .row
+        - Book.old_paths.each do |book|
+          .col-xs-6
+            = link_to book[:name], book[:path], remote: true
+    .col-xs-6
+      .row
+        - Book.new_paths.each do |book|
+          .col-xs-6
+            = link_to book[:name], book[:path], remote: true

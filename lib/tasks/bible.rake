@@ -40,4 +40,13 @@ namespace :bible do
     end
   end
 
+  desc "Rebuild book abbreviations"
+  task rebuild_book_abbreviations: :environment do
+    Book.find_each do |book|
+      abbreviations = JSON.parse(book.abbreviations)
+      book.abbreviations = YAML.dump(abbreviations)
+      book.save!
+    end
+  end
+
 end

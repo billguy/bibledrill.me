@@ -1,5 +1,7 @@
 //= require bootstrap/tab
 //= require bootstrap/modal
+//= require bootstrap/tooltip
+//= require bootstrap/popover
 //= require jquery.sticky-kit
 //= require spin
 //= require jquery.spin
@@ -78,4 +80,19 @@ $('body').on('click', 'a.x', function(){
     $(this).hide();
     var opts = { lines: 15, length: 10, width: 3, radius: 1, scale: 0.5, corners: 1, color: '#000', opacity: 0.25, rotate: 0, direction: 1, speed: 1, trail: 60, fps: 20, zIndex: 2e9, className: 'spinner', top: '50%', left: '50%', shadow: false, hwaccel: false, position: 'absolute'};
     $(this).next('span.s').spin(opts);
+});
+
+
+$('body').on('click', 'ol.breadcrumb a[data-quick-menu=true]', function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var menu = $(this).data('menu');
+    $(this).popover({
+        placement: 'bottom',
+        trigger: 'focus',
+        html: true,
+        content: function(){
+            return $(menu).html();
+        }
+    }).popover("show");
 });
