@@ -1,4 +1,4 @@
-require 'render_anywhere' if Rails.env.development?
+ require 'render_anywhere' if Rails.env.development?
 
 namespace :bible do
 
@@ -37,15 +37,6 @@ namespace :bible do
     template = render(partial: 'drills/index')
     File.open(Rails.root.join('app', 'views', 'drills', 'index.html').to_s, "w+") do |f|
       f.write(template)
-    end
-  end
-
-  desc "Rebuild book abbreviations"
-  task rebuild_book_abbreviations: :environment do
-    Book.find_each do |book|
-      abbreviations = JSON.parse(book.abbreviations)
-      book.abbreviations = YAML.dump(abbreviations)
-      book.save!
     end
   end
 
