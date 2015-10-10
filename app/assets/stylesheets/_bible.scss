@@ -10,7 +10,12 @@
 @import "bootstrap/tooltip";
 @import "bootstrap/popovers";
 
+html{
+  height: 100%;
+}
+
 body{
+  min-height: 100%;
   font-family: 'Merriweather', serif;
   font-size: 17px;
 }

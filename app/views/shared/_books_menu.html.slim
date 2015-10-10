@@ -1,5 +1,8 @@
 #books-menu.hidden
   .row
+    .col-xs-12
+      = link_to "Search", books_path
+  .row
     .col-xs-6
       .row
         - Book.old_paths.each do |book|
