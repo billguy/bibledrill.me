@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :book do
     name "Genesis"
     permalink "genesis"
-    abbreviations "gen"
+    abbreviations ["gen"]
   end
 
 end

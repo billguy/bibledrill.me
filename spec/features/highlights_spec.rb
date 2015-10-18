@@ -15,9 +15,9 @@ describe "highlights", type: :feature do
       allow_any_instance_of(Chapter).to receive(:next){ chapter }
     end
 
-    it 'can highlight but not save', js: true do
+    it 'can highlight but not save', js: true, focus: true do
       visit book_chapter_path(book_id: book.permalink, id: chapter.id)
-      span = find("ol.verses").find("li:first-child span")
+      span = find("ol.verses").find("li:first-child span.verse")
       span.click
       wait_for_ajax
       expect(span[:class]).to match('selected')
@@ -35,9 +35,9 @@ describe "highlights", type: :feature do
       allow_any_instance_of(Chapter).to receive(:next){ chapter }
     end
 
-    it 'can highlight and save', js: true, focus: true do
+    it 'can highlight and save', js: true do
       visit book_chapter_path(book_id: book.permalink, id: chapter.id)
-      span = find("ol.verses").find("li:first-child span")
+      span = find("ol.verses").find("li:first-child span.verse")
       span.click
       wait_for_ajax
       expect(span[:class]).to match('selected')

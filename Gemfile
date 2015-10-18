@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
 
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.4'
 gem 'pg', group: :production
 gem 'fog', group: :production
 gem 'rails_12factor', group: :production # 4 heroku
@@ -58,6 +58,6 @@ group :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem "capybara-webkit"
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 3.0'
   gem 'shoulda-callback-matchers'
 end

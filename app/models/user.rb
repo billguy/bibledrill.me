@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", micro: "32x32>" }, default_url: ":style/missing.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  validates_uniqueness_of :email
-
   has_many :highlights
   has_many :studies
 

@@ -31,10 +31,16 @@ ActiveRecord::Migration.maintain_test_schema!
 Capybara.javascript_driver = :webkit
 
 Capybara::Webkit.configure do |config|
-  config.allow_url("fw.lvh.me")
-  config.allow_url("lvh.me")
-  config.allow_url("fonts.googleapis.com")
+  config.block_url("fonts.googleapis.com")
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
