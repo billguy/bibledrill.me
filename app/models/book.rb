@@ -1,8 +1,8 @@
 class Book < ActiveRecord::Base
 
   has_many :chapters
-  scope :old_testament, ->{where("id < 40") }
-  scope :new_testament, ->{where("id > 39") }
+  scope :old_testament, ->{where("id < 40").order(id: :asc) }
+  scope :new_testament, ->{where("id > 39").order(id: :asc) }
 
   serialize :abbreviations, Array
 
