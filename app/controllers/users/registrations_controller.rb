@@ -5,8 +5,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:name, :website, :bio, :avatar, :time_zone)
-    devise_parameter_sanitizer.for(:account_update).push(:name, :website, :bio, :avatar, :time_zone)
+    devise_parameter_sanitizer.permit(:sign_up).try(:keys, :name, :website, :bio, :avatar, :time_zone)
+    devise_parameter_sanitizer.permit(:account_update).try(:keys, :name, :website, :bio, :avatar, :time_zone)
   end
 
   def update_resource(resource, params)

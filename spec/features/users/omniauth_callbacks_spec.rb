@@ -8,7 +8,7 @@ describe "omniauth_callbacks", type: :feature do
     uid: '12345',
     "info" => {
       "name" => "Elijah the Tishbite",
-      "image" => "https://dummyimage.com/300",
+      "image" => "https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97300&w=300&h=300",
       "email" => "elijah@heaven.net"
     }
   })
@@ -22,7 +22,7 @@ describe "omniauth_callbacks", type: :feature do
 
     context 'with valid credentials' do
       it 'creates a new user' do
-        visit user_omniauth_authorize_path(provider: :facebook)
+        visit user_facebook_omniauth_authorize_path
         expect(current_path).to eq(edit_user_registration_path)
         expect(page).to have_content('Successfully authenticated')
         user = User.last
@@ -34,7 +34,7 @@ describe "omniauth_callbacks", type: :feature do
       context 'when user is deactivated', focus: true do
         it 'does not allow login' do
           user = FactoryGirl.create(:user, provider: 'facebook', uid: '12345', active: false)
-          visit user_omniauth_authorize_path(provider: :facebook)
+          visit user_facebook_omniauth_authorize_path
           expect(current_path).to eq(new_user_session_path)
           expect(page).to have_content('Account Unavailable')
         end
@@ -44,7 +44,7 @@ describe "omniauth_callbacks", type: :feature do
     context 'with invalid credentials' do
       it 'returns an error' do
         OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
-        visit user_omniauth_authorize_path(provider: :facebook)
+        visit user_facebook_omniauth_authorize_path
         expect(page).to have_content('Could not authenticate you')
       end
     end

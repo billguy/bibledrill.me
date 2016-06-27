@@ -2,7 +2,6 @@
 //= require bootstrap/modal
 //= require bootstrap/tooltip
 //= require summernote
-//= require summernote-ext-video
 //= require Sortable
 
 $('#sections').on('cocoon:after-insert', function(event, field){

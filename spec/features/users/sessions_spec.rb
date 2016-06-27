@@ -21,7 +21,7 @@ describe "omniauth_callbacks", type: :feature do
       fill_in :user_email, with: user.email
       fill_in :user_password, with: 'error'
       click_button "Sign In"
-      expect(page).to have_content('Invalid email')
+      expect(page).to have_content('Invalid Email')
     end
   end
 

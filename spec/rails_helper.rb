@@ -32,6 +32,7 @@ Capybara.javascript_driver = :webkit
 
 Capybara::Webkit.configure do |config|
   config.block_url("fonts.googleapis.com")
+  config.block_url("www.google-analytics.com")
 end
 
 Shoulda::Matchers.configure do |config|

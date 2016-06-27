@@ -30,7 +30,7 @@ describe "studies", type: :feature do
     let!(:chapter) { FactoryGirl.create(:chapter)}
     let!(:verse) { FactoryGirl.create(:verse)}
 
-    context 'when creating a study' do
+    context 'when creating a study', js: true do
       it 'can create' do
         visit new_study_path
         fill_in :study_title, with: 'Title'
@@ -52,7 +52,7 @@ describe "studies", type: :feature do
       end
     end
 
-    context 'when updating a study', focus: true do
+    context 'when updating a study', js: true, focus: true do
 
       let!(:study) { FactoryGirl.create(:study, user: user)}
 

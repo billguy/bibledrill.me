@@ -8,7 +8,7 @@ describe Users::OmniauthCallbacksController do
     uid: '123545',
     "info" => {
       "name" => "Elijah the Tishbite",
-      "image" => "https://dummyimage.com/300",
+      "image" => "https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97300&w=300&h=300",
       "email" => "elijah@heaven.net"
     }
   })
@@ -20,14 +20,14 @@ describe Users::OmniauthCallbacksController do
 
   describe '#authorize', focus: true do
     it "works with facebook" do
-      get user_omniauth_authorize_path(:facebook)
+      get user_facebook_omniauth_authorize_path
       expect(response.status).to eq(302)
     end
   end
 
   describe '#callback' do
     it "works with facebook" do
-      get user_omniauth_callback_path(action: :facebook)
+      get user_facebook_omniauth_callback_path
       expect(response.status).to eq(302)
     end
   end

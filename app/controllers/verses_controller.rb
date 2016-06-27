@@ -1,6 +1,7 @@
 class VersesController < KjController
 
   before_action :set_book_and_chapter
+  protect_from_forgery except: :cross_references
 
   def index
     @page_title = @chapter.title
