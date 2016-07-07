@@ -26,7 +26,7 @@ gem "bootstrap_flash_messages", github: 'RobinBrouwer/bootstrap_flash_messages'
 gem 'simple_form'
 gem 'leaderboard'
 gem 'delayed_job_active_record'
-gem "recaptcha", require: false
+gem "recaptcha", :require => "recaptcha/rails"
 gem 'valid_email', require: false
 gem 'postmark-rails'
 gem 'kaminari-bootstrap', '~> 3.0.1'
