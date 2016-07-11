@@ -1,9 +1,7 @@
 li value="#{verse.number}"
   span.verse.text> data-highlight-path="#{highlight_path(id: verse.id, format: :js)}" data-verse-id="#{verse.id}"
     = verse.text
-  a.verse-details.half-opacity href="#"
-    span.glyphicon.glyphicon-info-sign
-  span.details< style="display:none;"
+  span.details
     = link_to book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), remote: true, class: "verse-link" do
       span.glyphicon.glyphicon-link
     span<> |

@@ -2,6 +2,7 @@ class StudiesController < ApplicationController
 
   load_and_authorize_resource find_by: :permalink
   skip_authorize_resource only: [:index, :show, :books, :chapters, :verses, :search]
+  protect_from_forgery except: :index
 
   # GET /studies
   # GET /studies.json
