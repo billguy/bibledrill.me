@@ -64,7 +64,7 @@ GEM
     acts_as_votable (0.10.0)
     addressable (2.4.0)
     arel (6.0.3)
-    autoprefixer-rails (6.3.6.2)
+    autoprefixer-rails (6.5.3)
       execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
@@ -73,7 +73,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.6)
+    bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     breadcrumbs_on_rails (2.3.1)
@@ -421,8 +421,8 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     sass (3.4.22)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
@@ -483,7 +483,7 @@ DEPENDENCIES
   acts_as_votable
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 3.3.5)
+  bootstrap-sass (~> 3.3.6)
   bootstrap_flash_messages!
   breadcrumbs_on_rails
   cancancan
@@ -519,7 +519,7 @@ DEPENDENCIES
   redis-rails
   render_anywhere
   rspec-rails (~> 3.0)
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.6)
   shoulda-callback-matchers
   shoulda-matchers (~> 3.0)
   simple_form

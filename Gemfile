@@ -7,8 +7,8 @@ gem 'fog', group: :production
 gem 'rails_12factor', group: :production # 4 heroku
 gem 'raygun4ruby'
 gem 'puma'
-gem 'bootstrap-sass', '~> 3.3.5'
-gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
