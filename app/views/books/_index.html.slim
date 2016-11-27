@@ -2,6 +2,12 @@ h1 King James Bible
 
 = form_tag search_books_path, method: :get, remote: true, id: 'search-form' do
   = text_field_tag :q, params[:q], class: 'form-control input-lg clearable', placeholder: 'Keyword Search'
+  = content_tag :label, class: 'testament' do
+    = check_box_tag 'old_testament', 'yes', params[:old_testament] || true
+    small old
+  = content_tag :label, class: 'testament' do
+    = check_box_tag 'new_testament', 'yes', params[:new_testament] || true
+    small new
 
 hr
 .row
