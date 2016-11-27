@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7'
 gem 'pg', group: :production
 gem 'fog', group: :production
 gem 'rails_12factor', group: :production # 4 heroku
