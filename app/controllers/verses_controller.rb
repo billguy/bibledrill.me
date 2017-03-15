@@ -33,6 +33,9 @@ class VersesController < KjController
 
   def cross_references
     @verse = @chapter.verses.where(number: parsed_verses).first
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
