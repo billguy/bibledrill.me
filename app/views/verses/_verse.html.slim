@@ -5,5 +5,5 @@ li value="#{verse.number}"
     = link_to book_chapter_verse_path(book_id: @book.permalink, chapter_id: @chapter.number, id: verse.number), remote: true, class: "verse-link" do
       span.glyphicon.glyphicon-link
     span<> |
-    =link_to verse.verse_cross_references_count, cross_references_book_chapter_verse_path(book_id: verse.book_permalink, chapter_id: verse.chapter_number, id: verse.number), class: 'x', remote: true
+    =link_to verse.verse_cross_references_count, cross_references_book_chapter_verse_path(book_id: verse.book_permalink, chapter_id: verse.chapter_number, id: verse.number, rel: 'nofollow'), class: 'x', remote: true
     span.s
