@@ -2,6 +2,7 @@ class VersesController < KjController
 
   before_action :set_book_and_chapter
   protect_from_forgery except: :cross_references
+  rescue_from ActionController::UnknownFormat, with: :raise_not_found
 
   def index
     @page_title = @chapter.title
@@ -13,6 +14,7 @@ class VersesController < KjController
 
   def show
     @verses = @chapter.verses.where(number: parsed_verses).reorder(id: :asc)
+    raise ActionController::RoutingError.new('Not Found') unless @verses.present?
     @highlight_verse_ids = current_user ? current_user.highlights.where(verse_id: @verses.collect(&:id)).pluck(:verse_id) : []
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true
@@ -50,6 +52,10 @@ class VersesController < KjController
     def set_book_and_chapter
       @book = Book.find_by_permalink(params[:book_id])
       @chapter = @book.chapters.find_by_number(params[:chapter_id])
+    end
+
+    def raise_not_found
+      render(plain: 'Not Found', status: :unsupported_media_type)
     end
 
 end
