@@ -6,7 +6,7 @@
     = f.input :message, as: :text, rows: 10, cols: 10
     .form-group
       .col-sm-offset-2.col-sm-10
-        = recaptcha_tags(display: { theme: 'clean' }, public_key: ENV['recaptcha_public_key'])
+        = recaptcha_tags(display: { theme: 'clean' }, site_key: ENV['recaptcha_public_key'])
 
     .form-group
       .col-sm-offset-2.col-sm-10
