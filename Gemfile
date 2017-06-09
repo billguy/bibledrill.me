@@ -28,7 +28,7 @@ gem 'leaderboard'
 gem 'delayed_job_active_record'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'valid_email', require: false
-gem 'postmark-rails'
+gem 'sendgrid-rails', '~> 2.0'
 gem 'kaminari-bootstrap'
 gem "cocoon"
 gem "has_permalink"
