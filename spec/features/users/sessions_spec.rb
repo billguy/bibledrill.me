@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "omniauth_callbacks", type: :feature do
 
-  let(:user) { FactoryGirl.create(:user, email: 'elijah@heaven.net', password: '12345678')}
+  let(:user) { create(:user, email: 'elijah@heaven.net', password: '12345678')}
 
   context 'with valid user' do
     it 'loads the registration page' do

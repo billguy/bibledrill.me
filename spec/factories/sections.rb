@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :section do
     study nil
     title "MyString"
@@ -6,7 +6,7 @@ FactoryGirl.define do
     position 0
 
     before(:create) do |s|
-      s.verses << (Verse.first || FactoryGirl.create(:verse))
+      s.verses << (Verse.first || create(:verse))
     end
   end
 

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ContactMailer, type: :mailer do
   describe "new_contact" do
-    let(:contact) { FactoryGirl.build(:contact) }
+    let(:contact) { build(:contact) }
     let(:mail) { ContactMailer.new_contact(contact) }
 
     it "renders the headers" do

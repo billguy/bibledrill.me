@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     name "Elijah the Tishbite"
     email "elijah@heaven.net"

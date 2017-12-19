@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "studies", type: :feature do
 
-  let(:user) { User.find_by_email('elijah@heaven.net') || FactoryGirl.create(:user, email: 'elijah@heaven.net', password: '12345678')}
+  let(:user) { User.find_by_email('elijah@heaven.net') || create(:user, email: 'elijah@heaven.net', password: '12345678')}
 
   context 'when not logged in' do
     it 'cannot create studies' do
@@ -10,7 +10,7 @@ describe "studies", type: :feature do
       expect(page).to have_content("You are not authorized to access this page")
     end
     it 'cannot edit studies' do
-      study = FactoryGirl.create(:study)
+      study = create(:study, user: user)
       visit edit_study_path(study)
       expect(page).to have_content("You are not authorized to access this page")
     end
@@ -26,9 +26,9 @@ describe "studies", type: :feature do
     end
 
     # setup the bible so there's something to use in the tests
-    let!(:book) { FactoryGirl.create(:book)}
-    let!(:chapter) { FactoryGirl.create(:chapter)}
-    let!(:verse) { FactoryGirl.create(:verse)}
+    let!(:book) { create(:book)}
+    let!(:chapter) { create(:chapter)}
+    let!(:verse) { create(:verse)}
 
     context 'when creating a study', js: true do
       it 'can create' do
@@ -54,7 +54,7 @@ describe "studies", type: :feature do
 
     context 'when updating a study', js: true, focus: true do
 
-      let!(:study) { FactoryGirl.create(:study, user: user)}
+      let!(:study) { create(:study, user: user)}
 
       it 'can update' do
         visit edit_study_path(id: study.permalink)

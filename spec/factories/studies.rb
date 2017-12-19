@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :study do
     active false
     user nil
@@ -14,7 +14,7 @@ FactoryGirl.define do
     cached_weighted_average 0.0
 
     before(:create) do |s|
-      s.sections << FactoryGirl.create(:section, study: s)
+      s.sections << create(:section, study: s)
     end
   end
 

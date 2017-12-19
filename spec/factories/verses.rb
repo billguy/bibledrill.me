@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :verse do
     before(:create) do |v|
-      v.chapter = Chapter.first || FactoryGirl.create(:chapter)
+      v.chapter = Chapter.first || create(:chapter)
     end
     number 1
     page 1

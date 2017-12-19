@@ -1,14 +1,19 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+ruby '2.4.1'
 
-gem 'rails', '5.0.2'
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'rails', '5.1.4'
 gem 'pg', group: :production
 gem 'fog', group: :production
 gem 'rails_12factor', group: :production # 4 heroku
 gem 'raygun4ruby'
 gem 'puma'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'sass-rails', '~> 5.0.6'
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'sass-rails', '~> 5.0.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
@@ -28,7 +33,7 @@ gem 'leaderboard'
 gem 'delayed_job_active_record'
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'valid_email', require: false
-gem 'sendgrid-rails', '~> 2.0'
+gem 'sendgrid-rails'
 gem 'kaminari-bootstrap'
 gem "cocoon"
 gem "has_permalink"
@@ -41,16 +46,15 @@ gem 'social-share-button'
 gem 'fitvidsjs_rails'
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'rack-mini-profiler'
   gem 'render_anywhere', require: false
+  gem 'listen'
 end
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
 end
 
 group :test do

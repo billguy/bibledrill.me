@@ -10,8 +10,8 @@ describe Contact do
   it { is_expected.to validate_presence_of(:message) }
 
   it "validates email is an email" do
-    valid_email = FactoryGirl.build(:contact)
-    invalid_email = FactoryGirl.build(:contact, email: "invalid")
+    valid_email = build(:contact)
+    invalid_email = build(:contact, email: "invalid")
     expect(valid_email).to be_valid
     expect(invalid_email).to_not be_valid
   end

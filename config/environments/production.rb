@@ -57,6 +57,11 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "bibledrill_me_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
+  # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
+  # `config/secrets.yml.key`.
+  config.read_encrypted_secrets = true
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
   describe "new_user_notification" do
-    let(:user) { FactoryGirl.build(:user) }
+    let(:user) { build(:user) }
     let(:mail) { UserMailer.new_user_notification(user) }
 
     it "renders the headers" do

@@ -33,7 +33,7 @@ describe "omniauth_callbacks", type: :feature do
 
       context 'when user is deactivated', focus: true do
         it 'does not allow login' do
-          user = FactoryGirl.create(:user, provider: 'facebook', uid: '12345', active: false)
+          user = create(:user, provider: 'facebook', uid: '12345', active: false)
           visit user_facebook_omniauth_authorize_path
           expect(current_path).to eq(new_user_session_path)
           expect(page).to have_content('Account Unavailable')

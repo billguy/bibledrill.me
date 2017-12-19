@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe "highlights", type: :feature do
 
-  let(:user) { FactoryGirl.create(:user, email: 'elijah@heaven.net', password: '12345678')}
+  let(:user) { create(:user, email: 'elijah@heaven.net', password: '12345678')}
 
-  let!(:book) { FactoryGirl.create(:book)}
-  let!(:chapter) { FactoryGirl.create(:chapter)}
-  let!(:verse) { FactoryGirl.create(:verse)}
+  let!(:book) { create(:book)}
+  let!(:chapter) { create(:chapter)}
+  let!(:verse) { create(:verse)}
 
   context 'without a user' do
 
