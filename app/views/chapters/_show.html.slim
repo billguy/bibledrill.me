@@ -1,5 +1,5 @@
-=link_to "<", book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number), class: 'prev', remote: true
-=link_to ">", book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number), class: 'next', remote: true
+=link_to "<", book_chapter_path(book_id: @chapter.prev_book_permalink, id: @chapter.prev_number), class: 'prev', remote: true
+=link_to ">", book_chapter_path(book_id: @chapter.next_book_permalink, id: @chapter.next_number), class: 'next', remote: true
 
 .row
   .col-xs-12.col-sm-10
@@ -13,7 +13,7 @@ ol.breadcrumb.sticky
   = render_breadcrumbs tag: :li, separator: ''
 
 ol.chapter.verses
-  = render partial: "verses/verse", collection: @verses
+  = render partial: "verses/verse", collection: @chapter.verses
 
 = render 'shared/bible_modal'
 = render 'shared/books_menu'

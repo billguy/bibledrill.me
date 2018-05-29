@@ -6,8 +6,8 @@ class VersesController < KjController
 
   def index
     @page_title = @chapter.title
-    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
-    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link'
+    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true, class: 'tab-link'
     add_breadcrumb "Verses"
     @verses = @chapter.verses.reorder(id: :asc)
   end
@@ -16,20 +16,20 @@ class VersesController < KjController
     @verses = @chapter.verses.where(number: parsed_verses).reorder(id: :asc)
     raise ActionController::RoutingError.new('Not Found') unless @verses.present?
     @highlight_verse_ids = current_user ? current_user.highlights.where(verse_id: @verses.collect(&:id)).pluck(:verse_id) : []
-    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
-    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link'
+    add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true, class: 'tab-link'
     if @verses.length > 1
       @page_title = @chapter.title
       @prev_chapter = @chapter.prev
       @next_chapter = @chapter.next
-      add_breadcrumb "Verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), remote: true
+      add_breadcrumb "Verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), remote: true, class: 'tab-link'
     else
       @prev_chapter = @verses.first.prev.chapter
       @next_chapter = @verses.first.next.chapter
       @prev_verse = @verses.first.prev
       @next_verse = @verses.first.next
       @page_title = @verses.first.title
-      add_breadcrumb "Verse #{@verses.first.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verse #{@verses.first.number}", remote: true
+      add_breadcrumb "Verse #{@verses.first.number}", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), title: "Verse #{@verses.first.number}", remote: true, class: 'tab-link'
     end
   end
 

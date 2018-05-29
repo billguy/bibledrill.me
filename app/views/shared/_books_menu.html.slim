@@ -7,9 +7,9 @@
       .row
         - Book.old_paths.each do |book|
           .col-xs-6
-            = link_to book[:name], book[:path], remote: true
+            = link_to book[:name], book[:path], remote: true, class: 'tab-link'
     .col-xs-6
       .row
         - Book.new_paths.each do |book|
           .col-xs-6
-            = link_to book[:name], book[:path], remote: true
+            = link_to book[:name], book[:path], remote: true, class: 'tab-link'

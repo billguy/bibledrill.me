@@ -8,9 +8,8 @@ class BooksController < KjController
   end
 
   def show
-    @book = Book.find_by_permalink(params[:id])
-    add_breadcrumb @book.name, :books_path, title: "Books", remote: true
-    @chapters = @book.chapters
+    @book = Book.includes(:chapters).where(permalink: params[:id]).first
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link'
   end
 
   def search

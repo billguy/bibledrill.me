@@ -23,11 +23,31 @@ class Chapter < ActiveRecord::Base
   end
 
   def prev
-    id == 1 ? Chapter.includes(:book).last : Chapter.includes(:book).find_by_id(id-1)
+    @prev ||= id == 1 ? Chapter.includes(:book).last : Chapter.includes(:book).find_by_id(id-1)
+  end
+
+  def prev_book_permalink
+    prev.try(:book_permalink)
+  end
+
+  def prev_number
+    self.prev.try(:number)
   end
 
   def next
-    id == self.class.count ? Chapter.includes(:book).first : Chapter.includes(:book).find_by_id(id+1)
+    @next ||= id == self.class.count ? Chapter.includes(:book).first : Chapter.includes(:book).find_by_id(id+1)
+  end
+
+  def next_book_permalink
+    self.next.try(:book_permalink)
+  end
+
+  def next_number
+    self.next.try(:number)
+  end
+
+  def book_chapters
+    book.try(:chapters)
   end
 
 end

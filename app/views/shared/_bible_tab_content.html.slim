@@ -1,0 +1,38 @@
+.tab-pane.bible-tab-pane role="tabpanel" id="#{tab_id}" class="#{css_class}"
+
+  .container-fluid
+
+    = form_tag search_books_path, method: :get, remote: true, class: 'search', id: "search-#{tab_id}" do
+      = text_field_tag :q, params[:q], class: 'form-control input-lg clearable', placeholder: 'Keyword Search'
+      = content_tag :label, class: 'testament' do
+        = check_box_tag 'old_testament', 'yes', params[:old_testament] || true
+        small old
+      = content_tag :label, class: 'testament' do
+        = check_box_tag 'new_testament', 'yes', params[:new_testament] || true
+        small new
+
+    hr
+    .row
+      .col-xs-12
+        .search-results.hidden
+
+    ul.bible.contents.nav.nav-tabs.sticky role="tablist"
+      li.active.tab.old role="presentation"
+        a aria-controls="old" data-toggle="tab" href="#old-#{tab_id}" role="tab" Old
+      li.tab.new role="presentation"
+        a aria-controls="new" data-toggle="tab" href="#new-#{tab_id}" role="tab" New
+
+    .tab-content.bible.contents
+      .tab-pane.old.active role="tabpanel" id="old-#{tab_id}"
+        .row
+          = render partial: "books/book", collection: old
+      .tab-pane.new role="tabpanel" id="new-#{tab_id}"
+        .row
+          = render partial: "books/book", collection: new
+        .row
+          .col-xs-12
+            .legend<
+            small
+              i
+                | Technically old testament. See&nbsp;
+                a href="/books/hebrews/chapters/9/verses/16,17" here.

@@ -5,6 +5,6 @@ ol.breadcrumb.sticky
 
 ul.list-inline.chapters
   li.read
-    =link_to book_chapter_path(book_id: @book.permalink, id: @chapters.first.number), remote: true, class: 'chapter z-index-100' do
+    =link_to book_chapter_path(book_id: @book.permalink, id: @book.first_chapter_number), remote: true, class: 'chapter z-index-100 tab-link' do
       span.read Read
-  = render partial: "chapter", collection: @chapters
+  = render partial: "chapter", collection: @book.chapters

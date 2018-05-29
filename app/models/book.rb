@@ -22,4 +22,20 @@ class Book < ActiveRecord::Base
     [{:name=>"Matt", :path=>"/books/matthew/chapters"}, {:name=>"Mrk", :path=>"/books/mark/chapters"}, {:name=>"Luk", :path=>"/books/luke/chapters"}, {:name=>"John", :path=>"/books/john/chapters"}, {:name=>"Acts", :path=>"/books/acts/chapters"}, {:name=>"Rom", :path=>"/books/romans/chapters"}, {:name=>"1Cor", :path=>"/books/1-corinthians/chapters"}, {:name=>"2Cor", :path=>"/books/2-corinthians/chapters"}, {:name=>"Gal", :path=>"/books/galatians/chapters"}, {:name=>"Ephes", :path=>"/books/ephesians/chapters"}, {:name=>"Phil", :path=>"/books/philippians/chapters"}, {:name=>"Col", :path=>"/books/colossians/chapters"}, {:name=>"1Thess", :path=>"/books/1-thessalonians/chapters"}, {:name=>"2Thess", :path=>"/books/2-thessalonians/chapters"}, {:name=>"1Tim", :path=>"/books/1-timothy/chapters"}, {:name=>"2Tim", :path=>"/books/2-timothy/chapters"}, {:name=>"Titus", :path=>"/books/titus/chapters"}, {:name=>"Philem", :path=>"/books/philemon/chapters"}, {:name=>"Hebrews", :path=>"/books/hebrews/chapters"}, {:name=>"James", :path=>"/books/james/chapters"}, {:name=>"1Pet", :path=>"/books/1-peter/chapters"}, {:name=>"2Pet", :path=>"/books/2-peter/chapters"}, {:name=>"1John", :path=>"/books/1-john/chapters"}, {:name=>"2John", :path=>"/books/2-john/chapters"}, {:name=>"3John", :path=>"/books/3-john/chapters"}, {:name=>"Jude", :path=>"/books/jude/chapters"}, {:name=>"Rev", :path=>"/books/revelation/chapters"}]
   end
 
+  def old?
+    id <= 43
+  end
+
+  def new?
+    id > 39
+  end
+
+  def first_chapter
+    chapters.first
+  end
+
+  def first_chapter_number
+    first_chapter.try(:number)
+  end
+
 end

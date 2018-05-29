@@ -1,8 +1,8 @@
 document.title = "<%= display_title(default_meta_tags) %>";
 $("html, body").scrollTop(0);
 
-$('#content').html('<%= j(render('show')) %>');
-$('#content').attr('data-next-path', '<%= book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number) %>');
-$('#content').attr('data-prev-path', '<%= book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number) %>');
+$('#<%= cookies[:current_tab_id] %>').html('<%= j(render('show')) %>');
+$('#<%= cookies[:current_tab_id] %>').attr('data-next-path', '<%= book_chapter_path(book_id: @chapter.next_book_permalink, id: @chapter.next_number) %>');
+$('#<%= cookies[:current_tab_id] %>').attr('data-prev-path', '<%= book_chapter_path(book_id: @chapter.prev_book_permalink, id: @chapter.prev_number) %>');
 
 <%= render('shared/highlights') %>

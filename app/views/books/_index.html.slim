@@ -1,40 +1,18 @@
-h1 King James Bible
+ul#bible-tabs.nav.nav-tabs.bible-tabs role="tablist"
 
-= form_tag search_books_path, method: :get, remote: true, id: 'search-form' do
-  = text_field_tag :q, params[:q], class: 'form-control input-lg clearable', placeholder: 'Keyword Search'
-  = content_tag :label, class: 'testament' do
-    = check_box_tag 'old_testament', 'yes', params[:old_testament] || true
-    small old
-  = content_tag :label, class: 'testament' do
-    = check_box_tag 'new_testament', 'yes', params[:new_testament] || true
-    small new
+  =render('shared/bible_tab', tab_id: "tab-blueprint", css_class: 'hidden tab-blueprint')
+  =render('shared/bible_tab', tab_id: "tab-1", css_class: 'active')
 
-hr
-.row
-  .col-xs-12
-    #search-results.hidden
+  li#new-bible-tab.tab.new-bible-tab role="presentation"
+    a href='#' +
 
-ul#books-nav.bible.contents.nav.nav-tabs.sticky role="tablist"
-  li.active.tab role="presentation"
-    a aria-controls="old" data-toggle="tab" href="#old" role="tab" Old
-  li.tab role="presentation"
-    a aria-controls="new" data-toggle="tab" href="#new" role="tab" New
   li.tab role="presentation"
     a aria-controls="highlights" data-toggle="tab" href="#highlights" role="tab" Highlights
 
-.tab-content.bible.contents
-  #old.tab-pane.fade.in.active role="tabpanel"
-    .row
-      = render partial: "book", collection: @old
-  #new.tab-pane.fade role="tabpanel"
-    .row
-      = render partial: "book", collection: @new
-    .row
-      .col-xs-12
-        .legend<
-        small
-          i
-            | Technically old testament. See&nbsp;
-            a href="/books/hebrews/chapters/9/verses/16,17" here.
-  #highlights.tab-pane.fade role="tabpanel"
+#bible-tab-content.tab-content
+
+  = render('shared/bible_tab_content', tab_id: "tab-blueprint", css_class: 'tab-pane-blueprint', old: @old, new: @new)
+  = render('shared/bible_tab_content', tab_id: "tab-1", css_class: 'active', old: @old, new: @new)
+
+  #highlights.tab-pane role="tabpanel"
     = render partial: "highlights"

@@ -1,5 +1,5 @@
-$('#content').html('<%= j(render('index')) %>');
+$('#<%= cookies[:current_tab_id] %>').html('<%= j(render('index')) %>');
 document.title = "<%= display_title(default_meta_tags) %>";
 window.scrollTo(0, 0);
-$('#content').attr('data-next-path', '');
-$('#content').attr('data-prev-path', '');
+$('#<%= cookies[:current_tab_id] %>').attr('data-next-path', '');
+$('#<%= cookies[:current_tab_id] %>').attr('data-prev-path', '');

@@ -6,6 +6,7 @@
 //= require spin
 //= require jquery.spin
 //= require search
+//= require js.cookie
 
 if (history && history.pushState){
   $(function(){
@@ -88,4 +89,51 @@ $('body').on('click', 'ol.breadcrumb a[data-quick-menu=true]', function(e){
             return $(menu).html();
         }
     }).popover("toggle");
+});
+
+$('#new-bible-tab a').click(function(e){
+    e.preventDefault();
+
+    var new_tab_id = 'tab-' + Math.floor(Math.random()*10000);
+    var $tab = $('.tab-blueprint').clone();  // Create tab
+    $tab.removeClass('tab-blueprint hidden');
+    $tab.attr('data-tab-id', new_tab_id);
+    $tab.find('a.tab-title').attr('aria-controls', new_tab_id);
+    $tab.find('a.tab-title').attr('href', '#' + new_tab_id);
+    $tab.find('a.delete-tab').attr('data-tab-id', new_tab_id);
+    $('#bible-tabs .tab').removeClass('active');
+    $tab.addClass('active');
+    $('#new-bible-tab').before($tab);
+
+    var $tab_content = $('.tab-pane-blueprint').clone();  // Create tab content
+    $tab_content.removeClass('tab-pane-blueprint');
+    $tab_content.attr('id', new_tab_id);
+    $tab_content.find('form.search').attr('id', 'search-' + new_tab_id);
+    $tab_content.find('li.tab.old a').attr('href', '#old-' + new_tab_id);
+    $tab_content.find('li.tab.new a').attr('href', '#new-' + new_tab_id);
+    $tab_content.find('.tab-pane.old').attr('id', 'old-' + new_tab_id);
+    $tab_content.find('.tab-pane.new').attr('id', 'new-' + new_tab_id);
+    $('#bible-tab-content .bible-tab-pane').removeClass('active');
+    $tab_content.addClass('active');
+    $('#bible-tab-content').append($tab_content);
+
+});
+
+$('body').on('click', 'a.delete-tab', function(e){
+    e.preventDefault();
+    var tab_id = $(this).attr('data-tab-id');
+    var $tab = $('.bible-tab[data-tab-id="'+tab_id+'"]');
+    var $prev_tab = $tab.prev('.bible-tab:not(.tab-blueprint)');
+    var $next_tab = $tab.next();
+    $tab.remove();
+    $('#'+tab_id).remove();
+    if ( $prev_tab.length)
+        $prev_tab.find('a').first().click();
+    else
+        $next_tab.find('a').first().click();
+});
+
+$('body').on('click', 'a.tab-link', function(e){
+    var tab_id = $(this).closest('.bible-tab-pane').attr('id');
+    Cookies.set('current_tab_id', tab_id);
 });
