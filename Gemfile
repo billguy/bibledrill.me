@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '5.1.4'
-gem 'pg', group: :production
+gem 'pg', '~> 0.21.0', group: :production
 gem 'fog', group: :production
 gem 'rails_12factor', group: :production # 4 heroku
 gem 'raygun4ruby'
