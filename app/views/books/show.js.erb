@@ -1,2 +1,6 @@
-$('#content').html('<%= j(render('show')) %>');
+$('.bible-tab-pane.active .vine').removeClass('hidden');
+$('.bible-tab-pane.active .branches').html('<%= j(render('show')) %>').addClass('hidden');
+
 document.title = "<%= display_title(default_meta_tags) %>";
+
+$('li.bible-tab.active a.tab-title').text('<%= @page_title %>');

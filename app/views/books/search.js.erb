@@ -1,5 +1,14 @@
 $("html, body").scrollTop(0);
 $("#bible-modal .modal-body").scrollTop(0);
-Search.destroyInfiniteScroll(); // order important here
-$('#search-results').html('<%= j(render('search')) %>').append('<%= j(render('search_paginate')) %>');
+
+// order important here
+Search.destroyInfiniteScroll();
+
+var $tabPane = $('.bible-tab-pane.active');
+$tabPane.find('.branches').addClass('hidden');
+$tabPane.find('.search-results').html('<%= j(render('search')) %>').append('<%= j(render('search_paginate')) %>');
+$tabPane.find('.vine').removeClass('hidden');
+
 Search.initInfiniteScroll();
+
+$('li.bible-tab.active a.tab-title').text('<%= @page_title %>');

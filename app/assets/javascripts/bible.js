@@ -2,7 +2,7 @@
 //= require bootstrap/modal
 //= require bootstrap/tooltip
 //= require bootstrap/popover
-//= require jquery.sticky-kit
+//= require jquery.sticky
 //= require spin
 //= require jquery.spin
 //= require search
@@ -20,10 +20,10 @@ if (history && history.pushState){
   });
 }
 
-$(".sticky").stick_in_parent();
+$(".sticky").sticky();
 
 $(document).on('ajaxComplete', function() {
-    $(".sticky").stick_in_parent();
+    $(".sticky").sticky();
 });
 
 $('body').on('click', 'ol.verses li span.verse', function(){
@@ -76,25 +76,11 @@ $('body').on('click', 'a.x', function(){
     $(this).next('span.s').spin(opts);
 });
 
-
-$('body').on('click', 'ol.breadcrumb a[data-quick-menu=true]', function(e){
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    var menu = $(this).data('menu');
-    $(this).popover({
-        placement: 'bottom',
-        trigger: 'focus',
-        html: true,
-        content: function(){
-            return $(menu).html();
-        }
-    }).popover("toggle");
-});
-
 $('#new-bible-tab a').click(function(e){
     e.preventDefault();
 
     var new_tab_id = 'tab-' + Math.floor(Math.random()*10000);
+    Cookies.set('current_tab_id', new_tab_id);
     var $tab = $('.tab-blueprint').clone();  // Create tab
     $tab.removeClass('tab-blueprint hidden');
     $tab.attr('data-tab-id', new_tab_id);
@@ -133,7 +119,23 @@ $('body').on('click', 'a.delete-tab', function(e){
         $next_tab.find('a').first().click();
 });
 
-$('body').on('click', 'a.tab-link', function(e){
+$('body').on('click', 'a.tab-link,a.tab-title', function(e){
     var tab_id = $(this).closest('.bible-tab-pane').attr('id');
     Cookies.set('current_tab_id', tab_id);
+});
+
+$('a.highlights-tab[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var loaded = $(this).data('loaded');
+    if (!loaded){
+        $(this).data('loaded', true);
+        var url = $(this).data('url');
+        $.getScript(url);
+    }
+});
+
+$('body').on('click', 'a.highlight', function(e){
+    e.preventDefault();
+    $('#new-bible-tab a').click();
+    var title = $(this).html();
+    $('li.bible-tab.active a.tab-title').text(title);
 });

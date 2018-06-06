@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :drills, only: [:index, :new, :create]
   resources :contacts, only: [:index, :new, :create], path: :contact
-  resources :highlights, only: [:update]
+  resources :highlights, only: [:index, :update]
   resources :studies do
     get 'search', on: :collection
     put 'like', on: :member

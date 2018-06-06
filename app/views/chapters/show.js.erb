@@ -1,8 +1,13 @@
 document.title = "<%= display_title(default_meta_tags) %>";
 $("html, body").scrollTop(0);
 
-$('#<%= cookies[:current_tab_id] %>').html('<%= j(render('show')) %>');
-$('#<%= cookies[:current_tab_id] %>').attr('data-next-path', '<%= book_chapter_path(book_id: @chapter.next_book_permalink, id: @chapter.next_number) %>');
-$('#<%= cookies[:current_tab_id] %>').attr('data-prev-path', '<%= book_chapter_path(book_id: @chapter.prev_book_permalink, id: @chapter.prev_number) %>');
+var $tabPane = $('.bible-tab-pane.active');
+$tabPane.find('.vine').addClass('hidden');
+$tabPane.find('.branches').html('<%= j(render('show')) %>').removeClass('hidden');
+
+$tabPane.attr('data-next-path', '<%= book_chapter_path(book_id: @chapter.next_book_permalink, id: @chapter.next_number) %>');
+$tabPane.attr('data-prev-path', '<%= book_chapter_path(book_id: @chapter.prev_book_permalink, id: @chapter.prev_number) %>');
+
+$('li.bible-tab.active a.tab-title').text('<%= @page_title %>');
 
 <%= render('shared/highlights') %>

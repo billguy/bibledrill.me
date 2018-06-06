@@ -2,13 +2,11 @@ class BooksController < KjController
 
   def index
     @page_title = "King James Bible"
-    @old = Book.old_testament
-    @new = Book.new_testament
-    @higlights = current_user ? current_user.highlights.order(verse_id: :asc) : []
   end
 
   def show
     @book = Book.includes(:chapters).where(permalink: params[:id]).first
+    @page_title = @book.name
     add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link'
   end
 
@@ -21,6 +19,11 @@ class BooksController < KjController
     @verses = @verses.old_testament if params[:old_testament].present? && !params[:new_testament]
     @verses = @verses.new_testament if params[:new_testament].present? && !params[:old_testament]
     @verses = @verses.order(id: :asc).page params[:page]
+    @page_title = "Search: #{params[:q]}"
+    respond_to do |format|
+      format.js
+      format.html { render 'search', layout: false }
+    end
   end
 
 end

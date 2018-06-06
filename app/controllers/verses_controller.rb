@@ -6,7 +6,7 @@ class VersesController < KjController
 
   def index
     @page_title = @chapter.title
-    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link'
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link books'
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number}", remote: true, class: 'tab-link'
     add_breadcrumb "Verses"
     @verses = @chapter.verses.reorder(id: :asc)
@@ -16,10 +16,10 @@ class VersesController < KjController
     @verses = @chapter.verses.where(number: parsed_verses).reorder(id: :asc)
     raise ActionController::RoutingError.new('Not Found') unless @verses.present?
     @highlight_verse_ids = current_user ? current_user.highlights.where(verse_id: @verses.collect(&:id)).pluck(:verse_id) : []
-    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link'
+    add_breadcrumb @book.name, :books_path, title: "Books", remote: true, class: 'tab-link books'
     add_breadcrumb "Chapter #{@chapter.number}", book_chapters_path(book_id: @book.permalink), title: "Chapter #{@chapter.number} verses", remote: true, class: 'tab-link'
     if @verses.length > 1
-      @page_title = @chapter.title
+      @page_title = "#{@chapter.title}:#{params[:id]}"
       @prev_chapter = @chapter.prev
       @next_chapter = @chapter.next
       add_breadcrumb "Verses", book_chapter_verses_path(book_id: @book.permalink, chapter_id: @chapter.number), remote: true, class: 'tab-link'

@@ -50,4 +50,8 @@ class Chapter < ActiveRecord::Base
     book.try(:chapters)
   end
 
+  def book_first_chapter_number
+    book.try(:first_chapter_number)
+  end
+
 end

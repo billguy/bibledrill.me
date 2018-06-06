@@ -1,4 +1,7 @@
-= render 'show'
+=content_for :tab_content do
+  = render 'show'
+
+=render 'shared/bible', vine: false
 = content_for :footer do
   javascript:
-    #{render('shared/highlights.js.erb')}
+      #{render('shared/highlights.js.erb')}

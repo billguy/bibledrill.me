@@ -1,13 +1,19 @@
 document.title = "<%= display_title(default_meta_tags) %>";
 $("html, body").scrollTop(0);
-$('#<%= cookies[:current_tab_id] %>').html('<%= j(render('show')) %>');
+
+var $tabPane = $('.bible-tab-pane.active');
+
+$tabPane.find('.vine').addClass('hidden');
+$tabPane.find('.branches').html('<%= j(render('show')) %>').removeClass('hidden');
 
 <% if @verses.length == 1 %>
-    $('#<%= cookies[:current_tab_id] %>').attr('data-next-path', '<%= book_chapter_verse_path(book_id: @next_verse.book_permalink, chapter_id: @next_verse.chapter_number, id: @next_verse.number) %>');
-    $('#<%= cookies[:current_tab_id] %>').attr('data-prev-path', '<%= book_chapter_verse_path(book_id: @prev_verse.book_permalink, chapter_id: @prev_verse.chapter_number, id: @prev_verse.number) %>');
+  $tabPane.attr('data-next-path', '<%= book_chapter_verse_path(book_id: @next_verse.book_permalink, chapter_id: @next_verse.chapter_number, id: @next_verse.number) %>');
+  $tabPane.attr('data-prev-path', '<%= book_chapter_verse_path(book_id: @prev_verse.book_permalink, chapter_id: @prev_verse.chapter_number, id: @prev_verse.number) %>');
 <% else %>
-    $('#<%= cookies[:current_tab_id] %>').attr('data-next-path', '<%= book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number) %>');
-    $('#<%= cookies[:current_tab_id] %>').attr('data-prev-path', '<%= book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number) %>');
+  $tabPane.attr('data-next-path', '<%= book_chapter_path(book_id: @next_chapter.book_permalink, id: @next_chapter.number) %>');
+  $tabPane.attr('data-prev-path', '<%= book_chapter_path(book_id: @prev_chapter.book_permalink, id: @prev_chapter.number) %>');
 <% end %>
 
 <%= render('shared/highlights') %>
+
+$('li.bible-tab.active a.tab-title').text('<%= @page_title %>');

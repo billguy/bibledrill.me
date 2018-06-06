@@ -1,0 +1,17 @@
+ul#bible-tabs.nav.nav-tabs.bible-tabs role="tablist"
+
+  =render('shared/bible_tab', tab_id: "tab-blueprint", css_class: 'hidden tab-blueprint')
+  =render('shared/bible_tab', tab_id: "tab-1", css_class: 'active')
+
+  li#new-bible-tab.tab.new-bible-tab role="presentation"
+    a href='#' +
+
+  li.tab role="presentation"
+    a.highlights-tab aria-controls="highlights" data-toggle="tab" data-loaded="false" data-url="#{highlights_path}" href="#highlights" role="tab" Highlights
+
+#bible-tab-content.tab-content
+
+  = render('shared/bible_tab_content', tab_id: "tab-blueprint", css_class: 'tab-pane-blueprint', vine: true)
+  = render('shared/bible_tab_content', tab_id: "tab-1", css_class: 'active', vine: vine)
+
+  #highlights.tab-pane.bible-tab-pane role="tabpanel"

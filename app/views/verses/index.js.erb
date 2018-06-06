@@ -1,5 +1,12 @@
-$('#<%= cookies[:current_tab_id] %>').html('<%= j(render('index')) %>');
 document.title = "<%= display_title(default_meta_tags) %>";
 window.scrollTo(0, 0);
-$('#<%= cookies[:current_tab_id] %>').attr('data-next-path', '');
-$('#<%= cookies[:current_tab_id] %>').attr('data-prev-path', '');
+
+var $tabPane = $('.bible-tab-pane.active');
+
+$tabPane.find('.vine').addClass('hidden');
+$tabPane.find('.branches').html('<%= j(render('index')) %>').removeClass('hidden');
+
+$tabPane.attr('data-next-path', '');
+$tabPane.attr('data-prev-path', '');
+
+$('li[data-tab-id="<%= cookies[:current_tab_id] %>"] a.tab-title').text('<%= @page_title %>');

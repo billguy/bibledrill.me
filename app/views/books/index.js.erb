@@ -1,7 +1,14 @@
-$('#content').html('<%= j(render('index')) %>');
+var $tabPane = $('.bible-tab-pane.active');
+
 document.title = "<%= display_title(default_meta_tags) %>";
 window.scrollTo(0, 0);
-$('#content').attr('data-next-path', '');
-$('#content').attr('data-prev-path', '');
+
+$tabPane.attr('data-next-path', '');
+$tabPane.attr('data-prev-path', '');
+
+$tabPane.find('.branches').addClass('hidden');
+$tabPane.find('.vine').removeClass('hidden');
+
+$('li.bible-tab.active a.tab-title').text('<%= @page_title %>');
 
 Bible.init();

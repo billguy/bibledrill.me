@@ -104,9 +104,15 @@ span.read{
   font-size: 19px;
 }
 
-.old{
-  background: #ccc;
+.new{
+  .old{
+    background: #ccc;
+  }
 }
+
+//.bible.tab-content{
+//  padding-top: 50px;
+//}
 
 .legend{
   display: inline-block;
@@ -145,8 +151,8 @@ ol.breadcrumb {
     overflow-y: auto;
 }
 
-.is_stuck{
-  width: 98% !important;
+.sticky-wrapper{
+  margin-bottom: 20px;
 }
 
 .selected{
@@ -159,6 +165,10 @@ ol.breadcrumb {
   -webkit-animation-duration:         .7s;
   -webkit-animation-iteration-count:  infinite;
   -webkit-animation-timing-function:  alternate;
+}
+
+.vine{
+  margin-top: 25px;
 }
 
 @keyframes glow {

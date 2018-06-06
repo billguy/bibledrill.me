@@ -3,39 +3,41 @@
 
 var Search = {
     init: function(){
-        $('.clearable').clearSearch({
+        $('.bible-tab-pane.active .clearable').clearSearch({
             callback: function() {
-                $("#q").blur();
+                $(".bible-tab-pane.active .q").blur();
                 Search.hideSearch();
             }
         });
-        $('#search-form').on('submit', function(){
-            $("#q").blur();
-            $('#search-results').html('<i>Please wait...</i>');
+        $('.bible-tab-pane.active .search-form').on('submit', function(){
+            $(".bible-tab-pane.active .q").blur();
+            $('.bible-tab-pane.active .search-results').html('<i>Please wait...</i>');
             Search.showSearch();
         });
     },
     showSearch: function(){
-        $('.contents').addClass('hidden');
-        $('#search-results').removeClass('hidden');
+        $('.bible-tab-pane.active .contents').addClass('hidden');
+        $('.bible-tab-pane.active .search-results').removeClass('hidden');
     },
     hideSearch: function(){
-        $('.contents').removeClass('hidden');
-        $('#search-results').addClass('hidden');
+        $('.bible-tab-pane.active .contents').removeClass('hidden');
+        $('.bible-tab-pane.active .search-results').addClass('hidden');
     },
     initInfiniteScroll: function(){
-        $("#search-results").infinitescroll({
-            navSelector: "ul.pagination",
-            nextSelector: "ul.pagination a[rel=next]",
-            itemSelector: "#search-results div.search-result",
+        $(".bible-tab-pane.active .search-results").infinitescroll({
+            navSelector: ".bible-tab-pane.active ul.pagination",
+            nextSelector: ".bible-tab-pane.active ul.pagination a[rel=next]",
+            itemSelector: "div.search-result",
             loading: {
               finishedMsg: "",
               msgText: "<em>Loading...</em>"
             }
         });
+        Search.showSearch();
     },
     destroyInfiniteScroll: function(){
-        $('#search-results').infinitescroll('destroy').data('infinitescroll', null);
+        $('.bible-tab-pane.active .search-results').infinitescroll('destroy').data('infinitescroll', null);
+        Search.hideSearch();
     }
 
 };

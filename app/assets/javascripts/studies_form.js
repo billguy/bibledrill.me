@@ -1,7 +1,7 @@
 //= require cocoon
 //= require bootstrap/modal
 //= require bootstrap/tooltip
-//= require summernote
+//= require summernote/summernote-bs4.min
 //= require Sortable
 
 $('#sections').on('cocoon:after-insert', function(event, field){
