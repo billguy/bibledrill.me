@@ -3,7 +3,7 @@ FactoryBot.define do
     before(:create) do |c|
       c.book = Book.first || create(:book)
     end
-    number 1
+    number {1}
   end
 
 end

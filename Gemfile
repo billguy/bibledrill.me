@@ -6,10 +6,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '5.1.4'
+gem 'rails', '~> 5.2.1'
 gem 'pg', '~> 0.21.0', group: :production
 gem 'fog', group: :production
 gem 'rails_12factor', group: :production # 4 heroku
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'raygun4ruby'
 gem 'puma'
 gem 'bootstrap-sass', '~> 3.3.7'
@@ -53,14 +54,14 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails'
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit'
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers'
 end

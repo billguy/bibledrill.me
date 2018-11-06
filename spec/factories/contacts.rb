@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :contact do
-    name "Elijah the Tishbite"
-    email "elijah@heaven.net"
-    message "Great site!"
+    name {"Elijah the Tishbite"}
+    email {"elijah@heaven.net"}
+    message {"Great site!"}
   end
 end
